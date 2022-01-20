@@ -1,21 +1,22 @@
 import { AddCardButton } from '../AddCardButton';
 import * as C from './styles';
 import { Link } from 'react-router-dom';
+import { DisplayCard } from '../../types/DisplayCard';
 
-export const ProductCard = () => {
+export const ProductCard = ({ img, title, price, discount, memberPrice, nonMemberPrice }: DisplayCard) => {
   return (
     <C.CardContainer>
       <C.DisplayProduct>
-        <C.ProductImage src={'https://www.wine.com.br/cdn-cgi/image/f=png,h=515,q=99/assets-images/produtos/19694-01.png'} />
-        <Link to='/product' style={{ textDecoration: 'none' }}> <C.Title>Bacalhôa Meia Pipa Private Selection Castelão Syrah 2014</C.Title>
+        <C.ProductImage src={img} />
+        <Link to='/product' style={{ textDecoration: 'none' }}> <C.Title>{title}</C.Title>
         </Link>
-        <C.SmallerCardText size={11} color='#888888' decoration='line-through'>R$ 37,40
-          <C.Porcentage>60% OFF</C.Porcentage>
+        <C.SmallerCardText size={11} color='#888888' decoration='line-through'>R$ {price}
+          <C.Porcentage>{discount}% OFF</C.Porcentage>
         </C.SmallerCardText>
         <C.SmallerCardText size={11} color='#1D1D1B' bold='bold'>Sócio Wine
-          <C.MemberValue>R$ <span>30</span>,00</C.MemberValue>
+          <C.MemberValue>R$ <span>{memberPrice}</span>,00</C.MemberValue>
         </C.SmallerCardText>
-        <C.SmallerCardText size={12} color='#888888'>Não sócio R$ 37,40</C.SmallerCardText>
+        <C.SmallerCardText size={12} color='#888888'>Não sócio R$ {nonMemberPrice}</C.SmallerCardText>
       </C.DisplayProduct>
 
       <AddCardButton width={16} height={2.5} size={14} fontStyle='uppercase' />
