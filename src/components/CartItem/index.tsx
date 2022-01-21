@@ -1,6 +1,6 @@
 import * as C from './styles';
 
-export const CartProducts = () => {
+export const CartItem = () => {
   return (
     <C.CartCardContainer>
       <C.CardImage src={'https://www.wine.com.br/cdn-cgi/image/f=png,h=515,q=99/assets-images/produtos/19694-01.png'} alt="imagem do vinho" />

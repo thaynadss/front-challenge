@@ -1,7 +1,7 @@
 import { AddCardButton } from '../AddCardButton';
 import * as C from './styles';
 import { Link } from 'react-router-dom';
-import { DisplayCard } from '../../types/DisplayCard';
+import { DisplayCard } from '../../types/Product';
 
 export const ProductCard = ({ img, title, price, discount, memberPrice, nonMemberPrice }: DisplayCard) => {
   return (

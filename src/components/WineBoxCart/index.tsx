@@ -1,4 +1,4 @@
-import { CartProducts } from '../CartProducts';
+import { CartItem } from '../CartItem';
 import * as C from './styles';
 
 type Props = {
@@ -14,12 +14,12 @@ export const WineBoxCart = ({ cartClick, setCartClick }: Props) => {
           <C.ArrowLeft src={process.env.PUBLIC_URL + '/icons/arrowLeft.svg'} alt="fechar WineBox" onClick={() => setCartClick(!cartClick)} />
           WineBox (1)</C.CartHeader>
         <C.ProductsContainer>
-          <CartProducts />
-          <CartProducts />
-          <CartProducts />
-          <CartProducts />
-          <CartProducts />
-          <CartProducts />
+          <CartItem />
+          <CartItem />
+          <CartItem />
+          <CartItem />
+          <CartItem />
+          <CartItem />
         </C.ProductsContainer>
         <C.FooterContainer>
           <C.CartSubtotal>Total
