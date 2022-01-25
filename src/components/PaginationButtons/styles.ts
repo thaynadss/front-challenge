@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
-export const ButtonsContainer = styled.div`
+export const ButtonsContainer = styled.div<{ total: number }>`
   margin-top: 1.66rem;
   justify-self: center;
   font-family: 'Lato', sans-serif;
+  visibility: ${props => props.total > 1 ? 'visible' : 'hidden'};
 `;
 
 export const PaginationButton = styled.button<{ width: number, actualPage?: string }>`
@@ -16,6 +17,12 @@ export const PaginationButton = styled.button<{ width: number, actualPage?: stri
   color: ${props => props.actualPage ? '#FFF' : '#B6116E'};
   margin-right: 0.5rem;
   cursor: pointer;
+
+  &:hover {
+    background-color: #e43fa0;
+    border-color: #e43fa0;
+    color: #FFF;
+  }
 `;
 
 export const NextButton = styled.button`
