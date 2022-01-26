@@ -4,20 +4,22 @@ import * as C from './styles';
 
 type Props = {
   search: boolean;
+  setSearchClick: (value: boolean) => void;
 }
 
-export const SearchInput = ({ search }: Props) => {
+export const SearchInput = ({ search, setSearchClick }: Props) => {
   const [searchedText, setSearchedText] = useState<string>('');
-  const { catalogState, catalogDispatch } = useContext(CatalogContext);
+  const { catalogDispatch } = useContext(CatalogContext);
 
   const handleClickSearch = () => {
+    console.log(searchedText)
     if (searchedText !== '') {
       catalogDispatch({
         type: 'SEARCHED_TEXT',
-        payload: searchedText.toLowerCase().trim()
+        payload: `&name=${searchedText.trim()}`
       })
-      //setSearchedText('');
-      console.log(catalogState)
+      setSearchClick(!search)
+      setSearchedText('');
     }
   }
 

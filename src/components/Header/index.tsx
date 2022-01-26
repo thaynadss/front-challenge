@@ -21,7 +21,7 @@ export const Header = () => {
       </C.WineBoxButton>
 
       <WineBoxCart cartClick={cartClick} setCartClick={setCartClick} />
-      <SearchInput search={searchClick} />
+      <SearchInput search={searchClick} setSearchClick={setSearchClick} />
 
     </C.HeaderContainer>
   )

@@ -1,14 +1,9 @@
 import api from '../../services/api';
+import { State } from './reducer';
 
-type Props = {
-  page: number;
-  filter: string;
-  search: string;
-}
-
-export async function getProducts({ page, filter, search }: Props) {
+export async function getProducts({ filter, search }: State) {
   try {
-    const { data } = await api.get(`/products?page=${page}&limit=9${filter}${search}`);
+    const { data } = await api.get(`/products?${filter}${search}`);
     return data;
   } catch (error) {
     console.log(error);
