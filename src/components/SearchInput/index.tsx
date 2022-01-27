@@ -12,11 +12,10 @@ export const SearchInput = ({ search, setSearchClick }: Props) => {
   const { catalogDispatch } = useContext(CatalogContext);
 
   const handleClickSearch = () => {
-    console.log(searchedText)
     if (searchedText !== '') {
       catalogDispatch({
         type: 'SEARCHED_TEXT',
-        payload: `&name=${searchedText.trim()}`
+        payload: `name=${searchedText.trim()}`
       })
       setSearchClick(!search)
       setSearchedText('');

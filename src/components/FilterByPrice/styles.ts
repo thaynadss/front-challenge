@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const FilterContainer = styled.div`
 `;
 
-export const FilterForm = styled.form`
+export const FilterForm = styled.div`
   font-family: 'Lato', sans-serif;
 `;
 

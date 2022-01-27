@@ -17,5 +17,7 @@ export const reducer: Reducer<State, Action> = (state: State, action: Action) =>
     case 'SEARCHED_TEXT': {
       return { ...state, search: action.payload, filter: '' };
     }
+    default:
+      return state;
   }
 }

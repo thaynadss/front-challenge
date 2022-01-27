@@ -1,12 +1,27 @@
-import { ChangeEvent, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { CatalogContext } from '../../contexts/CatalogContext';
 import * as C from './styles';
 
 export const FilterByPrice = () => {
-  const [priceSelected, setPriceSelected] = useState('');
-
+  const [priceSelected, setPriceSelected] = useState<string>('');
   const isPriceSelected = (value: string): boolean => priceSelected === value;
+  const { catalogState, catalogDispatch } = useContext(CatalogContext);
 
-  const handlePriceFilter = (e: ChangeEvent<HTMLInputElement>): void => setPriceSelected(e.currentTarget.value);
+  useEffect(() => {
+    const handlePriceFilter = () => {
+      catalogDispatch({
+        type: 'FILTER_SELECTED',
+        payload: `&filter=${priceSelected}`
+      })
+    };
+    handlePriceFilter();
+  }, [priceSelected]);
+  /* *** Reference: https://reactjs.org/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies *** */
+
+
+  useEffect(() => {
+    setPriceSelected('');
+  }, [catalogState.search]);
 
   return (
     <C.FilterContainer>
@@ -15,23 +30,23 @@ export const FilterByPrice = () => {
         <C.FilterFieldset>
           <C.FilterLegend>Por preço</C.FilterLegend>
           <C.FilterLabel>
-            <C.FilterInput type='radio' name='pricefilter' value='until40' checked={isPriceSelected('until40')} onChange={handlePriceFilter} /> Até R$40
+            <C.FilterInput type='radio' name='pricefilter' value='0-40' checked={isPriceSelected('0-40')} onChange={(e) => setPriceSelected(e.currentTarget.value)} /> Até R$40
           </C.FilterLabel>
 
           <C.FilterLabel>
-            <C.FilterInput type='radio' name='pricefilter' value='between40n60' checked={isPriceSelected('between40n60')} onChange={handlePriceFilter} /> R$40 a R$60
+            <C.FilterInput type='radio' name='pricefilter' value='40-60' checked={isPriceSelected('40-60')} onChange={(e) => setPriceSelected(e.currentTarget.value)} /> R$40 a R$60
           </C.FilterLabel>
 
           <C.FilterLabel>
-            <C.FilterInput type='radio' name='pricefilter' value='between100n200' checked={isPriceSelected('between100n200')} onChange={handlePriceFilter} /> R$100 a R$200
+            <C.FilterInput type='radio' name='pricefilter' value='100-200' checked={isPriceSelected('100-200')} onChange={(e) => setPriceSelected(e.currentTarget.value)} /> R$100 a R$200
           </C.FilterLabel>
 
           <C.FilterLabel>
-            <C.FilterInput type='radio' name='pricefilter' value='between200n500' checked={isPriceSelected('between200n500')} onChange={handlePriceFilter} /> R$200 a R$500
+            <C.FilterInput type='radio' name='pricefilter' value='200-500' checked={isPriceSelected('200-500')} onChange={(e) => setPriceSelected(e.currentTarget.value)} /> R$200 a R$500
           </C.FilterLabel>
 
           <C.FilterLabel>
-            <C.FilterInput type='radio' name='pricefilter' value='over500' checked={isPriceSelected('over500')} onChange={handlePriceFilter} /> Acima de R$500
+            <C.FilterInput type='radio' name='pricefilter' value='500-1000000' checked={isPriceSelected('500-1000000')} onChange={(e) => setPriceSelected(e.currentTarget.value)} /> Acima de R$500
           </C.FilterLabel>
 
         </C.FilterFieldset>

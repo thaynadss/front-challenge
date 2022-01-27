@@ -8,7 +8,7 @@ export const ProductCard = ({ img, title, price, discount, memberPrice, nonMembe
   return (
     <C.CardContainer>
       <C.DisplayProduct>
-        <C.ProductImage src={img} />
+        <C.ProductImage src={img} alt={title} />
         <Link to='/product' style={{ textDecoration: 'none' }}> <C.Title>{title}</C.Title>
         </Link>
         <C.SmallerCardText size={11} color='#888888' decoration='line-through'>{P.priceFormat(price)}

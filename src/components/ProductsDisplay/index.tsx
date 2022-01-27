@@ -13,11 +13,16 @@ export const ProductsDisplay = () => {
 
   const itemsPerPage = 9;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
-  const [currentPage, setCurrentPage] = useState<number>(0);
-  const startIndex = currentPage * itemsPerPage;
-  const endIndex = currentPage + itemsPerPage;
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
   const currentProducts = products.slice(startIndex, endIndex);
 
+  const handleCurrentPage = (page: number) => setCurrentPage(page);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [catalogState.search])
 
   useEffect(() => {
     const getAllProducts = async () => {
@@ -30,11 +35,6 @@ export const ProductsDisplay = () => {
     getAllProducts();
   }, [catalogState]);
 
-  // useEffect(() => {
-  //   console.log(catalogState)
-  //   console.log()
-  // }, [catalogState])
-
   return (
     <C.DisplayContainer>
       <C.QuantityProducts><span>{totalItems}</span> produtos encontrados</C.QuantityProducts>
@@ -42,7 +42,7 @@ export const ProductsDisplay = () => {
         {currentProducts.map((item) =>
           (<ProductCard key={item.id} id={item.id} img={item.image} title={item.name} price={item.price} discount={item.discount} memberPrice={item.priceMember} nonMemberPrice={item.priceNonMember} />))}
       </C.CardsContainer>
-      <PaginationButtons totalPages={totalPages} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+      <PaginationButtons totalPages={totalPages} currentPage={currentPage} handleCurrentPage={handleCurrentPage} />
     </C.DisplayContainer>
   )
 }
