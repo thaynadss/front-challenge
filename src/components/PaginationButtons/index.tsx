@@ -1,30 +1,37 @@
-import { useState } from 'react';
 import * as C from './styles';
 
 type Props = {
-  page: number;
   totalPages: number;
+  currentPage: number;
+  handleCurrentPage: (value: number) => void;
 }
 
-export const PaginationButtons = ({ page, totalPages }: Props) => {
-  const [firstButton, setFirstButton] = useState<number>();
-  const [secondButton, setSecondButton] = useState<number>();
-
-  const handlePage = (page: number, totalPages: number) => {
-
-  }
-
+export const PaginationButtons = ({ totalPages, currentPage, handleCurrentPage }: Props) => {
   return (
-    <C.ButtonsContainer>
-      <C.PaginationButton width={2.37} >{firstButton}</C.PaginationButton>
-      <C.PaginationButton width={4.56} >{secondButton}</C.PaginationButton>
-      <C.PaginationButton width={2.37} >3</C.PaginationButton>
-      <C.NextButton><span>...</span> Próximo &gt;&gt;</C.NextButton>
+    <C.ButtonsContainer total={totalPages}>
+      {currentPage !== 1 &&
+        <C.PrevNextButton onClick={() => handleCurrentPage(currentPage - 1)}>&lt;&lt; Anterior</C.PrevNextButton>}
+
+      <C.PaginationButton currentPage={currentPage === 1 ? true : false} onClick={() => handleCurrentPage(1)}>1</C.PaginationButton>
+
+      {currentPage > 3 && <span className='separator'>...</span>}
+
+      {currentPage === totalPages && totalPages > 3 && <C.PaginationButton onClick={() => handleCurrentPage(currentPage - 2)}>{currentPage - 2}</C.PaginationButton>}
+
+      {currentPage > 2 && <C.PaginationButton onClick={() => handleCurrentPage(currentPage - 1)}>{currentPage - 1}</C.PaginationButton>}
+
+      {currentPage !== 1 && currentPage !== totalPages && <C.PaginationButton currentPage={true} onClick={() => handleCurrentPage(currentPage)}>{currentPage}</C.PaginationButton>}
+
+      {currentPage < totalPages - 1 && <C.PaginationButton nextPage={true} onClick={() => handleCurrentPage(currentPage + 1)}>{currentPage + 1}</C.PaginationButton>}
+
+      {currentPage === 1 && totalPages > 3 && <C.PaginationButton onClick={() => handleCurrentPage(currentPage + 2)}>{currentPage + 2}</C.PaginationButton>}
+
+      {currentPage < totalPages - 2 && <span className='separator'>...</span>}
+
+      <C.PaginationButton currentPage={currentPage === totalPages ? true : false} onClick={() => handleCurrentPage(totalPages)}>{totalPages}</C.PaginationButton>
+
+      {currentPage !== totalPages && <C.PrevNextButton onClick={() => handleCurrentPage(currentPage + 1)}>Próxima &gt;&gt;</C.PrevNextButton>}
+
     </C.ButtonsContainer >
   )
-}
-//{handlePage(page, totalPages)}
-
-// actual page -> width e color
-// page 3 -> width padrão
-// se tiver só 1 ou 2 páginas
+};

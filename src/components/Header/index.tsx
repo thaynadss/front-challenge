@@ -1,18 +1,27 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { HeaderNavigation } from '../HeaderNavigation';
 import { SearchInput } from '../SearchInput';
 import * as C from './styles';
 import { Link } from 'react-router-dom';
 import { WineBoxCart } from '../WineBoxCart';
+import { CatalogContext } from '../../contexts/CatalogContext';
 
 export const Header = () => {
   const [searchClick, setSearchClick] = useState<boolean>(false);
   const [cartClick, setCartClick] = useState<boolean>(false);
   const searchIcon = searchClick ? 'pinkSearch.png' : 'search.svg';
+  const { catalogDispatch } = useContext(CatalogContext);
+
+  const handleHomePage = () => {
+    catalogDispatch({
+      type: 'SEARCHED_TEXT',
+      payload: ''
+    })
+  }
 
   return (
     <C.HeaderContainer>
-      <Link to='/'><C.Logo src={process.env.PUBLIC_URL + '/icons/logo.svg'} alt='Logo' /></Link>
+      <Link to='/'><C.Logo src={process.env.PUBLIC_URL + '/icons/logo.svg'} alt='Logo' onClick={handleHomePage} /></Link>
       <HeaderNavigation />
       <C.SearchContainer src={process.env.PUBLIC_URL + `/icons/${searchIcon}`} alt='Pesquisar' onClick={() => setSearchClick(!searchClick)} />
       <C.AccountButton src={process.env.PUBLIC_URL + '/icons/account.svg'} alt='Conta' />
@@ -21,7 +30,7 @@ export const Header = () => {
       </C.WineBoxButton>
 
       <WineBoxCart cartClick={cartClick} setCartClick={setCartClick} />
-      <SearchInput search={searchClick} />
+      <SearchInput search={searchClick} setSearchClick={setSearchClick} />
 
     </C.HeaderContainer>
   )

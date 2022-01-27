@@ -15,11 +15,6 @@ export const WineBoxCart = ({ cartClick, setCartClick }: Props) => {
           WineBox (1)</C.CartHeader>
         <C.ProductsContainer>
           <CartItem />
-          <CartItem />
-          <CartItem />
-          <CartItem />
-          <CartItem />
-          <CartItem />
         </C.ProductsContainer>
         <C.FooterContainer>
           <C.CartSubtotal>Total

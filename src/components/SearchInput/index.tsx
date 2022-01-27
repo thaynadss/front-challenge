@@ -1,31 +1,36 @@
-import { KeyboardEvent, useState } from 'react';
+import { KeyboardEvent, useContext, useState } from 'react';
+import { CatalogContext } from '../../contexts/CatalogContext';
 import * as C from './styles';
 
 type Props = {
   search: boolean;
+  setSearchClick: (value: boolean) => void;
 }
 
-export const SearchInput = ({ search }: Props) => {
+export const SearchInput = ({ search, setSearchClick }: Props) => {
   const [searchedText, setSearchedText] = useState<string>('');
+  const { catalogDispatch } = useContext(CatalogContext);
 
-  //(e: KeyboardEvent | MouseEvent)
-  const handleKeyboardSearch = (e: KeyboardEvent) => {
-    if (e.code === 'Enter' && searchedText !== null) {
-      // chamar função externa
+  const handleClickSearch = () => {
+    if (searchedText !== '') {
+      catalogDispatch({
+        type: 'SEARCHED_TEXT',
+        payload: `name=${searchedText.trim()}`
+      })
+      setSearchClick(!search)
       setSearchedText('');
     }
   }
 
-  const handleClickSearch = () => {
-    if (searchedText !== null) {
-      // chamar função externa
-      setSearchedText('');
+  const handleKeyboardSearch = (e: KeyboardEvent) => {
+    if (e.code === 'Enter') {
+      handleClickSearch()
     }
   }
 
   return (
     <C.ScreenContainer search={search}>
-      <C.SearchForm method='GET'>
+      <C.SearchForm>
         <C.SearchLabel>
           <C.SearchInput
             type='text'
@@ -35,10 +40,7 @@ export const SearchInput = ({ search }: Props) => {
             onKeyUp={handleKeyboardSearch}
           />
           <span>aperte enter para buscar</span>
-          <C.SubmitButton
-            type='submit'
-            onClick={handleClickSearch}
-          >
+          <C.SubmitButton onClick={handleClickSearch} >
             <img src={process.env.PUBLIC_URL + '/icons/searchSmaller.svg'} alt='Botão de busca' /></C.SubmitButton>
         </C.SearchLabel>
       </C.SearchForm>
