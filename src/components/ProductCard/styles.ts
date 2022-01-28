@@ -60,3 +60,20 @@ export const MemberValue = styled.h4`
     font-size: 21px;
   }
 `;
+
+export const AddProductButton = styled.button<{ width: number, height: number, size: number }>`
+  width: ${props => `${props.width}rem`};
+  height: ${props => `${props.height}rem`};
+  border-radius: 3.89px;
+  text-align: center;
+  color: #FFF;
+  background-color: rgba(126, 188, 67, 1);
+  border: none;
+  font-family: 'Lato', sans-serif;
+  font-size: ${props => `${props.size}px`};
+  margin-top: 1rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;

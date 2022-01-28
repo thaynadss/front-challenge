@@ -5,18 +5,28 @@ import * as C from './styles';
 import { Link } from 'react-router-dom';
 import { WineBoxCart } from '../WineBoxCart';
 import { CatalogContext } from '../../contexts/CatalogContext';
+import { CartContext } from '../../contexts/CartContext';
 
 export const Header = () => {
   const [searchClick, setSearchClick] = useState<boolean>(false);
   const [cartClick, setCartClick] = useState<boolean>(false);
   const searchIcon = searchClick ? 'pinkSearch.png' : 'search.svg';
   const { catalogDispatch } = useContext(CatalogContext);
+  const { cartState: { cart } } = useContext(CartContext);
 
   const handleHomePage = () => {
     catalogDispatch({
       type: 'SEARCHED_TEXT',
       payload: ''
     })
+  }
+
+  const handleSearchClick = () => {
+    setSearchClick(!searchClick);
+  }
+
+  const handleCartClick = () => {
+    setCartClick(!cartClick);
   }
 
   return (
@@ -26,11 +36,11 @@ export const Header = () => {
       <C.SearchContainer src={process.env.PUBLIC_URL + `/icons/${searchIcon}`} alt='Pesquisar' onClick={() => setSearchClick(!searchClick)} />
       <C.AccountButton src={process.env.PUBLIC_URL + '/icons/account.svg'} alt='Conta' />
       <C.WineBoxButton onClick={() => setCartClick(!cartClick)}>
-        <C.CounterWineBox>0</C.CounterWineBox>
+        <C.CounterWineBox>{cart.length}</C.CounterWineBox>
       </C.WineBoxButton>
 
-      <WineBoxCart cartClick={cartClick} setCartClick={setCartClick} />
-      <SearchInput search={searchClick} setSearchClick={setSearchClick} />
+      <WineBoxCart cartClick={cartClick} handleCart={handleCartClick} />
+      <SearchInput search={searchClick} handleSearch={handleSearchClick} />
 
     </C.HeaderContainer>
   )

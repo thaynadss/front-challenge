@@ -1,11 +1,12 @@
 export type DisplayCard = {
   id: number;
-  img: string;
-  title: string;
+  image: string;
+  name: string;
   price: number;
   discount: number;
   memberPrice: number;
   nonMemberPrice: number;
+  country: string;
 };
 
 export type Product = {

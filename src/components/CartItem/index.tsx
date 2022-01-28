@@ -1,22 +1,28 @@
 import * as C from './styles';
+import * as P from '../../helpers/priceFormat';
+import { CartItem as CartType } from '../../types/Product';
+import { useContext } from 'react';
+import { CartContext } from '../../contexts/CartContext';
 
-export const CartItem = () => {
+export const CartItem = ({ id, image, name, country, price, quantity }: CartType) => {
+  const { handleIncreaseQuantity, handleInputQuantity, handleDecreaseQuantity, handleRemoveFromCart } = useContext(CartContext);
+
   return (
     <C.CartCardContainer>
-      <C.CardImage src={'https://www.wine.com.br/cdn-cgi/image/f=png,h=515,q=99/assets-images/produtos/19694-01.png'} alt="imagem do vinho" />
-      <C.CardTitle>Bacalhôa Meia Pipa Private Selection Castelão Syrah 2014
-        <C.ProductCountry>Estados Unidos</C.ProductCountry>
+      <C.CardImage src={image} alt={name} />
+      <C.CardTitle>{name}
+        <C.ProductCountry>{country}</C.ProductCountry>
       </C.CardTitle>
       <C.IncremDecremButton>
-        -
-        <C.QuantityInput name='quantity' type='text' value={1} />
-        +
+        <span className='decrement' onClick={() => handleDecreaseQuantity(id)}>-</span>
+        <C.QuantityInput name='quantity' type='text' value={quantity} onChange={e => handleInputQuantity(id, Number(e.target.value))} />
+        <span className='increment' onClick={() => handleIncreaseQuantity(id, 1)}>+</span>
       </C.IncremDecremButton>
       <C.ProductValue>
-        <span className='currency'>R$</span> 34
-        <span className='decimal'>,70</span>
+        <span className='currency'>{P.currencyFormat}</span> {P.integerFormat(price)}
+        <span className='decimal'>{P.decimalFormat(price)}</span>
       </C.ProductValue>
-      <C.RemoveItem>x</C.RemoveItem>
+      <C.RemoveItem onClick={() => handleRemoveFromCart(id)}>x</C.RemoveItem>
     </C.CartCardContainer>
   )
-}
+};

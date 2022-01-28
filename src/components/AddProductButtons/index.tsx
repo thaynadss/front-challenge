@@ -1,4 +1,4 @@
-import { AddCardButton } from '../AddCardButton';
+import { AddProductButton } from '../ProductCard/styles';
 import * as C from './styles';
 
 export const AddProductButtons = () => {
@@ -8,7 +8,7 @@ export const AddProductButtons = () => {
       <span className='quantity'>1</span>
       <C.IncremDecremButton>+</C.IncremDecremButton>
       <span className='separator'>|</span>
-      <AddCardButton width={1.18} height={1.18} size={16} fontStyle='normal' />
+      <AddProductButton width={1.18} height={1.18} size={16} >Adicionar</AddProductButton>
     </C.ButtonsContainer>
   )
 }

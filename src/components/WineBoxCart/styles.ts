@@ -20,6 +20,7 @@ export const CartContainer = styled.div`
   flex-direction: column;
   box-shadow: -2px 0 4px 0 rgb(0 0 0 / 18%);
   overflow: scroll;
+  background-color: #f5f5f5;
 `;
 
 export const CartHeader = styled.div`
@@ -67,10 +68,6 @@ export const CartSubtotal = styled.div`
     color: #b6116e;
     font-size: 28px;
     font-weight: normal;
-  }
-
-  & .value {
-    margin-left: 0.40rem;
   }
 `;
 

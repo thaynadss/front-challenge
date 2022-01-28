@@ -16,7 +16,7 @@ export const ProductsDisplay = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const currentProducts = products.slice(startIndex, endIndex);
+  const currentProducts: Product[] = products.slice(startIndex, endIndex);
 
   const handleCurrentPage = (page: number) => setCurrentPage(page);
 
@@ -40,7 +40,7 @@ export const ProductsDisplay = () => {
       <C.QuantityProducts><span>{totalItems}</span> produtos encontrados</C.QuantityProducts>
       <C.CardsContainer>
         {currentProducts.map((item) =>
-          (<ProductCard key={item.id} id={item.id} img={item.image} title={item.name} price={item.price} discount={item.discount} memberPrice={item.priceMember} nonMemberPrice={item.priceNonMember} />))}
+          <ProductCard key={item.id} item={item} />)}
       </C.CardsContainer>
       <PaginationButtons totalPages={totalPages} currentPage={currentPage} handleCurrentPage={handleCurrentPage} />
     </C.DisplayContainer>

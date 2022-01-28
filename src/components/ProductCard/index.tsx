@@ -1,26 +1,35 @@
-import { AddCardButton } from '../AddCardButton';
 import * as C from './styles';
 import { Link } from 'react-router-dom';
-import { DisplayCard } from '../../types/Product';
+import { Product } from '../../types/Product';
 import * as P from '../../helpers/priceFormat';
+import { useContext } from 'react';
+import { CartContext } from '../../contexts/CartContext';
+import { ProductContext } from '../../contexts/ProductContext';
 
-export const ProductCard = ({ img, title, price, discount, memberPrice, nonMemberPrice }: DisplayCard) => {
+type Props = {
+  item: Product;
+}
+
+export const ProductCard = ({ item }: Props) => {
+  const { handleCheckItemInCart } = useContext(CartContext);
+  const { handlePageProduct } = useContext(ProductContext);
+
   return (
     <C.CardContainer>
       <C.DisplayProduct>
-        <C.ProductImage src={img} alt={title} />
-        <Link to='/product' style={{ textDecoration: 'none' }}> <C.Title>{title}</C.Title>
+        <C.ProductImage src={item.image} alt={item.name} />
+        <Link to='/product' style={{ textDecoration: 'none' }} onClick={() => handlePageProduct(item)}> <C.Title>{item.name}</C.Title>
         </Link>
-        <C.SmallerCardText size={11} color='#888888' decoration='line-through'>{P.priceFormat(price)}
-          <C.Porcentage>{discount}% OFF</C.Porcentage>
+        <C.SmallerCardText size={11} color='#888888' decoration='line-through'>{P.priceFormat(item.price)}
+          <C.Porcentage>{item.discount}% OFF</C.Porcentage>
         </C.SmallerCardText>
         <C.SmallerCardText size={11} color='#1D1D1B' bold='bold'>Sócio Wine
-          <C.MemberValue>{P.currencyFormat}<span>{P.integerFormat(memberPrice)}</span>{P.decimalFormat(memberPrice)}</C.MemberValue>
+          <C.MemberValue>{P.currencyFormat}<span>{P.integerFormat(item.priceMember)}</span>{P.decimalFormat(item.priceMember)}</C.MemberValue>
         </C.SmallerCardText>
-        <C.SmallerCardText size={12} color='#888888'>Não sócio {P.priceFormat(nonMemberPrice)}</C.SmallerCardText>
+        <C.SmallerCardText size={12} color='#888888'>Não sócio {P.priceFormat(item.priceNonMember)}</C.SmallerCardText>
       </C.DisplayProduct>
 
-      <AddCardButton width={16} height={2.5} size={14} fontStyle='uppercase' />
+      <C.AddProductButton width={16} height={2.5} size={14} onClick={() => handleCheckItemInCart({ id: item.id, image: item.image, name: item.name, country: item.country, price: item.price, quantity: 1 })}> ADICIONAR</C.AddProductButton>
     </C.CardContainer>
   )
 }

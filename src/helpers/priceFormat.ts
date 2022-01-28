@@ -7,9 +7,7 @@ export const priceFormat = (price: number) => {
   return newValue;
 }
 
-export const currencyFormat = () => {
-  return 'R$';
-}
+export const currencyFormat = 'R$ ';
 
 export const integerFormat = (price: number) => {
   let integer = priceFormat(price).slice(3).split(',');

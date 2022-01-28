@@ -4,10 +4,10 @@ import * as C from './styles';
 
 type Props = {
   search: boolean;
-  setSearchClick: (value: boolean) => void;
+  handleSearch: () => void;
 }
 
-export const SearchInput = ({ search, setSearchClick }: Props) => {
+export const SearchInput = ({ search, handleSearch }: Props) => {
   const [searchedText, setSearchedText] = useState<string>('');
   const { catalogDispatch } = useContext(CatalogContext);
 
@@ -17,7 +17,7 @@ export const SearchInput = ({ search, setSearchClick }: Props) => {
         type: 'SEARCHED_TEXT',
         payload: `name=${searchedText.trim()}`
       })
-      setSearchClick(!search)
+      handleSearch();
       setSearchedText('');
     }
   }
