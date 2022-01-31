@@ -31,7 +31,11 @@ export const WineBoxCart = ({ cartClick, handleCart }: Props) => {
           <C.ArrowLeft src={process.env.PUBLIC_URL + '/icons/arrowLeft.svg'} alt="fechar WineBox" onClick={() => handleCart()} />
           WineBox ({cart.length})</C.CartHeader>
         <C.ProductsContainer>
-          {cart.length === 0 && '=( Você ainda não escolheu seus produtos'}
+          {cart.length === 0 &&
+            <>
+              <C.EmptyCartStyle size={32} color='#C0C0C0'>=(</C.EmptyCartStyle>
+              <C.EmptyCartStyle size={20} color='#1D1D1B'>Você ainda não escolheu seus produtos</C.EmptyCartStyle>
+            </>}
           {cart.length > 0 && cart.map(item => (
             <CartItem key={item.id} id={item.id} image={item.image} name={item.name} country={item.country} price={item.price} quantity={item.quantity} />
           ))}

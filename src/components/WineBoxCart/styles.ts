@@ -82,3 +82,11 @@ export const FinishButton = styled.button`
   border-radius: 4px;
   cursor: pointer;
 `;
+
+export const EmptyCartStyle = styled.div<{ size: number, color: string }>`
+  text-align: center;
+  font-weight: bold;
+  font-size: ${props => `${props.size}px`};
+  color: ${props => props.color};
+  padding: 1rem;
+`;

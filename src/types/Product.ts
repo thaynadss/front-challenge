@@ -26,7 +26,7 @@ export type Product = {
   country: string;
   region: string;
   flag: string;
-  sommerlierComment: string;
+  sommelierComment: string;
 };
 
 export type CartItem = {

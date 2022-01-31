@@ -8,13 +8,10 @@ export const FilterByPrice = () => {
   const { catalogState, catalogDispatch } = useContext(CatalogContext);
 
   useEffect(() => {
-    const handlePriceFilter = () => {
-      catalogDispatch({
-        type: 'FILTER_SELECTED',
-        payload: `&filter=${priceSelected}`
-      })
-    };
-    handlePriceFilter();
+    catalogDispatch({
+      type: 'FILTER_SELECTED',
+      payload: `&filter=${priceSelected}`
+    })
   }, [priceSelected]);
   /* *** Reference: https://reactjs.org/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies *** */
 

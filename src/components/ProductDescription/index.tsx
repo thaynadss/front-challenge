@@ -3,9 +3,11 @@ import { ProductContext } from '../../contexts/ProductContext';
 import { AddProductButtons } from '../AddProductButtons';
 import * as C from './styles';
 import * as P from '../../helpers/priceFormat';
+import { CartContext } from '../../contexts/CartContext';
 
 export const ProductDescription = () => {
   const { item } = useContext(ProductContext);
+  const { handleCheckItemInCart } = useContext(CartContext);
 
   let yellowStars: number[] = [];
   let grayStars: number[] = [];
@@ -18,6 +20,10 @@ export const ProductDescription = () => {
 
   for (let i = 0; i < nonRating; i++) {
     grayStars.push(i);
+  }
+
+  const handleAddToCart = (qty: number) => {
+    handleCheckItemInCart({ id: item.id, image: item.image, name: item.name, country: item.country, price: item.priceMember, quantity: qty })
   }
 
   return (
@@ -37,8 +43,8 @@ export const ProductDescription = () => {
       <C.MemberValue><span className='currency'>{P.currencyFormat}</span><span className='value'>{P.integerFormat(item.priceMember)}</span>{P.decimalFormat(item.priceMember)}</C.MemberValue>
       <C.NonMemberValue>Não sócio {P.priceFormat(item.priceNonMember)}/UN.</C.NonMemberValue>
       <C.SommelierTitle>Comentário do Sommelier</C.SommelierTitle>
-      <C.SommelierComment>{item.sommerlierComment}</C.SommelierComment>
-      <AddProductButtons />
-    </C.ProdDescripContainer>
+      <C.SommelierComment>{item.sommelierComment}</C.SommelierComment>
+      <AddProductButtons handleAddToCart={handleAddToCart} />
+    </C.ProdDescripContainer >
   )
 }

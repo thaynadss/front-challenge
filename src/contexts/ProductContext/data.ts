@@ -17,5 +17,5 @@ export const data: Product = {
   country: '',
   region: '',
   flag: '',
-  sommerlierComment: '',
+  sommelierComment: '',
 };

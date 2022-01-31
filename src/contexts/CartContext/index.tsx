@@ -1,4 +1,4 @@
-import { createContext, useReducer } from 'react';
+import { createContext, useEffect, useReducer } from 'react';
 import { cartReducer } from './reducer';
 import { CartItem } from '../../types/Product';
 
@@ -18,10 +18,17 @@ type contextType = {
 };
 
 export const CartProvider = ({ children }: Props) => {
-  const [cartState, cartDispatch] = useReducer(cartReducer, { cart: [] });
+  const [cartState, cartDispatch] = useReducer(cartReducer, { cart: [] }, () => {
+    const cartFromLocalStorage = localStorage.getItem("cart");
+    return cartFromLocalStorage ? { cart: JSON.parse(cartFromLocalStorage) } : { cart: [] };
+  });
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cartState.cart));
+  }, [cartState.cart]);
 
   const handleCheckItemInCart = (item: CartItem) => {
-    if (cartState.cart.some(c => c.id !== item.id)) {
+    if (cartState.cart.every(c => c.id !== item.id)) {
       handleAddToCart(item);
     } else {
       handleIncreaseQuantity(item.id, item.quantity);
@@ -36,21 +43,17 @@ export const CartProvider = ({ children }: Props) => {
   };
 
   const handleIncreaseQuantity = (id: number, quantity: number) => {
-    if (cartState.cart.some(c => c.id === id)) {
-      cartDispatch({
-        type: 'INCREASE_QUANTITY',
-        payload: { id: id, quantity: quantity },
-      })
-    }
+    cartDispatch({
+      type: 'INCREASE_QUANTITY',
+      payload: { id: id, quantity: quantity },
+    })
   };
 
   const handleInputQuantity = (id: number, quantity: number) => {
-    if (cartState.cart.some(c => c.id === id)) {
-      cartDispatch({
-        type: 'INPUT_QUANTITY',
-        payload: { id: id, quantity: quantity },
-      })
-    }
+    cartDispatch({
+      type: 'INPUT_QUANTITY',
+      payload: { id: id, quantity: quantity },
+    })
   };
 
   const handleDecreaseQuantity = (id: number) => {
