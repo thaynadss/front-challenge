@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const PageContainer = styled.body``;
+export const PageContainer = styled.div``;
 
 export const MainContainer = styled.main`
   background-color: #f5f5f5;

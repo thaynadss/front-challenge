@@ -12,13 +12,15 @@ export const FilterByPrice = () => {
       type: 'FILTER_SELECTED',
       payload: `&filter=${priceSelected}`
     })
-  }, [priceSelected]);
+  }, [priceSelected, catalogDispatch]);
   /* *** Reference: https://reactjs.org/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies *** */
 
 
   useEffect(() => {
-    setPriceSelected('');
-  }, [catalogState.search]);
+    if (catalogState.filter === '') {
+      setPriceSelected('');
+    }
+  }, [catalogState.filter]);
 
   return (
     <C.FilterContainer>
