@@ -14,12 +14,11 @@ export const ScreenContainer = styled.div<{ cartClick: boolean }>`
 `;
 
 export const CartContainer = styled.div`
-  width: 27.35vw;
+  width: 21.9em;
   height: 100%;
   display: flex;
   flex-direction: column;
   box-shadow: -2px 0 4px 0 rgb(0 0 0 / 18%);
-  overflow: scroll;
   background-color: #f5f5f5;
 `;
 
@@ -43,12 +42,13 @@ export const ProductsContainer = styled.div`
   background-color: #f5f5f5;
   margin-top: 3.75rem;
   width: 100%;
+  overflow: scroll;
 `;
 
 export const FooterContainer = styled.div`
   background-color: #FFF;
   padding: 20px;
-  width: 27.35vw;
+  width: 21.9em;
   height: 8.25rem;
   align-self: flex-end;
   bottom: 0;
@@ -81,6 +81,7 @@ export const FinishButton = styled.button`
   text-align: center;
   border-radius: 4px;
   cursor: pointer;
+  justify-content: center;
 `;
 
 export const EmptyCartStyle = styled.div<{ size: number, color: string }>`

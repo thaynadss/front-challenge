@@ -23,6 +23,7 @@ export const ProductImage = styled.img`
 `;
 
 export const Title = styled.h2`
+  height: 2.25rem;
   font-size: 16px;
   color: rgba(29, 29, 27, 1);
   text-align: center;
@@ -49,7 +50,7 @@ export const Porcentage = styled.span`
     display: inline-block;
 `;
 
-export const MemberValue = styled.h4`
+export const MemberValue = styled.span`
   color: #B6116E;
   font-size: 11px;
   display: inline-block;

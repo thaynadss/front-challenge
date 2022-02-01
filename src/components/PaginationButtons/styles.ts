@@ -3,8 +3,8 @@ import styled from 'styled-components';
 export const ButtonsContainer = styled.div<{ total: number }>`
   margin-top: 1.66rem;
   display: flex;
-  justify-content: center;
-  gap: 10px;
+  justify-self: center;
+  gap: 0.62rem;
   font-family: 'Lato', sans-serif;
   visibility: ${props => props.total > 1 ? 'visible' : 'hidden'};
 

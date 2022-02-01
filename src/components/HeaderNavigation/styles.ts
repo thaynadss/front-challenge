@@ -8,9 +8,9 @@ export const NavigationContainer = styled.nav`
   height: 2.07rem;
   margin: 0 5rem;
 
-  /* @media (max-width: 640px) {
+  @media (max-width: 990px) {
     display: none;
-  } */
+  }
 `;
 
 export const NavigationItem = styled.a`

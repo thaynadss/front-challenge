@@ -25,7 +25,7 @@ export const CardTitle = styled.h2`
   grid-row-start: 1;
   grid-column-start: 2;
   grid-column-end: 2;
-  padding-right: 0.8rem;
+  padding-right: 1.2rem;
 `;
 
 export const ProductCountry = styled.h3`

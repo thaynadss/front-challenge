@@ -40,12 +40,14 @@ export const WineBoxCart = ({ cartClick, handleCart }: Props) => {
             <CartItem key={item.id} id={item.id} image={item.image} name={item.name} country={item.country} price={item.price} quantity={item.quantity} />
           ))}
         </C.ProductsContainer>
-        <C.FooterContainer>
-          <C.CartSubtotal>Total
-            <span className='subtotal'>{subtotal}</span>
-          </C.CartSubtotal>
-          <C.FinishButton>Finalizar pedido</C.FinishButton>
-        </C.FooterContainer>
+        {cart.length > 0 &&
+          <C.FooterContainer>
+            <C.CartSubtotal>Total
+              <span className='subtotal'>{subtotal}</span>
+            </C.CartSubtotal>
+            <C.FinishButton>Finalizar pedido</C.FinishButton>
+          </C.FooterContainer>
+        }
       </C.CartContainer>
     </C.ScreenContainer>
   )

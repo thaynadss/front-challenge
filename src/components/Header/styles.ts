@@ -1,14 +1,25 @@
 import styled from 'styled-components';
 
-export const HeaderContainer = styled.header`
+export const Header = styled.header`
   background-color: #FFF;
   width: 100vw;
   height: 5.6rem;
   display: inline-flex;
+  justify-content: center;
+  border-bottom: 2px solid rgba(204, 204, 204, 1);
+`;
+
+export const HeaderContainer = styled.div`
   align-items: center;
   justify-content: space-around;
-  border-bottom: 2px solid rgba(204, 204, 204, 1);
+  display: flex;
   padding: 0 3rem;
+  width: 100rem;
+
+  @media (max-width: 991px) {
+    justify-content: space-between;
+    padding: 0 1rem;
+  }
 `;
 
 export const Logo = styled.img`
@@ -28,6 +39,10 @@ export const SearchContainer = styled.img`
 export const AccountButton = styled.img`
   &:hover {
     cursor: pointer;
+  }
+
+  @media (max-width: 990px) {
+    display: none;
   }
 `;
 

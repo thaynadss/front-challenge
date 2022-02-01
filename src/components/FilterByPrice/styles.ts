@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
 export const FilterContainer = styled.div`
+  @media (max-width: 767px) {
+    display: none;
+  }
 `;
 
 export const FilterForm = styled.div`

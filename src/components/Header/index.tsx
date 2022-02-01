@@ -30,18 +30,20 @@ export const Header = () => {
   }
 
   return (
-    <C.HeaderContainer>
-      <Link to='/'><C.Logo src={process.env.PUBLIC_URL + '/icons/logo.svg'} alt='Logo' onClick={handleHomePage} /></Link>
-      <HeaderNavigation />
-      <C.SearchContainer src={process.env.PUBLIC_URL + `/icons/${searchIcon}`} alt='Pesquisar' onClick={() => setSearchClick(!searchClick)} />
-      <C.AccountButton src={process.env.PUBLIC_URL + '/icons/account.svg'} alt='Conta' />
-      <C.WineBoxButton onClick={() => setCartClick(!cartClick)}>
-        <C.CounterWineBox>{cart.length}</C.CounterWineBox>
-      </C.WineBoxButton>
+    <C.Header>
+      <C.HeaderContainer>
+        <Link to='/'><C.Logo src={process.env.PUBLIC_URL + '/icons/logo.svg'} alt='Logo' onClick={handleHomePage} /></Link>
+        <HeaderNavigation />
 
-      <WineBoxCart cartClick={cartClick} handleCart={handleCartClick} />
-      <SearchInput search={searchClick} handleSearch={handleSearchClick} />
+        <C.SearchContainer src={process.env.PUBLIC_URL + `/icons/${searchIcon}`} alt='Pesquisar' onClick={() => setSearchClick(!searchClick)} />
+        <C.AccountButton src={process.env.PUBLIC_URL + '/icons/account.svg'} alt='Conta' />
+        <C.WineBoxButton onClick={() => setCartClick(!cartClick)}>
+          <C.CounterWineBox>{cart.length}</C.CounterWineBox>
+        </C.WineBoxButton>
 
-    </C.HeaderContainer>
+        <WineBoxCart cartClick={cartClick} handleCart={handleCartClick} />
+        <SearchInput search={searchClick} handleSearch={handleSearchClick} />
+      </C.HeaderContainer>
+    </C.Header>
   )
 }
