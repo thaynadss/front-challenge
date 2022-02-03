@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-export const PageContainer = styled.div``;
+export const PageContainer = styled.div`
+  overflow: hidden;
+`;
 
 export const MainContainer = styled.main`
   min-height: 100vh;

@@ -43,7 +43,7 @@ export const ProductsContainer = styled.div`
   background-color: #f5f5f5;
   margin-top: 3.75rem;
   width: 100%;
-  overflow: scroll;
+  overflow-y: scroll;
 `;
 
 export const FooterContainer = styled.div`

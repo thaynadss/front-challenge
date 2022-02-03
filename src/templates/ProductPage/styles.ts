@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-export const PageContainer = styled.div``;
+export const PageContainer = styled.div`
+  overflow: hidden;
+`;
 
 export const MainContainer = styled.main`
   background-color: #f5f5f5;

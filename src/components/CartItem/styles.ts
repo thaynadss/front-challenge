@@ -8,6 +8,7 @@ export const CartCardContainer = styled.div`
   padding: 1rem;
   border-bottom: 1px solid #ddd;
   background-color: #f5f5f5;
+  overflow: hidden;
 `;
 
 export const CardImage = styled.img`
