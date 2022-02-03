@@ -11,6 +11,7 @@ export const ScreenContainer = styled.div<{ cartClick: boolean }>`
   display: flex;
   justify-content: flex-end;
   visibility: ${props => props.cartClick ? 'visible' : 'hidden'};
+  overflow-x: hidden;
 `;
 
 export const CartContainer = styled.div`

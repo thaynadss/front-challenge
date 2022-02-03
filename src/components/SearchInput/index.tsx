@@ -41,7 +41,7 @@ export const SearchInput = ({ search, handleSearch }: Props) => {
           />
           <span>aperte enter para buscar</span>
           <C.SubmitButton onClick={handleClickSearch} >
-            <img src={process.env.PUBLIC_URL + '/icons/searchSmaller.svg'} alt='Botão de busca' /></C.SubmitButton>
+            <img src={process.env.PUBLIC_URL + '/icons/smallPinkSearch.svg'} alt='Botão de busca' /></C.SubmitButton>
         </C.SearchLabel>
       </C.SearchForm>
     </C.ScreenContainer>

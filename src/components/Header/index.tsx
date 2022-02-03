@@ -35,11 +35,13 @@ export const Header = () => {
         <Link to='/'><C.Logo src={process.env.PUBLIC_URL + '/icons/logo.svg'} alt='Logo' onClick={handleHomePage} /></Link>
         <HeaderNavigation />
 
-        <C.SearchContainer src={process.env.PUBLIC_URL + `/icons/${searchIcon}`} alt='Pesquisar' onClick={() => setSearchClick(!searchClick)} />
-        <C.AccountButton src={process.env.PUBLIC_URL + '/icons/account.svg'} alt='Conta' />
-        <C.WineBoxButton onClick={() => setCartClick(!cartClick)}>
-          <C.CounterWineBox>{cart.length}</C.CounterWineBox>
-        </C.WineBoxButton>
+        <C.IconsContainer>
+          <C.SearchContainer src={process.env.PUBLIC_URL + `/icons/${searchIcon}`} alt='Pesquisar' onClick={() => setSearchClick(!searchClick)} />
+          <C.AccountButton src={process.env.PUBLIC_URL + '/icons/account.svg'} alt='Conta' />
+          <C.WineBoxButton onClick={() => setCartClick(!cartClick)}>
+            <C.CounterWineBox>{cart.length}</C.CounterWineBox>
+          </C.WineBoxButton>
+        </C.IconsContainer>
 
         <WineBoxCart cartClick={cartClick} handleCart={handleCartClick} />
         <SearchInput search={searchClick} handleSearch={handleSearchClick} />

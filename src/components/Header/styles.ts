@@ -22,6 +22,12 @@ export const HeaderContainer = styled.div`
   }
 `;
 
+export const IconsContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+`;
+
 export const Logo = styled.img`
   margin-top: 0.2rem;
 
