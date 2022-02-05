@@ -18,7 +18,7 @@ export const ProductCard = ({ item }: Props) => {
     <C.CardContainer>
       <C.DisplayProduct>
         <C.ProductImage src={item.image} alt={item.name} />
-        <Link to={`/product/${item.name.trim()}`} style={{ textDecoration: 'none' }} onClick={() => handlePageProduct(item)}> <C.Title>{item.name}</C.Title>
+        <Link to={`/product/${item.id}`} style={{ textDecoration: 'none' }} onClick={() => handlePageProduct(item)}> <C.Title>{item.name}</C.Title>
         </Link>
         <C.SmallerCardText size={11} color='#888888' decoration='line-through'>{P.priceFormat(item.price)}
           <C.Porcentage>{item.discount}% OFF</C.Porcentage>

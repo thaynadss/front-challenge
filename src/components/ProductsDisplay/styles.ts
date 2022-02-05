@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { mediaSizes } from '../../styles/mediaSizes';
 
 export const DisplayContainer = styled.section`
   display: grid;
@@ -11,14 +12,14 @@ export const CardsContainer = styled.section`
   gap: 2rem 2rem;
   margin-top: 2rem;
 
-  @media (max-width: 1023px) {
+  @media (max-width: ${mediaSizes.large}px) {
     display: grid;
     grid-template-columns: repeat(2, minmax(1rem, 16rem));
     grid-template-rows: repeat(4, minmax(24.2rem, auto));
     gap: 1.5rem 1.5rem;
   }
 
-  @media (max-width: 540px) {
+  @media (max-width:${mediaSizes.small}px) {
     display: grid;
     grid-template-columns: minmax(1rem, 16rem);
     grid-template-rows: repeat(9, minmax(24.2rem, auto));

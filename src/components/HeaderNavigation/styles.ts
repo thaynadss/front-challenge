@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { mediaSizes } from '../../styles/mediaSizes';
 
 export const NavigationContainer = styled.nav`
   display: inline-flex;
@@ -8,7 +9,7 @@ export const NavigationContainer = styled.nav`
   height: 2.07rem;
   margin: 0 5rem;
 
-  @media (max-width: 990px) {
+  @media (max-width: ${mediaSizes.xmedium}px) {
     display: none;
   }
 `;

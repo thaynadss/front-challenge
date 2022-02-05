@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import { mediaSizes } from '../../styles/mediaSizes';
 
 export const FilterContainer = styled.div`
-  @media (max-width: 767px) {
+  @media (max-width: ${mediaSizes.medium}px) {
     display: none;
   }
 `;

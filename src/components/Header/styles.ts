@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { mediaSizes } from '../../styles/mediaSizes';
 
 export const Header = styled.header`
   background-color: #FFF;
@@ -16,16 +17,20 @@ export const HeaderContainer = styled.div`
   padding: 0 3rem;
   width: 100rem;
 
-  @media (max-width: 991px) {
+  @media (max-width: ${mediaSizes.xmedium}px) {
     justify-content: space-between;
     padding: 0 1rem;
   }
 `;
 
-export const IconsContainer = styled.div`
+export const IconsContainer = styled.div<{ gap: number }>`
   display: flex;
   justify-content: space-between;
-  gap: 2rem;
+  gap: 2.5rem;
+
+  @media (max-width: ${mediaSizes.xmedium}px) {
+    gap: ${props => `${props.gap}rem`};
+  }
 `;
 
 export const Logo = styled.img`
@@ -34,11 +39,33 @@ export const Logo = styled.img`
   &:hover {
     cursor: pointer;
   }
+
+  @media (max-width: ${mediaSizes.xmedium}px) {
+    width: 4.87rem;
+    height: 1.43rem;
+  }
 `;
 
-export const SearchContainer = styled.img`
+export const SearchButton = styled.img`
+  width: 3.5rem;
+  height: 3.5rem;
+
   &:hover {
     cursor: pointer;
+  }
+
+  @media (max-width: ${mediaSizes.xmedium}px) {
+    display: none;
+  }
+`;
+
+export const SmallSearchButton = styled.img`
+  &:hover {
+    cursor: pointer;
+  }
+
+  @media (min-width: ${mediaSizes.xmedium}px) {
+    display: none;
   }
 `;
 
@@ -47,7 +74,7 @@ export const AccountButton = styled.img`
     cursor: pointer;
   }
 
-  @media (max-width: 990px) {
+  @media (max-width: ${mediaSizes.xmedium}px) {
     display: none;
   }
 `;
@@ -74,4 +101,13 @@ export const CounterWineBox = styled.span`
   height: 1.25rem;
   align-self: flex-end;
   justify-self: flex-end;
+`;
+
+export const HamburguerMenu = styled.img`
+  @media (min-width: ${mediaSizes.xmedium}px) {
+    display: none;
+  }
+
+  align-self: center;
+  margin-bottom: 0.2rem;
 `;

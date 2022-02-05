@@ -7,6 +7,21 @@ import { CartContext } from '../../contexts/CartContext';
 export const CartItem = ({ id, image, name, country, price, quantity }: CartType) => {
   const { handleIncreaseQuantity, handleInputQuantity, handleDecreaseQuantity, handleRemoveFromCart } = useContext(CartContext);
 
+  // const handleIncreaseByInput = (e: number) => {
+  //   if (typeof e === 'number') {
+  //     handleInputQuantity(id, e)
+  //   }
+  // }
+
+  // const handlePreventDefault = (e: KeyboardEvent<HTMLInputElement>) => {
+  //   if (e.key === '1' || '2' || '3' || '4' || '5' || '6' || '7' || '8' || '9' || '0') {
+  //     handleInputQuantity(id, Number(e))
+  //   }
+  //   else {
+  //     return e.preventDefault()
+  //   }
+  // }
+
   return (
     <C.CartCardContainer>
       <C.CardImage src={image} alt={name} />

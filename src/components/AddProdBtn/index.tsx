@@ -6,7 +6,7 @@ type Props = {
   handleAddToCart: (qty: number) => void;
 }
 
-export const AddProductButtons = ({ handleAddToCart }: Props) => {
+export const AddProdBtn = ({ handleAddToCart }: Props) => {
   const [quantity, setQuantity] = useState<number>(1);
 
   return (

@@ -32,11 +32,16 @@ export const Header = () => {
   return (
     <C.Header>
       <C.HeaderContainer>
-        <Link to='/'><C.Logo src={process.env.PUBLIC_URL + '/icons/logo.svg'} alt='Logo' onClick={handleHomePage} /></Link>
+        <C.IconsContainer gap={1.5}>
+          <C.HamburguerMenu src={process.env.PUBLIC_URL + '/icons/menuHamburguer.svg'} alt='Menu' />
+          <Link to='/'><C.Logo src={process.env.PUBLIC_URL + '/icons/logo.svg'} alt='Logo' onClick={handleHomePage} /></Link>
+        </C.IconsContainer>
+
         <HeaderNavigation />
 
-        <C.IconsContainer>
-          <C.SearchContainer src={process.env.PUBLIC_URL + `/icons/${searchIcon}`} alt='Pesquisar' onClick={() => setSearchClick(!searchClick)} />
+        <C.IconsContainer gap={0.8}>
+          <C.SearchButton src={process.env.PUBLIC_URL + `/icons/${searchIcon}`} alt='Pesquisar' onClick={() => setSearchClick(!searchClick)} />
+          <C.SmallSearchButton src={process.env.PUBLIC_URL + '/icons/smallSearch.svg'} alt='Pesquisar' onClick={() => setSearchClick(!searchClick)} />
           <C.AccountButton src={process.env.PUBLIC_URL + '/icons/account.svg'} alt='Conta' />
           <C.WineBoxButton onClick={() => setCartClick(!cartClick)}>
             <C.CounterWineBox>{cart.length}</C.CounterWineBox>

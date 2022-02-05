@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { ProductContext } from '../../contexts/ProductContext';
-import { AddProductButtons } from '../AddProductButtons';
+import { AddProdBtn } from '../AddProdBtn';
 import * as C from './styles';
 import * as P from '../../helpers/priceFormat';
 import { CartContext } from '../../contexts/CartContext';
@@ -44,7 +44,7 @@ export const ProductDescription = () => {
       <C.NonMemberValue>Não sócio {P.priceFormat(item.priceNonMember)}/UN.</C.NonMemberValue>
       <C.SommelierTitle>Comentário do Sommelier</C.SommelierTitle>
       <C.SommelierComment>{item.sommelierComment}</C.SommelierComment>
-      <AddProductButtons handleAddToCart={handleAddToCart} />
+      <AddProdBtn handleAddToCart={handleAddToCart} />
     </C.ProdDescripContainer >
   )
 }
