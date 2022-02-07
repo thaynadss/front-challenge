@@ -6,10 +6,10 @@ import { useContext, useEffect, useState } from 'react';
 
 type Props = {
   cartClick: boolean;
-  handleCart: () => void;
+  handleCartClick: (close: boolean) => void;
 }
 
-export const WineBoxCart = ({ cartClick, handleCart }: Props) => {
+export const WineBoxCart = ({ cartClick, handleCartClick }: Props) => {
   const [subtotal, setSubtotal] = useState<string>(P.priceFormat(0));
   const { cartState: { cart } } = useContext(CartContext);
 
@@ -25,10 +25,11 @@ export const WineBoxCart = ({ cartClick, handleCart }: Props) => {
   }, [cart]);
 
   return (
-    <C.ScreenContainer cartClick={cartClick}>
+    <C.PageContainer cartClick={cartClick}>
+      <C.ScreenContainer onClick={() => handleCartClick(false)} />
       <C.CartContainer>
         <C.CartHeader>
-          <C.ArrowLeft src={process.env.PUBLIC_URL + '/icons/arrowLeft.svg'} alt="fechar WineBox" onClick={() => handleCart()} />
+          <C.ArrowLeft src={process.env.PUBLIC_URL + '/icons/arrowLeft.svg'} alt="fechar WineBox" onClick={() => handleCartClick(false)} />
           WineBox ({cart.length})</C.CartHeader>
         <C.ProductsContainer>
           {cart.length === 0 &&
@@ -49,6 +50,6 @@ export const WineBoxCart = ({ cartClick, handleCart }: Props) => {
           </C.FooterContainer>
         }
       </C.CartContainer>
-    </C.ScreenContainer>
+    </C.PageContainer >
   )
 }

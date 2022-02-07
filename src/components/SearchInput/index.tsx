@@ -1,15 +1,17 @@
 import { KeyboardEvent, useContext, useState } from 'react';
 import { CatalogContext } from '../../contexts/CatalogContext';
 import * as C from './styles';
+import { useNavigate } from 'react-router-dom';
 
 type Props = {
   search: boolean;
-  handleSearch: () => void;
+  handleSearchClick: (close: boolean) => void;
 }
 
-export const SearchInput = ({ search, handleSearch }: Props) => {
+export const SearchInput = ({ search, handleSearchClick }: Props) => {
   const [searchedText, setSearchedText] = useState<string>('');
   const { catalogDispatch } = useContext(CatalogContext);
+  const navigate = useNavigate();
 
   const handleClickSearch = () => {
     if (searchedText !== '') {
@@ -17,8 +19,9 @@ export const SearchInput = ({ search, handleSearch }: Props) => {
         type: 'SEARCHED_TEXT',
         payload: `name=${searchedText.trim()}`
       })
-      handleSearch();
+      handleSearchClick(false);
       setSearchedText('');
+      navigate("/");
     }
   }
 
@@ -29,7 +32,7 @@ export const SearchInput = ({ search, handleSearch }: Props) => {
   }
 
   return (
-    <C.ScreenContainer search={search}>
+    <C.ScreenContainer search={search} >
       <C.SearchForm>
         <C.SearchLabel>
           <C.SearchInput
@@ -44,6 +47,7 @@ export const SearchInput = ({ search, handleSearch }: Props) => {
             <img src={process.env.PUBLIC_URL + '/icons/smallPinkSearch.svg'} alt='Botão de busca' /></C.SubmitButton>
         </C.SearchLabel>
       </C.SearchForm>
+      <C.PageBackground onClick={() => handleSearchClick(false)} />
     </C.ScreenContainer>
   )
 }

@@ -10,6 +10,12 @@ export const ScreenContainer = styled.div<{ search: boolean }>`
   visibility: ${props => props.search ? 'visible' : 'hidden'};
 `;
 
+export const PageBackground = styled.div`
+  width: 100vw;
+  top: 10.06rem;
+  height: 100vh;
+`;
+
 export const SearchForm = styled.div`
   width: 100vw;
   height: 4.56rem;

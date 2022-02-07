@@ -1,22 +1,27 @@
 import styled from 'styled-components';
 
-export const ScreenContainer = styled.div<{ cartClick: boolean }>`
+export const PageContainer = styled.div<{ cartClick: boolean }>`
+  visibility: ${props => props.cartClick ? 'visible' : 'hidden'};
+  overflow: hidden;
+`
+
+export const ScreenContainer = styled.div`
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.24);
   position: absolute;
   top: 0;
   left: 0;
-  font-family: 'Lato', sans-serif;
-  display: flex;
-  justify-content: flex-end;
-  visibility: ${props => props.cartClick ? 'visible' : 'hidden'};
-  overflow-x: hidden;
 `;
 
 export const CartContainer = styled.div`
-  width: 21.9em;
-  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-family: 'Lato', sans-serif;
+  overflow-x: hidden;
+  width: 21.9rem;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   box-shadow: -2px 0 4px 0 rgb(0 0 0 / 18%);
@@ -37,6 +42,7 @@ export const ArrowLeft = styled.img`
   width: 1.25rem;
   height: 0.93rem;
   margin-right: 1.3rem;
+  cursor: pointer;
 `;
 
 export const ProductsContainer = styled.div`

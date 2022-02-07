@@ -7,15 +7,20 @@ import { CartContext } from '../../contexts/CartContext';
 export const CartItem = ({ id, image, name, country, price, quantity }: CartType) => {
   const { handleIncreaseQuantity, handleInputQuantity, handleDecreaseQuantity, handleRemoveFromCart } = useContext(CartContext);
 
-  // const handleIncreaseByInput = (e: number) => {
-  //   if (typeof e === 'number') {
-  //     handleInputQuantity(id, e)
-  //   }
-  // }
+  const handleIncreaseByInput = (e: string) => {
+    let num = Number(e);
+
+    if (num === 1 || 2 || 3 || 4 || 5 || 6 || 7 || 8 || 9) {
+      handleInputQuantity(id, num)
+    };
+  }
 
   // const handlePreventDefault = (e: KeyboardEvent<HTMLInputElement>) => {
+  //   console.log(typeof e.key, e.key)
+  //   console.log(Number(e.key))
+
   //   if (e.key === '1' || '2' || '3' || '4' || '5' || '6' || '7' || '8' || '9' || '0') {
-  //     handleInputQuantity(id, Number(e))
+  //     handleInputQuantity(id, Number(e.key))
   //   }
   //   else {
   //     return e.preventDefault()
@@ -30,7 +35,7 @@ export const CartItem = ({ id, image, name, country, price, quantity }: CartType
       </C.CardTitle>
       <C.IncremDecremButton>
         <span className='decrement' onClick={() => handleDecreaseQuantity(id)}>-</span>
-        <C.QuantityInput name='quantity' type='text' value={quantity} onChange={e => handleInputQuantity(id, Number(e.target.value))} />
+        <C.QuantityInput name='quantity' type='text' value={quantity} onChange={e => handleIncreaseByInput(e.target.value)} />
         <span className='increment' onClick={() => handleIncreaseQuantity(id, 1)}>+</span>
       </C.IncremDecremButton>
       <C.ProductValue>
