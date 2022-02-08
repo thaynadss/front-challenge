@@ -4,15 +4,9 @@ import * as C from './styles';
 import { Link } from 'react-router-dom';
 import { CatalogContext } from '../../contexts/CatalogContext';
 import { CartContext } from '../../contexts/CartContext';
+import { HeaderProps } from '../CartHeaderSearch';
 
-type Props = {
-  searchClick: boolean;
-  cartClick: boolean;
-  handleSearchClick: (close: boolean) => void;
-  handleCartClick: (close: boolean) => void;
-}
-
-export const Header = ({ searchClick, cartClick, handleSearchClick, handleCartClick }: Props) => {
+export const Header = ({ searchClick, cartClick, handleSearchClick, handleCartClick }: HeaderProps) => {
   const searchIcon = searchClick ? 'pinkSearch.png' : 'search.svg';
   const { catalogDispatch } = useContext(CatalogContext);
   const { cartState: { cart } } = useContext(CartContext);
@@ -27,19 +21,19 @@ export const Header = ({ searchClick, cartClick, handleSearchClick, handleCartCl
   const handleCloseSearchCart = (search: boolean, cart: boolean) => {
     handleSearchClick(search);
     handleCartClick(cart);
-  }
+  };
 
   const handleClearSelec = () => {
     handleHomePage();
     handleCloseSearchCart(false, false);
-  }
+  };
 
   return (
     <C.Header>
       <C.HeaderContainer>
         <C.IconsContainer gap={1.5}>
           <C.HamburguerMenu src={process.env.PUBLIC_URL + '/icons/menuHamburguer.svg'} alt='Menu' />
-          <Link to='/'><C.Logo src={process.env.PUBLIC_URL + '/icons/logo.svg'} alt='Logo' onClick={handleClearSelec} /></Link>
+          <Link to='/home'><C.Logo src={process.env.PUBLIC_URL + '/icons/logo.svg'} alt='Logo' onClick={handleClearSelec} /></Link>
         </C.IconsContainer>
 
         <HeaderNavigation />
@@ -52,8 +46,6 @@ export const Header = ({ searchClick, cartClick, handleSearchClick, handleCartCl
             <C.CounterWineBox>{cart.length}</C.CounterWineBox>
           </C.WineBoxButton>
         </C.IconsContainer>
-
-
       </C.HeaderContainer>
     </C.Header>
   )

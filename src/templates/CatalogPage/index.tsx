@@ -1,15 +1,16 @@
-import { useState } from 'react';
+import { useContext, useLayoutEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { CartHeaderSearch } from '../../components/CartHeaderSearch';
 import { FilterByPrice } from '../../components/FilterByPrice';
-import { Header } from '../../components/Header';
 import { ProductsDisplay } from '../../components/ProductsDisplay';
-import { SearchInput } from '../../components/SearchInput';
-import { WineBoxCart } from '../../components/WineBoxCart';
-import { CatalogProvider } from '../../contexts/CatalogContext';
+import { CatalogContext, CatalogProvider } from '../../contexts/CatalogContext';
 import * as C from './styles';
 
 const CatalogPage = () => {
   const [searchClick, setSearchClick] = useState<boolean>(false);
   const [cartClick, setCartClick] = useState<boolean>(false);
+  const { searchedText } = useParams();
+  const { catalogState: { search }, catalogDispatch } = useContext(CatalogContext);
 
   const handleSearchClick = (close: boolean) => {
     setSearchClick(close);
@@ -19,17 +20,25 @@ const CatalogPage = () => {
     setCartClick(close);
   };
 
+  useLayoutEffect(() => {
+    const handleSearch = () => {
+      if (search === '' && searchedText) {
+        catalogDispatch({
+          type: 'SEARCHED_TEXT',
+          payload: `name=${searchedText}`
+        })
+      }
+    };
+    handleSearch();
+  });
+
   return (
     <C.PageContainer open={searchClick === false && cartClick === false ? false : true}>
-      <CatalogProvider>
-        <Header searchClick={searchClick} cartClick={cartClick} handleSearchClick={handleSearchClick} handleCartClick={handleCartClick} />
-        <WineBoxCart cartClick={cartClick} handleCartClick={handleCartClick} />
-        <SearchInput search={searchClick} handleSearchClick={handleSearchClick} />
-        <C.MainContainer>
-          <FilterByPrice />
-          <ProductsDisplay />
-        </C.MainContainer>
-      </CatalogProvider>
+      <CartHeaderSearch searchClick={searchClick} cartClick={cartClick} handleSearchClick={handleSearchClick} handleCartClick={handleCartClick} />
+      <C.MainContainer>
+        <FilterByPrice />
+        <ProductsDisplay />
+      </C.MainContainer>
     </C.PageContainer>
   )
 }

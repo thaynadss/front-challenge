@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 type Props = {
   search: boolean;
   handleSearchClick: (close: boolean) => void;
-}
+};
 
 export const SearchInput = ({ search, handleSearchClick }: Props) => {
   const [searchedText, setSearchedText] = useState<string>('');
@@ -21,15 +21,15 @@ export const SearchInput = ({ search, handleSearchClick }: Props) => {
       })
       handleSearchClick(false);
       setSearchedText('');
-      navigate("/");
+      navigate(`/home/:${searchedText.trim()}`);
     }
-  }
+  };
 
   const handleKeyboardSearch = (e: KeyboardEvent) => {
     if (e.code === 'Enter') {
       handleClickSearch()
     }
-  }
+  };
 
   return (
     <C.ScreenContainer search={search} >
@@ -41,6 +41,7 @@ export const SearchInput = ({ search, handleSearchClick }: Props) => {
             placeholder='Pesquisar'
             onChange={e => setSearchedText(e.target.value)}
             onKeyUp={handleKeyboardSearch}
+            autoFocus
           />
           <span>aperte enter para buscar</span>
           <C.SubmitButton onClick={handleClickSearch} >

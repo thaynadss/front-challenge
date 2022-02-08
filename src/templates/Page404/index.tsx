@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Header } from '../../components/Header';
-import { SearchInput } from '../../components/SearchInput';
-import { WineBoxCart } from '../../components/WineBoxCart';
+import { CartHeaderSearch } from '../../components/CartHeaderSearch';
 import * as C from './styles';
 
 const Page404 = () => {
@@ -19,11 +17,9 @@ const Page404 = () => {
 
   return (
     <C.PageContainer open={searchClick === false && cartClick === false ? false : true}>
-      <Header searchClick={searchClick} cartClick={cartClick} handleSearchClick={handleSearchClick} handleCartClick={handleCartClick} />
-      <WineBoxCart cartClick={cartClick} handleCartClick={handleCartClick} />
-      <SearchInput search={searchClick} handleSearchClick={handleSearchClick} />
+      <CartHeaderSearch searchClick={searchClick} cartClick={cartClick} handleSearchClick={handleSearchClick} handleCartClick={handleCartClick} />
       <C.MainContainer>
-        <Link to='/' style={{ textDecoration: 'none' }}><C.BackToHomeText>&lt;&lt; VOLTAR PARA A HOME</C.BackToHomeText></Link>
+        <Link to='/home' style={{ textDecoration: 'none' }}><C.BackToHomeText>&lt;&lt; VOLTAR PARA A HOME</C.BackToHomeText></Link>
         <C.ErrorName>erro 404</C.ErrorName>
         <C.Title>Opa! A página que você está tentando
           acessar não existe ou não está disponível.

@@ -15,7 +15,6 @@ export const FilterByPrice = () => {
   }, [priceSelected, catalogDispatch]);
   /* *** Reference: https://reactjs.org/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies *** */
 
-
   useEffect(() => {
     if (catalogState.filter === '') {
       setPriceSelected('');
@@ -50,6 +49,8 @@ export const FilterByPrice = () => {
 
         </C.FilterFieldset>
       </C.FilterForm>
+
+      <C.ClearSelection onClick={() => setPriceSelected('')}>Limpar filtro</C.ClearSelection>
     </C.FilterContainer>
   )
 }

@@ -3,6 +3,7 @@ import { mediaSizes } from '../../styles/mediaSizes';
 
 export const DisplayContainer = styled.section`
   display: grid;
+  font-family: 'Lato', sans-serif;
 `;
 
 export const CardsContainer = styled.section`
@@ -27,8 +28,12 @@ export const CardsContainer = styled.section`
   }
 `;
 
+export const QuantityandButton = styled.div`
+  display: inline-flex;
+  justify-content: space-between;
+`;
+
 export const QuantityProducts = styled.h3`
-  font-family: 'Lato', sans-serif;
   font-size: 18px;
   color: #262626;
   font-weight: normal;
@@ -37,4 +42,34 @@ export const QuantityProducts = styled.h3`
   span {
     font-weight: bold;
   }
+`;
+
+export const ClearSearch = styled.button`
+  border: 0.5px solid #B6116E;
+  background: transparent;
+  font-size: 14px;
+  color: #B6116E;
+  cursor: pointer;
+  width: 10rem;
+  height: 2rem;
+  border-radius: 3px;
+`;
+
+export const LoadingContainer = styled.div`
+  display: flex;
+  width: 70vw;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding-top: 4rem;
+`;
+
+export const LoadingTitle = styled.h1`
+  font-size: 22px;
+  font-family: 'Lato', sans-serif;
+`;
+
+export const LoadingGif = styled.img`
+  width: 2rem;
+  height: 2rem;
 `;

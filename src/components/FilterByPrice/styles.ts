@@ -40,3 +40,20 @@ export const FilterTitle = styled.h2`
   font-weight: bold;
   margin-bottom: 1.8rem;
 `;
+
+export const ClearSelection = styled.button`
+  border: 0.5px solid #B6116E;
+  background: transparent;
+  font-size: 14px;
+  color: #B6116E;
+  cursor: pointer;
+  width: 10rem;
+  height: 2rem;
+  border-radius: 3px;
+
+  &:hover {
+    background-color: #e43fa0;
+    border-color: #e43fa0;
+    color: #FFF;
+  }
+`;
