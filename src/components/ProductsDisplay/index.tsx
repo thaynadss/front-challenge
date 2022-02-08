@@ -8,11 +8,10 @@ import { CatalogContext } from '../../contexts/CatalogContext';
 import { useNavigate } from 'react-router-dom';
 
 export const ProductsDisplay = () => {
-  const { catalogState } = useContext(CatalogContext);
+  const { catalogState, catalogDispatch } = useContext(CatalogContext);
   const [products, setProducts] = useState<Product[]>([]);
   const [totalItems, setTotalItems] = useState<number>(0);
   const [size, setSize] = useState<number>(window.innerWidth);
-  const { catalogState: { search }, catalogDispatch } = useContext(CatalogContext);
   const navigate = useNavigate();
 
   const itemsPerPage = size > 540 && size < 1024 ? 10 : 9;
@@ -73,7 +72,7 @@ export const ProductsDisplay = () => {
         <C.DisplayContainer>
           <C.QuantityandButton>
             <C.QuantityProducts><span>{totalItems}</span> produtos encontrados</C.QuantityProducts>
-            {search !== '' &&
+            {catalogState.search !== '' &&
               <C.ClearSearch onClick={handleClearSearch}>Limpar pesquisa</C.ClearSearch>
             }
           </C.QuantityandButton>
