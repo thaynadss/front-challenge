@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { mediaSizes } from '../../styles/mediaSizes';
 
 export const ButtonsContainer = styled.div`
   width: 20.5rem;
@@ -20,6 +21,10 @@ export const ButtonsContainer = styled.div`
     color: #FFF;
     margin: 0 2.6rem 0 2.6rem;
   }
+
+  @media (max-width: ${mediaSizes.large}px) {
+    display: none;
+  } 
 `;
 
 export const IncremDecremButton = styled.button`

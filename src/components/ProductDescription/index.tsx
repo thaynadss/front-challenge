@@ -4,6 +4,7 @@ import { AddProdBtn } from '../AddProdBtn';
 import * as C from './styles';
 import * as P from '../../helpers/priceFormat';
 import { CartContext } from '../../contexts/CartContext';
+import { AddProductButton } from '../ProductCard/styles';
 
 export const ProductDescription = () => {
   const { item } = useContext(ProductContext);
@@ -40,11 +41,16 @@ export const ProductDescription = () => {
         {grayStars.map((item, index) => <img key={index} src={process.env.PUBLIC_URL + '/icons/grayStar.svg'} alt='Avaliação do vinho' />)}
         <span className='rating'>({item.rating})</span>
       </C.CountryTypeClassSizeRating>
-      <C.MemberValue><span className='currency'>{P.currencyFormat}</span><span className='value'>{P.integerFormat(item.priceMember)}</span>{P.decimalFormat(item.priceMember)}</C.MemberValue>
+      <C.ProductImage src={item.image} alt={item.name} />
+      <C.MemberValue large={true} small={false}><span className='currency'>{P.currencyFormat}</span><span className='value'>{P.integerFormat(item.priceMember)}</span>{P.decimalFormat(item.priceMember)}</C.MemberValue>
       <C.NonMemberValue>Não sócio {P.priceFormat(item.priceNonMember)}/UN.</C.NonMemberValue>
       <C.SommelierTitle>Comentário do Sommelier</C.SommelierTitle>
       <C.SommelierComment>{item.sommelierComment}</C.SommelierComment>
       <AddProdBtn handleAddToCart={handleAddToCart} />
+      <C.FooterContainer>
+        <C.MemberValue large={false} small={true}><span className='currency'>{P.currencyFormat}</span><span className='value'>{P.integerFormat(item.priceMember)}</span>{P.decimalFormat(item.priceMember)}</C.MemberValue>
+        <AddProductButton width={14} height={3} size={16} onClick={() => handleCheckItemInCart({ id: item.id, image: item.image, name: item.name, country: item.country, price: item.priceMember, quantity: 1 })}>Adicionar</AddProductButton>
+      </C.FooterContainer>
     </C.ProdDescripContainer >
   )
 }

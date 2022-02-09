@@ -62,7 +62,7 @@ export const FooterContainer = styled.div`
   position: fixed;
 `;
 
-export const CartSubtotal = styled.div`
+export const CartSubtotal = styled.div<{ smallSize: boolean }>`
   color: #666;
   font-weight: bold;
   font-size: 20px;
@@ -73,7 +73,7 @@ export const CartSubtotal = styled.div`
 
   & .subtotal {
     color: #b6116e;
-    font-size: 28px;
+    font-size: ${props => props.smallSize ? '20px' : '28px'};
     font-weight: normal;
   }
 `;

@@ -10,8 +10,9 @@ type Props = {
 }
 
 export const WineBoxCart = ({ cartClick, handleCartClick }: Props) => {
-  const [subtotal, setSubtotal] = useState<string>(P.priceFormat(0));
+  const [subtotal, setSubtotal] = useState<number>(0);
   const { cartState: { cart } } = useContext(CartContext);
+  const lengthSubtotal = String(subtotal).split('.')[0].length;
 
   useEffect(() => {
     const handleCartSubtotal = () => {
@@ -19,7 +20,7 @@ export const WineBoxCart = ({ cartClick, handleCartClick }: Props) => {
       cart.forEach(item => prices.push(item.price))
 
       const subtotal = prices.reduce((acum, value) => acum + value, 0);
-      setSubtotal(P.priceFormat(subtotal));
+      setSubtotal(subtotal);
     };
     handleCartSubtotal();
   }, [cart]);
@@ -43,8 +44,8 @@ export const WineBoxCart = ({ cartClick, handleCartClick }: Props) => {
         </C.ProductsContainer>
         {cart.length > 0 &&
           <C.FooterContainer>
-            <C.CartSubtotal>Total
-              <span className='subtotal'>{subtotal}</span>
+            <C.CartSubtotal smallSize={lengthSubtotal > 9 ? true : false}>Total
+              <span className='subtotal'>{P.priceFormat(subtotal)}</span>
             </C.CartSubtotal>
             <C.FinishButton>Finalizar pedido</C.FinishButton>
           </C.FooterContainer>

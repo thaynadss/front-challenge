@@ -89,6 +89,16 @@ export const ProductValue = styled.h3`
   }
 `;
 
+export const SmallProductValue = styled.div`
+  font-size: 14px;
+  color: #b6116e;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  justify-self: flex-end;
+  align-self: center;
+  font-weight: bold;
+`;
+
 export const RemoveItem = styled.div`
   width: 1.12rem;
   height: 1.12rem;

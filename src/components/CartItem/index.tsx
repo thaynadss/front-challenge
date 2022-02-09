@@ -6,6 +6,7 @@ import { CartContext } from '../../contexts/CartContext';
 
 export const CartItem = ({ id, image, name, country, price, quantity }: CartType) => {
   const { handleIncreaseQuantity, handleInputQuantity, handleDecreaseQuantity, handleRemoveFromCart } = useContext(CartContext);
+  let lengthPrice = String(price).split('.')[0].length;
 
   const handleIncreaseByInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (isNaN(parseInt('3')) === isNaN(parseInt(e.target.value))) {
@@ -26,10 +27,15 @@ export const CartItem = ({ id, image, name, country, price, quantity }: CartType
         <C.QuantityInput type='number' min={1} value={quantity} onChange={e => handleIncreaseByInput(e)} />
         <span className='increment' onClick={() => handleIncreaseQuantity(id, 1)}>+</span>
       </C.IncremDecremButton>
-      <C.ProductValue>
-        <span className='currency'>{P.currencyFormat}</span> {P.integerFormat(price)}
-        <span className='decimal'>{P.decimalFormat(price)}</span>
-      </C.ProductValue>
+      {lengthPrice <= 10 &&
+        <C.ProductValue>
+          <span className='currency'>{P.currencyFormat}</span> {P.integerFormat(price)}
+          <span className='decimal'>{P.decimalFormat(price)}</span>
+        </C.ProductValue>
+      }
+      {lengthPrice > 10 &&
+        <C.SmallProductValue>{P.priceFormat(price)}</C.SmallProductValue>
+      }
       <C.RemoveItem onClick={() => handleRemoveFromCart(id)}>x</C.RemoveItem>
     </C.CartCardContainer>
   )
