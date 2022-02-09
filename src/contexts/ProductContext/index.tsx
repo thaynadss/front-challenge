@@ -9,18 +9,18 @@ type Props = {
 };
 
 type contextType = {
-  handlePageProduct: (item: Product) => void;
+  handleProductPage: (item: Product) => void;
   item: Product;
 }
 
 export const ProductProvider = ({ children }: Props) => {
   const [item, setItem] = useState<Product>(data);
 
-  const handlePageProduct = (item: Product) => {
+  const handleProductPage = (item: Product) => {
     setItem(item);
   }
 
   return (
-    <ProductContext.Provider value={{ handlePageProduct, item }}>{children}</ProductContext.Provider>
+    <ProductContext.Provider value={{ handleProductPage, item }}>{children}</ProductContext.Provider>
   )
 }

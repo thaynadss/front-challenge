@@ -110,4 +110,5 @@ export const HamburguerMenu = styled.img`
 
   align-self: center;
   margin-bottom: 0.2rem;
+  cursor: pointer;
 `;

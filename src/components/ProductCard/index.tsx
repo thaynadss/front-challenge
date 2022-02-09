@@ -1,5 +1,5 @@
 import * as C from './styles';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Product } from '../../types/Product';
 import * as P from '../../helpers/priceFormat';
 import { useContext } from 'react';
@@ -12,13 +12,19 @@ type Props = {
 
 export const ProductCard = ({ item }: Props) => {
   const { handleCheckItemInCart } = useContext(CartContext);
-  const { handlePageProduct } = useContext(ProductContext);
+  const { handleProductPage } = useContext(ProductContext);
+  const navigate = useNavigate();
+
+  const handleToProductPage = () => {
+    handleProductPage(item);
+    navigate(`/product/${item.id}`);
+  }
 
   return (
     <C.CardContainer>
       <C.DisplayProduct>
-        <C.ProductImage src={item.image} alt={item.name} />
-        <Link to={`/product/${item.id}`} style={{ textDecoration: 'none' }} onClick={() => handlePageProduct(item)}> <C.Title>{item.name}</C.Title>
+        <C.ProductImage src={item.image} alt={item.name} onClick={handleToProductPage} />
+        <Link to={`/product/${item.id}`} style={{ textDecoration: 'none', justifySelf: 'center' }} onClick={() => handleProductPage(item)}> <C.Title>{item.name}</C.Title>
         </Link>
         <C.SmallerCardText size={11} color='#888888' decoration='line-through'>{P.priceFormat(item.price)}
           <C.Porcentage>{item.discount}% OFF</C.Porcentage>
@@ -29,7 +35,7 @@ export const ProductCard = ({ item }: Props) => {
         <C.SmallerCardText size={12} color='#888888'>Não sócio {P.priceFormat(item.priceNonMember)}</C.SmallerCardText>
       </C.DisplayProduct>
 
-      <C.AddProductButton width={16} height={2.5} size={14} onClick={() => handleCheckItemInCart({ id: item.id, image: item.image, name: item.name, country: item.country, price: item.priceMember, quantity: 1 })}> ADICIONAR</C.AddProductButton>
+      <C.AddProductButton width={16} height={2.5} size={14} onClick={() => handleCheckItemInCart({ id: item.id, image: item.image, name: item.name, country: item.country, price: item.priceMember, quantity: 1 })}>ADICIONAR</C.AddProductButton>
     </C.CardContainer>
   )
 }

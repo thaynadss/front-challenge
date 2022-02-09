@@ -17,8 +17,8 @@ ReactDOM.render(
         <CartProvider>
           <ProductProvider>
             <Routes>
-              <Route path='/home' element={<CatalogPage />} >
-                <Route path=':searchedText' element={<CatalogPage />} />
+              <Route path='/' element={<CatalogPage />} >
+                <Route path='home' element={<CatalogPage />} />
               </Route>
               <Route path='/product/:id' element={<ProductPage />} />
               <Route path='*' element={<Page404 />} />

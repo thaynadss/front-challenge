@@ -21,7 +21,7 @@ export const SearchInput = ({ search, handleSearchClick }: Props) => {
       })
       handleSearchClick(false);
       setSearchedText('');
-      navigate(`/home/:${searchedText.trim()}`);
+      navigate('/home');
     }
   };
 

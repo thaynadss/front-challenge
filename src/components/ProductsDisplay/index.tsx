@@ -11,6 +11,7 @@ export const ProductsDisplay = () => {
   const { catalogState, catalogDispatch } = useContext(CatalogContext);
   const [products, setProducts] = useState<Product[]>([]);
   const [totalItems, setTotalItems] = useState<number>(0);
+  const [loading, setLoading] = useState(false);
   const [size, setSize] = useState<number>(window.innerWidth);
   const navigate = useNavigate();
 
@@ -20,7 +21,20 @@ export const ProductsDisplay = () => {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentProducts: Product[] = products.slice(startIndex, endIndex);
-  const [loading, setLoading] = useState(false);
+
+  const handleCurrentPage = (page: number) => setCurrentPage(page);
+
+  const handleClearSearch = () => {
+    catalogDispatch({
+      type: 'SEARCHED_TEXT',
+      payload: ''
+    });
+    navigate('/home');
+  };
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [catalogState.search]);
 
   useEffect(() => {
     const updateSize = () => {
@@ -32,21 +46,6 @@ export const ProductsDisplay = () => {
     return () => window.removeEventListener('resize', updateSize);
   }, []);
 
-  const handleCurrentPage = (page: number) => setCurrentPage(page);
-
-  const handleClearSearch = () => {
-    catalogDispatch({
-      type: 'SEARCHED_TEXT',
-      payload: ''
-    });
-
-    navigate('/home');
-  };
-
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [catalogState.search]);
-
   useEffect(() => {
     setLoading(true);
     const getAllProducts = async () => {
@@ -56,7 +55,6 @@ export const ProductsDisplay = () => {
       setTotalItems(allProducts.totalItems);
       setLoading(false);
     };
-
     getAllProducts();
   }, [catalogState]);
 

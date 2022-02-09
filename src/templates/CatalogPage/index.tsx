@@ -1,16 +1,13 @@
-import { useContext, useLayoutEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useState } from 'react';
 import { CartHeaderSearch } from '../../components/CartHeaderSearch';
 import { FilterByPrice } from '../../components/FilterByPrice';
 import { ProductsDisplay } from '../../components/ProductsDisplay';
-import { CatalogContext, CatalogProvider } from '../../contexts/CatalogContext';
 import * as C from './styles';
 
 const CatalogPage = () => {
   const [searchClick, setSearchClick] = useState<boolean>(false);
   const [cartClick, setCartClick] = useState<boolean>(false);
-  const { searchedText } = useParams();
-  const { catalogState: { search }, catalogDispatch } = useContext(CatalogContext);
+  const [hamburgerClick, setHamburgerClick] = useState<boolean>(false);
 
   const handleSearchClick = (close: boolean) => {
     setSearchClick(close);
@@ -20,21 +17,13 @@ const CatalogPage = () => {
     setCartClick(close);
   };
 
-  useLayoutEffect(() => {
-    const handleSearch = () => {
-      if (search === '' && searchedText) {
-        catalogDispatch({
-          type: 'SEARCHED_TEXT',
-          payload: `name=${searchedText}`
-        })
-      }
-    };
-    handleSearch();
-  });
+  const handleHamburgerClick = (close: boolean) => {
+    setHamburgerClick(close);
+  };
 
   return (
-    <C.PageContainer open={searchClick === false && cartClick === false ? false : true}>
-      <CartHeaderSearch searchClick={searchClick} cartClick={cartClick} handleSearchClick={handleSearchClick} handleCartClick={handleCartClick} />
+    <C.PageContainer open={(searchClick === false && cartClick === false && hamburgerClick === false) ? false : true}>
+      <CartHeaderSearch searchClick={searchClick} cartClick={cartClick} handleSearchClick={handleSearchClick} handleCartClick={handleCartClick} hamburgerClick={hamburgerClick} handleHamburgerClick={handleHamburgerClick} />
       <C.MainContainer>
         <FilterByPrice />
         <ProductsDisplay />

@@ -63,6 +63,13 @@ export const QuantityInput = styled.input`
   padding: 1em 0;
   text-align: center;
   width: 2em;
+
+  ::-webkit-inner-spin-button, ::-webkit-outer-spin-button{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    -moz-appearance: textfield;
+  }
 `;
 
 export const ProductValue = styled.h3`
