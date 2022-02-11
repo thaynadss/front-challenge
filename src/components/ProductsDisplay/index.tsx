@@ -2,10 +2,10 @@ import { useContext, useEffect, useState } from 'react';
 import { PaginationButtons } from '../PaginationButtons';
 import { ProductCard } from '../ProductCard';
 import * as C from './styles';
-import { getProducts } from '../../contexts/CatalogContext/actions';
 import { Product } from '../../types/Product';
 import { CatalogContext } from '../../contexts/CatalogContext';
 import { useNavigate } from 'react-router-dom';
+import { getProducts } from '../../services/api';
 
 export const ProductsDisplay = () => {
   const { catalogState, catalogDispatch } = useContext(CatalogContext);
