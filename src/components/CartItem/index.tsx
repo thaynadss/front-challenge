@@ -36,7 +36,7 @@ export const CartItem = ({ id, image, name, country, price, quantity }: CartType
       {lengthPrice > 10 &&
         <C.SmallProductValue>{P.priceFormat(price)}</C.SmallProductValue>
       }
-      <C.RemoveItem onClick={() => handleRemoveFromCart(id)}>x</C.RemoveItem>
+      <C.RemoveItem title='Remover item' onClick={() => handleRemoveFromCart(id)}>x</C.RemoveItem>
     </C.CartCardContainer>
   )
 };

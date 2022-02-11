@@ -29,7 +29,7 @@ export const CardTitle = styled.h2`
   padding-right: 1.2rem;
 `;
 
-export const ProductCountry = styled.h3`
+export const ProductCountry = styled.span`
   font-size: 12px;
   color: #999;
   margin: 5px 0;
@@ -89,7 +89,7 @@ export const ProductValue = styled.h3`
   }
 `;
 
-export const SmallProductValue = styled.div`
+export const SmallProductValue = styled.h3`
   font-size: 14px;
   color: #b6116e;
   grid-column-end: 3;

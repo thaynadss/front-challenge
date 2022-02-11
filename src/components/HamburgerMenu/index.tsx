@@ -8,14 +8,16 @@ type Props = {
 export const HamburgerMenu = ({ hamburgerClick, handleHamburgerClick }: Props) => {
   return (
     <C.PageContainer hamburgerClick={hamburgerClick}>
-      <C.ScreenContainer onClick={() => handleHamburgerClick(false)} />
+      <C.ScreenContainer data-testid='screen' onClick={() => handleHamburgerClick(false)} />
       <C.HamburgerContainer>
         <C.HeaderContainer>
           <C.AccountButton src={process.env.PUBLIC_URL + '/icons/account.svg'} alt='Conta' />
           <C.AccountTitle>Acesse sua conta
-            <span>ENTRAR <img src={process.env.PUBLIC_URL + '/icons/pinkRightArrow.svg'} alt='Entrar' /></span>
+            <span>ENTRAR
+              <img src={process.env.PUBLIC_URL + '/icons/pinkRightArrow.svg'} alt='Entrar' />
+            </span>
           </C.AccountTitle>
-          <C.CloseButton onClick={() => handleHamburgerClick(false)}>✖️</C.CloseButton>
+          <C.CloseButton title='Fechar menu' onClick={() => handleHamburgerClick(false)}>✖️</C.CloseButton>
         </C.HeaderContainer>
         <C.NavigationItem href='/club' style={{ textDecoration: 'none' }}>CLUBE</C.NavigationItem>
         <C.NavigationItem href='/home' style={{ textDecoration: 'none' }}>LOJA</C.NavigationItem>

@@ -3,7 +3,12 @@ import { data } from '../contexts/CatalogContext/data';
 import { api, getProducts } from './api';
 import { apiMock } from './mock';
 
-jest.mock('axios');
+jest.mock('axios', () => ({
+  get: jest.fn(() => Promise.resolve({})),
+  create: jest.fn(() => ({
+    get: jest.fn(() => Promise.resolve({}))
+  }))
+}));
 const mockedAxios = axios as jest.Mocked<typeof axios>;
 
 describe('getProducts', () => {
