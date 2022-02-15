@@ -9,15 +9,15 @@ jest.mock('axios', () => ({
     get: jest.fn(() => Promise.resolve({}))
   }))
 }));
-const mockedAxios = axios as jest.Mocked<typeof axios>;
+const mockedAxios = api as jest.Mocked<typeof axios>;
 
 describe('getProducts', () => {
   it('should return api data', async () => {
-    mockedAxios.get.mockResolvedValue(apiMock as any);
+    mockedAxios.get.mockResolvedValue({ data: apiMock });
 
     const result = await getProducts(data);
 
-    expect(mockedAxios.get).toHaveBeenCalledWith(`${api}/products?${data.search}${data.filter}`);
+    expect(mockedAxios.get).toHaveBeenCalledWith(`/products?${data.search}${data.filter}`);
     expect(result).toEqual(apiMock);
   });
 });

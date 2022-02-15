@@ -34,7 +34,7 @@ export const ProductsDisplay = () => {
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [catalogState.search]);
+  }, [catalogState]);
 
   useEffect(() => {
     const updateSize = () => {

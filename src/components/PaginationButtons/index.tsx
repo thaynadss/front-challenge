@@ -14,7 +14,7 @@ export const PaginationButtons = ({ totalPages, currentPage, handleCurrentPage }
 
       <C.PaginationButton currentPage={currentPage === 1 ? true : false} onClick={() => handleCurrentPage(1)}>1</C.PaginationButton>
 
-      {currentPage > 3 && <span className='separator'>...</span>}
+      {currentPage > 3 && totalPages !== 4 && <span className='separator'>...</span>}
 
       {currentPage === totalPages && totalPages > 3 && <C.PaginationButton onClick={() => handleCurrentPage(currentPage - 2)}>{currentPage - 2}</C.PaginationButton>}
 
@@ -28,7 +28,7 @@ export const PaginationButtons = ({ totalPages, currentPage, handleCurrentPage }
 
       {currentPage < totalPages - 2 && <span className='separator'>...</span>}
 
-      <C.PaginationButton currentPage={currentPage === totalPages ? true : false} onClick={() => handleCurrentPage(totalPages)}>{totalPages}</C.PaginationButton>
+      <C.PaginationButton nextPage={currentPage === 1 && totalPages === 2 ? true : false} currentPage={currentPage === totalPages ? true : false} onClick={() => handleCurrentPage(totalPages)}>{totalPages}</C.PaginationButton>
 
       {currentPage !== totalPages && <C.PrevNextButton onClick={() => handleCurrentPage(currentPage + 1)}>Próxima &gt;&gt;</C.PrevNextButton>}
 
