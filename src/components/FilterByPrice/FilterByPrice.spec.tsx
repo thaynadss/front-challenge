@@ -5,24 +5,24 @@ import { FilterByPrice } from '.';
 import { CatalogContext } from '../../contexts/CatalogContext';
 import { Action } from '../../contexts/CatalogContext/reducer';
 
+const catalogState = {
+  filter: '',
+  search: '',
+};
+const catalogDispatch = jest.fn as React.Dispatch<Action>;
+
+const renderFilterByPrice = (): RenderResult => {
+  return render(<CatalogContext.Provider value={{
+    catalogState: catalogState,
+    catalogDispatch: catalogDispatch
+  }}>
+    <FilterByPrice />
+  </CatalogContext.Provider>);
+};
+
 describe('<FilterByPrice />', () => {
-  const catalogState = {
-    filter: '',
-    search: '',
-  };
-  const catalogDispatch = jest.fn as React.Dispatch<Action>;
-
-  const renderInCatalog = (): RenderResult => {
-    return render(<CatalogContext.Provider value={{
-      catalogState: catalogState,
-      catalogDispatch: catalogDispatch
-    }}>
-      <FilterByPrice />
-    </CatalogContext.Provider>);
-  };
-
   it('should render the filter and verify if all options are not checked', () => {
-    renderInCatalog();
+    renderFilterByPrice();
 
     expect(screen.getByLabelText('Até R$40')).not.toBeChecked();
     expect(screen.getByLabelText('R$40 a R$60')).not.toBeChecked();
@@ -32,7 +32,7 @@ describe('<FilterByPrice />', () => {
   });
 
   it('should call function and change filter value when option is selected', () => {
-    renderInCatalog();
+    renderFilterByPrice();
 
     const optionUntil40 = screen.getByLabelText('Até R$40');
     const option40To60 = screen.getByLabelText('R$40 a R$60');
@@ -62,7 +62,7 @@ describe('<FilterByPrice />', () => {
 
   it('should call function when the clear filter button is clicked', () => {
     const setState = jest.spyOn(React, 'useState');
-    renderInCatalog();
+    renderFilterByPrice();
 
     const button = screen.getByRole('button', { name: /limpar filtro/i });
 

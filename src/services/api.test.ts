@@ -17,6 +17,7 @@ describe('getProducts', () => {
 
     const result = await getProducts(data);
 
+    expect(mockedAxios.get).toHaveBeenCalledTimes(1);
     expect(mockedAxios.get).toHaveBeenCalledWith(`/products?${data.search}${data.filter}`);
     expect(result).toEqual(apiMock);
   });

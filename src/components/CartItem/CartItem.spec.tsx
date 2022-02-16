@@ -34,15 +34,21 @@ describe('<CartItem />', () => {
     expect(handleDecreaseQuantity).toHaveBeenCalledWith(0);
   });
 
-  it('should call function when input value is changed', () => {
-    const fn = jest.fn();
-
+  it('should call function when input value is changed with a number', () => {
     renderCart();
 
     const input = screen.getByDisplayValue('1');
     userEvent.type(input, '2');
-    expect(fn).toHaveBeenCalledTimes(1);
-    expect(input).toHaveValue('2');
+    expect(handleInputQuantity).toHaveBeenCalledTimes(1);
+    expect(handleInputQuantity).toHaveBeenCalledWith(0, 12);
+  });
+
+  it('should not call function when input value is changed with a NaN', () => {
+    renderCart();
+
+    const input = screen.getByDisplayValue('1');
+    userEvent.type(input, 'a');
+    expect(handleInputQuantity).not.toHaveBeenCalled();
   });
 
   it('should call function when increment quantity button is clicked', () => {

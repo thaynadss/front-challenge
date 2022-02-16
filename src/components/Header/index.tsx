@@ -39,11 +39,11 @@ export const Header = ({ searchClick, cartClick, hamburgerClick, handleHamburger
           <C.SearchButton src={process.env.PUBLIC_URL + `/icons/${searchIcon}`} alt='Pesquisar' onClick={() => handleCloseSearchCart(!searchClick, false, false)} />
           <C.SmallSearchButton src={process.env.PUBLIC_URL + '/icons/smallSearch.svg'} alt='Pesquisar' onClick={() => handleCloseSearchCart(!searchClick, false, false)} />
           <C.AccountButton src={process.env.PUBLIC_URL + '/icons/account.svg'} alt='Conta' />
-          <C.WineBoxButton onClick={() => handleCloseSearchCart(false, !cartClick, false)}>
+          <C.WineBoxButton data-testid='wineBoxButton' onClick={() => handleCloseSearchCart(false, !cartClick, false)}>
             <C.CounterWineBox>{cart.length}</C.CounterWineBox>
           </C.WineBoxButton>
         </C.IconsContainer>
       </C.HeaderContainer>
-    </C.Header>
-  )
-}
+    </C.Header >
+  );
+};

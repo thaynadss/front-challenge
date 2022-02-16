@@ -1,5 +1,5 @@
 import * as C from './styles';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Product } from '../../types/Product';
 import * as P from '../../helpers/priceFormat';
 import { useContext } from 'react';
@@ -13,18 +13,19 @@ type Props = {
 export const ProductCard = ({ item }: Props) => {
   const { handleCheckItemInCart } = useContext(CartContext);
   const { handleProductPage } = useContext(ProductContext);
-  const navigate = useNavigate();
-
-  const handleToProductPage = () => {
-    handleProductPage(item);
-    navigate(`/product/${item.id}`);
-  }
 
   return (
     <C.CardContainer>
       <C.DisplayProduct>
-        <C.ProductImage src={item.image} alt={item.name} onClick={handleToProductPage} />
-        <Link to={`/product/${item.id}`} style={{ textDecoration: 'none', justifySelf: 'center' }} onClick={() => handleProductPage(item)}> <C.Title>{item.name}</C.Title>
+        <Link to={`/product/${item.id}`}
+          style={{
+            textDecoration: 'none',
+            display: 'grid',
+            justifyItems: 'center',
+            rowGap: '0.6rem'
+          }}>
+          <C.ProductImage src={item.image} alt={item.name} onClick={() => handleProductPage(item)} />
+          <C.Title onClick={() => handleProductPage(item)}>{item.name}</C.Title>
         </Link>
         <C.SmallerCardText size={11} color='#888888' decoration='line-through'>{P.priceFormat(item.price)}
           <C.Porcentage>{item.discount}% OFF</C.Porcentage>

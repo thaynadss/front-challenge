@@ -32,8 +32,8 @@ export const CardTitle = styled.h2`
 export const ProductCountry = styled.span`
   font-size: 12px;
   color: #999;
-  margin: 5px 0;
   font-weight: normal;
+  display: block;
 `;
 
 export const IncremDecremButton = styled.div`

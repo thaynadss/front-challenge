@@ -11,7 +11,6 @@ export const DisplayProduct = styled.div`
   display: grid;
   row-gap: 0.6rem;
   justify-items: center;
-  justify-content: stretch;
   padding: 0.6rem 0 1.3rem;
 `;
 
