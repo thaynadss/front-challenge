@@ -1,30 +1,29 @@
 import { render, RenderResult, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import React from 'react';
 import { CartItem } from '.';
 import { CartContext } from '../../contexts/CartContext';
 
+const cartState = { cart: [] };
+const handleCheckItemInCart = jest.fn();
+const handleIncreaseQuantity = jest.fn();
+const handleInputQuantity = jest.fn();
+const handleDecreaseQuantity = jest.fn();
+const handleRemoveFromCart = jest.fn();
+
+const renderCart = (): RenderResult => {
+  return render(<CartContext.Provider value={{
+    cartState: cartState,
+    handleCheckItemInCart: handleCheckItemInCart,
+    handleIncreaseQuantity: handleIncreaseQuantity,
+    handleInputQuantity: handleInputQuantity,
+    handleDecreaseQuantity: handleDecreaseQuantity,
+    handleRemoveFromCart: handleRemoveFromCart
+  }}>
+    <CartItem id={0} image='img/img.png' name='title1' country='brasil' price={34.70} quantity={1} />
+  </CartContext.Provider>);
+};
+
 describe('<CartItem />', () => {
-  const cartState = { cart: [] };
-  const handleCheckItemInCart = jest.fn();
-  const handleIncreaseQuantity = jest.fn();
-  const handleInputQuantity = jest.fn();
-  const handleDecreaseQuantity = jest.fn();
-  const handleRemoveFromCart = jest.fn();
-
-  const renderCart = (): RenderResult => {
-    return render(<CartContext.Provider value={{
-      cartState: cartState,
-      handleCheckItemInCart: handleCheckItemInCart,
-      handleIncreaseQuantity: handleIncreaseQuantity,
-      handleInputQuantity: handleInputQuantity,
-      handleDecreaseQuantity: handleDecreaseQuantity,
-      handleRemoveFromCart: handleRemoveFromCart
-    }}>
-      <CartItem id={0} image='img/img.png' name='title1' country='brasil' price={34.70} quantity={1} />
-    </CartContext.Provider>);
-  };
-
   it('should call function when decrement quantity button is clicked', () => {
     renderCart();
 
