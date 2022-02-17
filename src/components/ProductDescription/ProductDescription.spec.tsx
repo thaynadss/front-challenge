@@ -35,5 +35,7 @@ const renderProductDescription = (): RenderResult => {
 describe('<ProductsDescription />', () => {
   it('should do something', () => {
     renderProductDescription()
-  })
-})
+
+
+  });
+});

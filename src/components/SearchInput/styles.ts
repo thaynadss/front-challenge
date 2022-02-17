@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { mediaSizes } from '../../styles/mediaSizes';
 
 export const ScreenContainer = styled.div<{ search: boolean }>`
   width: 100vw;
@@ -33,27 +34,33 @@ export const SearchLabel = styled.label`
   border-radius: 4px;
   padding: 0 0.93rem 0.93rem 1rem;
 
+  @media (max-width: ${mediaSizes.medium}px) {
+    justify-content: space-between;
+    }
+
   span {
     color: #666;
     font-size: 11px;
     margin: 0.6rem 1rem 0 0;
     align-self: center;
-  }
+
+    @media (max-width: ${mediaSizes.medium}px) {
+    display: none;
+    };
+  };
 `;
 
 export const SearchInput = styled.input`
-  border-radius: 4px;
   border: none;
   width: 85%;
   height: 2.75rem;
   font-size: 20px;
 `;
 
-export const SubmitButton = styled.button`
-  width: 1.56rem;
-  height: 1.56rem;
-  border: none;
-  background-color: transparent;
-  padding-top: 0.5rem;
+export const SubmitButton = styled.img`
+  width: 25px;
+  height: 25px;
+  object-fit: cover;
+  margin-top: 0.5rem;
   cursor: pointer;
 `;

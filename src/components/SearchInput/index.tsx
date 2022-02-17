@@ -44,8 +44,8 @@ export const SearchInput = ({ search, handleSearchClick }: Props) => {
             autoFocus
           />
           <span>aperte enter para buscar</span>
-          <C.SubmitButton onClick={handleClickSearch} >
-            <img src={process.env.PUBLIC_URL + '/icons/smallPinkSearch.svg'} alt='Botão de busca' /></C.SubmitButton>
+          <C.SubmitButton onClick={handleClickSearch}
+            src={process.env.PUBLIC_URL + '/icons/smallPinkSearch.svg'} alt='Botão de busca' />
         </C.SearchLabel>
       </C.SearchForm>
       <C.PageBackground onClick={() => handleSearchClick(false)} />
