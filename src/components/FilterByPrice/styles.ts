@@ -50,6 +50,7 @@ export const ClearSelection = styled.button`
   width: 10rem;
   height: 2rem;
   border-radius: 3px;
+  letter-spacing: 0.4px;
 
   &:hover {
     background-color: #e43fa0;

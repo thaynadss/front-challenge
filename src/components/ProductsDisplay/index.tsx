@@ -4,7 +4,6 @@ import { ProductCard } from '../ProductCard';
 import * as C from './styles';
 import { Product } from '../../types/Product';
 import { CatalogContext } from '../../contexts/CatalogContext';
-import { useNavigate } from 'react-router-dom';
 import { getProducts } from '../../services/api';
 
 export const ProductsDisplay = () => {
@@ -13,7 +12,6 @@ export const ProductsDisplay = () => {
   const [totalItems, setTotalItems] = useState<number>(0);
   const [loading, setLoading] = useState(false);
   const [size, setSize] = useState<number>(window.innerWidth);
-  const navigate = useNavigate();
 
   const itemsPerPage = size > 540 && size < 1024 ? 10 : 9;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
@@ -29,7 +27,6 @@ export const ProductsDisplay = () => {
       type: 'SEARCHED_TEXT',
       payload: ''
     });
-    navigate('/home');
   };
 
   useEffect(() => {
@@ -47,6 +44,7 @@ export const ProductsDisplay = () => {
   }, []);
 
   useEffect(() => {
+    let abortController = new AbortController();
     setLoading(true);
     const getAllProducts = async () => {
       const allProducts = await getProducts(catalogState);
@@ -56,6 +54,11 @@ export const ProductsDisplay = () => {
       setLoading(false);
     };
     getAllProducts();
+
+    return () => {
+      abortController.abort();
+      setLoading(false);
+    };
   }, [catalogState]);
 
   return (
@@ -66,6 +69,7 @@ export const ProductsDisplay = () => {
           <C.LoadingTitle>Carregando...</C.LoadingTitle>
         </C.LoadingContainer >
       }
+
       {!loading &&
         <C.DisplayContainer>
           <C.QuantityandButton>
@@ -82,5 +86,5 @@ export const ProductsDisplay = () => {
         </C.DisplayContainer>
       }
     </>
-  )
-}
+  );
+};

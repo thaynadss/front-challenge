@@ -1,8 +1,9 @@
-import { render, RenderResult } from '@testing-library/react';
+import { screen, render, RenderResult } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { ProductDescription } from '.';
 import { CartContext } from '../../contexts/CartContext';
 import { ProductContext } from '../../contexts/ProductContext';
-import { productMock } from '../ProductCard/productMock';
+import { itemMock, productMock } from '../ProductCard/productMock';
 
 const handleProductPage = jest.fn();
 const cartState = { cart: [] };
@@ -33,9 +34,14 @@ const renderProductDescription = (): RenderResult => {
 };
 
 describe('<ProductsDescription />', () => {
-  it('should do something', () => {
+  it('should call function when the add button is clicked, to send the product to the cart with the correct quantity', () => {
     renderProductDescription()
 
+    const addButtons = screen.getAllByRole('button', { name: /adicionar/i });
 
+    userEvent.click(addButtons[0]);
+    userEvent.click(addButtons[1]);
+    expect(handleCheckItemInCart).toHaveBeenCalledTimes(2);
+    expect(handleCheckItemInCart).toHaveBeenCalledWith(itemMock);
   });
 });

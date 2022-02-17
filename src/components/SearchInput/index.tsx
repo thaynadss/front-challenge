@@ -41,14 +41,13 @@ export const SearchInput = ({ search, handleSearchClick }: Props) => {
             placeholder='Pesquisar'
             onChange={e => setSearchedText(e.target.value)}
             onKeyUp={handleKeyboardSearch}
-            autoFocus
           />
           <span>aperte enter para buscar</span>
           <C.SubmitButton onClick={handleClickSearch}
             src={process.env.PUBLIC_URL + '/icons/smallPinkSearch.svg'} alt='Botão de busca' />
         </C.SearchLabel>
       </C.SearchForm>
-      <C.PageBackground onClick={() => handleSearchClick(false)} />
+      <C.PageBackground data-testid='screen' onClick={() => handleSearchClick(false)} />
     </C.ScreenContainer>
   )
 }
