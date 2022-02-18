@@ -1,11 +1,11 @@
-import { render, RenderResult, screen, waitFor, waitForElementToBeRemoved } from '@testing-library/react';
+import { act, render, RenderResult, screen, waitFor, waitForElementToBeRemoved } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import axios from 'axios';
 import { BrowserRouter } from 'react-router-dom';
 import { ProductsDisplay } from '.';
 import { CatalogContext } from '../../contexts/CatalogContext';
 import { Action, State } from '../../contexts/CatalogContext/reducer';
-import { api, getProducts } from '../../services/api';
-import axios from 'axios';
+import { api } from '../../services/api';
 import { apiMock } from '../../services/mock';
 
 const emptyState = {
@@ -42,19 +42,15 @@ jest.mock('axios', () => ({
 
 const mockedAxios = api as jest.Mocked<typeof axios>;
 
+mockedAxios.get.mockResolvedValue({ data: apiMock })
+
+afterEach(() => {
+  jest.clearAllMocks()
+});
+
 
 describe('<ProductsDisplay />', () => {
   describe('Render with empty state', () => {
-    beforeEach(async () => {
-      mockedAxios.get.mockResolvedValue({ data: apiMock });
-      const result = await getProducts(emptyState);
-      return result;
-    });
-
-    afterEach(() => {
-      jest.clearAllMocks()
-    });
-
     it('should render a text and a gif while the products are not loaded', () => {
       renderProductsDisplay(emptyState);
 
@@ -99,16 +95,6 @@ describe('<ProductsDisplay />', () => {
   });
 
   describe('Render with full state', () => {
-    beforeEach(async () => {
-      mockedAxios.get.mockResolvedValue({ data: apiMock });
-      const result = await getProducts(fullState);
-      return result;
-    });
-
-    afterEach(() => {
-      jest.clearAllMocks()
-    });
-
     it('should render clear search button if there are searched products and should call function to do that', async () => {
       renderProductsDisplay(fullState);
 
@@ -118,6 +104,5 @@ describe('<ProductsDisplay />', () => {
       userEvent.click(searchButton);
       expect(catalogDispatch).toHaveBeenCalledTimes(1);
     });
-
   });
 });

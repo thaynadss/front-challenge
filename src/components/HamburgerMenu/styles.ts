@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const PageContainer = styled.div<{ hamburgerClick: boolean }>`
-  visibility: ${props => props.hamburgerClick ? 'visible' : 'hidden'};
+  display: ${props => props.hamburgerClick ? 'initial' : 'none'};
   overflow: hidden;
 `
 
