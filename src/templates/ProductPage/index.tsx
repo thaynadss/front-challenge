@@ -28,8 +28,9 @@ const ProductPage = () => {
     <C.PageContainer open={(searchClick === false && cartClick === false && hamburgerClick === false) ? false : true}>
       <CartHeaderSearch searchClick={searchClick} cartClick={cartClick} handleSearchClick={handleSearchClick} handleCartClick={handleCartClick} hamburgerClick={hamburgerClick} handleHamburgerClick={handleHamburgerClick} />
       <C.MainContainer>
-        <C.BackButton size={27} padLeft={0.8} onClick={() => navigate(-1)}>&lt;</C.BackButton>
-        <C.BackButton size={20} padTop={0.4} padLeft={1.37} onClick={() => navigate(-1)}>Voltar</C.BackButton>
+        <C.BackButton onClick={() => navigate(-1)}>
+          <span>&lt;</span>
+          Voltar</C.BackButton>
         <C.ProductImage src={item.image} alt={item.name} />
         <ProductDescription />
       </C.MainContainer>

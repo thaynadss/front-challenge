@@ -2,11 +2,10 @@ import styled from 'styled-components';
 
 export const ButtonsContainer = styled.div<{ total: number }>`
   margin-top: 1.66rem;
-  display: flex;
   justify-self: center;
   gap: 0.62rem;
   font-family: 'Lato', sans-serif;
-  visibility: ${props => props.total > 1 ? 'visible' : 'hidden'};
+  display: ${props => props.total > 1 ? 'flex' : 'none'};
 
   .separator {
     font-size: 16px;

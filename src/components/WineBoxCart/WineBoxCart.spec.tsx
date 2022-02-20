@@ -1,35 +1,15 @@
-import { render, RenderResult, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { WineBoxCart } from '.';
-import { CartContext } from '../../contexts/CartContext';
-import { CartItem } from '../../types/Product';
 import { cartMock } from './cartMock';
-
-const handleCheckItemInCart = jest.fn();
-const handleIncreaseQuantity = jest.fn();
-const handleInputQuantity = jest.fn();
-const handleDecreaseQuantity = jest.fn();
-const handleRemoveFromCart = jest.fn();
-const handleCartClick = jest.fn();
-
-const renderWineBoxCart = (items: CartItem[]): RenderResult => {
-  return render(
-    <CartContext.Provider value={{
-      cartState: { cart: items },
-      handleCheckItemInCart: handleCheckItemInCart,
-      handleIncreaseQuantity: handleIncreaseQuantity,
-      handleInputQuantity: handleInputQuantity,
-      handleDecreaseQuantity: handleDecreaseQuantity,
-      handleRemoveFromCart: handleRemoveFromCart
-    }}>
-      <WineBoxCart cartClick={true} handleCartClick={handleCartClick} />
-    </CartContext.Provider>
-  );
-};
+import contextRender from '../../helpers/contextRender';
 
 describe('<WineBoxCart />', () => {
+  const handleCartClick = jest.fn();
+
   it('should call function to close the cart when it is clicked outside the cart container', () => {
-    renderWineBoxCart(cartMock);
+    const { cart } = contextRender({ cartSt: { cart: cartMock } });
+    cart(<WineBoxCart cartClick={true} handleCartClick={handleCartClick} />);
 
     const screenOutside = screen.getByTestId('screen');
     userEvent.click(screenOutside);
@@ -37,22 +17,23 @@ describe('<WineBoxCart />', () => {
   });
 
   it('should call function to close the cart when the arrow left icon is clicked', () => {
-    renderWineBoxCart(cartMock);
-
+    const { cart } = contextRender({ cartSt: { cart: cartMock } });
+    cart(<WineBoxCart cartClick={true} handleCartClick={handleCartClick} />);
     const arrowLeft = screen.getByAltText(/fechar winebox/i);
     userEvent.click(arrowLeft);
     expect(handleCartClick).toHaveBeenCalledWith(false);
   });
 
   it('should verify that the counter is showing the correct quantity of the products that are in the cart', () => {
-    renderWineBoxCart(cartMock);
-
+    const { cart } = contextRender({ cartSt: { cart: cartMock } });
+    cart(<WineBoxCart cartClick={true} handleCartClick={handleCartClick} />);
     const counter = screen.getByText(/winebox/i);
     expect(counter).toHaveTextContent('WineBox (3)');
   });
 
   it('should render a phrase informing that no products have been added yet if the cart is empty and should not render the footer', () => {
-    renderWineBoxCart([]);
+    const { cart } = contextRender({});
+    cart(<WineBoxCart cartClick={true} handleCartClick={handleCartClick} />);
 
     const emptyCart = screen.getByText(/você ainda não escolheu seus produtos/i);
     const total = screen.queryByText(/total/i);
@@ -64,8 +45,8 @@ describe('<WineBoxCart />', () => {
   });
 
   it('should render the products if any have been added to cart', () => {
-    renderWineBoxCart(cartMock);
-
+    const { cart } = contextRender({ cartSt: { cart: cartMock } });
+    cart(<WineBoxCart cartClick={true} handleCartClick={handleCartClick} />);
     const products = screen.getAllByRole('heading', { name: /vinho/i });
     expect(products).toHaveLength(3);
     expect(products[0]).toHaveTextContent('Vinho 1');
@@ -74,15 +55,15 @@ describe('<WineBoxCart />', () => {
   });
 
   it('should not render a phrase informing that no products have been added if there are products in the cart', () => {
-    renderWineBoxCart(cartMock);
-
+    const { cart } = contextRender({ cartSt: { cart: cartMock } });
+    cart(<WineBoxCart cartClick={true} handleCartClick={handleCartClick} />);
     const emptyCart = screen.queryByText(/você ainda não escolheu seus produtos/i);
     expect(emptyCart).not.toBeInTheDocument();
   });
 
   it('should render footer with subtotal value if there are products in cart', () => {
-    renderWineBoxCart(cartMock);
-
+    const { cart } = contextRender({ cartSt: { cart: cartMock } });
+    cart(<WineBoxCart cartClick={true} handleCartClick={handleCartClick} />);
     const finishButton = screen.getByRole('button', { name: /finalizar pedido/i });
     expect(finishButton).toBeInTheDocument();
 

@@ -1,41 +1,13 @@
-import { screen, render, RenderResult } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ProductDescription } from '.';
-import { CartContext } from '../../contexts/CartContext';
-import { ProductContext } from '../../contexts/ProductContext';
-import { itemMock, productMock } from '../ProductCard/productMock';
-
-const handleProductPage = jest.fn();
-const cartState = { cart: [] };
-const handleCheckItemInCart = jest.fn();
-const handleIncreaseQuantity = jest.fn();
-const handleInputQuantity = jest.fn();
-const handleDecreaseQuantity = jest.fn();
-const handleRemoveFromCart = jest.fn();
-
-const renderProductDescription = (): RenderResult => {
-  return render(
-    <CartContext.Provider value={{
-      cartState: cartState,
-      handleCheckItemInCart: handleCheckItemInCart,
-      handleIncreaseQuantity: handleIncreaseQuantity,
-      handleInputQuantity: handleInputQuantity,
-      handleDecreaseQuantity: handleDecreaseQuantity,
-      handleRemoveFromCart: handleRemoveFromCart
-    }}>
-      <ProductContext.Provider value={{
-        handleProductPage: handleProductPage,
-        item: productMock
-      }}>
-        <ProductDescription />
-      </ProductContext.Provider>
-    </CartContext.Provider>
-  );
-};
+import { itemMock } from '../ProductCard/productMock';
+import contextRender from '../../helpers/contextRender';
 
 describe('<ProductsDescription />', () => {
   it('should call function when the add button is clicked, to send the product to the cart with the correct quantity', () => {
-    renderProductDescription()
+    const { cartAndProduct, handleCheckItemInCart } = contextRender({});
+    cartAndProduct(<ProductDescription />);
 
     const addButtons = screen.getAllByRole('button', { name: /adicionar/i });
 

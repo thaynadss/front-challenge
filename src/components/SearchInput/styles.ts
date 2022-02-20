@@ -8,7 +8,7 @@ export const ScreenContainer = styled.div<{ search: boolean }>`
   position: absolute;
   top: 5.5rem;
   left: 0;
-  visibility: ${props => props.search ? 'visible' : 'hidden'};
+  display: ${props => props.search ? 'initial' : 'none'};
 `;
 
 export const PageBackground = styled.div`
@@ -25,6 +25,10 @@ export const SearchForm = styled.div`
   position: absolute;
   padding: 0.93rem 4.7rem;
   font-family: 'Lato', sans-serif;
+
+  @media (max-width: ${mediaSizes.medium}px) {
+    padding: 0.93rem 2rem;
+    }
 `;
 
 export const SearchLabel = styled.label`

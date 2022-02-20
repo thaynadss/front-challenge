@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const PageContainer = styled.div<{ cartClick: boolean }>`
-  visibility: ${props => props.cartClick ? 'visible' : 'hidden'};
+  display: ${props => props.cartClick ? 'initial' : 'none'};
   overflow: hidden;
 `
 

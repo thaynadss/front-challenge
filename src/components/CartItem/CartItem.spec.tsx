@@ -1,31 +1,13 @@
-import { render, RenderResult, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { CartItem } from '.';
-import { CartContext } from '../../contexts/CartContext';
-
-const cartState = { cart: [] };
-const handleCheckItemInCart = jest.fn();
-const handleIncreaseQuantity = jest.fn();
-const handleInputQuantity = jest.fn();
-const handleDecreaseQuantity = jest.fn();
-const handleRemoveFromCart = jest.fn();
-
-const renderCart = (): RenderResult => {
-  return render(<CartContext.Provider value={{
-    cartState: cartState,
-    handleCheckItemInCart: handleCheckItemInCart,
-    handleIncreaseQuantity: handleIncreaseQuantity,
-    handleInputQuantity: handleInputQuantity,
-    handleDecreaseQuantity: handleDecreaseQuantity,
-    handleRemoveFromCart: handleRemoveFromCart
-  }}>
-    <CartItem id={0} image='img/img.png' name='title1' country='brasil' price={34.70} quantity={1} />
-  </CartContext.Provider>);
-};
+import contextRender from '../../helpers/contextRender';
 
 describe('<CartItem />', () => {
   it('should call function when decrement quantity button is clicked', () => {
-    renderCart();
+    const { cart, handleDecreaseQuantity } = contextRender({});
+    cart(<CartItem id={0} image='img/img.png' name='title1' country='brasil' price={34.70} quantity={1} />
+    );
 
     const decrementButton = screen.getByText('-');
     userEvent.click(decrementButton);
@@ -34,7 +16,9 @@ describe('<CartItem />', () => {
   });
 
   it('should call function when input value is changed with a number', () => {
-    renderCart();
+    const { cart, handleInputQuantity } = contextRender({});
+    cart(<CartItem id={0} image='img/img.png' name='title1' country='brasil' price={34.70} quantity={1} />
+    );
 
     const input = screen.getByDisplayValue('1');
     userEvent.type(input, '2');
@@ -43,7 +27,9 @@ describe('<CartItem />', () => {
   });
 
   it('should not call function when input value is changed with a NaN', () => {
-    renderCart();
+    const { cart, handleInputQuantity } = contextRender({});
+    cart(<CartItem id={0} image='img/img.png' name='title1' country='brasil' price={34.70} quantity={1} />
+    );
 
     const input = screen.getByDisplayValue('1');
     userEvent.type(input, 'a');
@@ -51,7 +37,9 @@ describe('<CartItem />', () => {
   });
 
   it('should call function when increment quantity button is clicked', () => {
-    renderCart();
+    const { cart, handleIncreaseQuantity } = contextRender({});
+    cart(<CartItem id={0} image='img/img.png' name='title1' country='brasil' price={34.70} quantity={1} />
+    );
 
     const incrementButton = screen.getByText('+');
     userEvent.click(incrementButton);
@@ -60,7 +48,9 @@ describe('<CartItem />', () => {
   });
 
   it('should call function when remove item button is clicked', () => {
-    renderCart();
+    const { cart, handleRemoveFromCart } = contextRender({});
+    cart(<CartItem id={0} image='img/img.png' name='title1' country='brasil' price={34.70} quantity={1} />
+    );
 
     const removeItem = screen.getByTitle(/remover item/i);
     userEvent.click(removeItem);

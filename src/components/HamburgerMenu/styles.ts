@@ -53,6 +53,10 @@ export const AccountTitle = styled.div`
     font-weight: bold;
     cursor: pointer;
   }
+
+  img {
+    padding-left: 5px;
+  }
 `;
 
 export const CloseButton = styled.span`

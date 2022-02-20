@@ -28,18 +28,22 @@ export const MainContainer = styled.main`
   }
 `;
 
-export const BackButton = styled.button<{ size: number, padTop?: number, padLeft?: number }>`
+export const BackButton = styled.button`
   cursor: pointer;
-  font-size: ${props => `${props.size}px`};
+  font-size: 20px;
   font-family: 'Lato', sans-serif;
   border: none;
   background: none;
   height: 0.81rem;
-  padding-left: ${props => props.padLeft ? `${props.padLeft}rem` : 'none'};
-  padding-top: ${props => props.padTop ? `${props.padTop}rem` : 'none'};
+  padding-top: 0.4rem;
 
   @media (max-width: ${mediaSizes.large}px) {
     display: none;
+  }
+
+  span {
+    font-size: 27px;
+    padding: 0 1.37rem 0 0;
   }
 `;
 
