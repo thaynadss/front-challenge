@@ -1,35 +1,28 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { AddProdBtn } from '.'
+import React from 'react';
+import { AddProdBtn } from '.';
 
 describe('<AddProdBtn />', () => {
-  it('should render decrement button and change the quantity by clicking', () => {
+  it('should render decrement button and change the quantity when clicked', () => {
     const fn = jest.fn();
 
     render(<AddProdBtn handleAddToCart={fn} />);
 
     const buttonDecrement = screen.getByRole('button', { name: '-' });
-
-    const quantity = screen.getByText('1')
-
-    expect(buttonDecrement).toBeInTheDocument();
-    expect(quantity).toBeInTheDocument()
+    const quantity = screen.getByText('1');
 
     userEvent.click(buttonDecrement);
     expect(quantity).toHaveTextContent('1');
   })
 
-  it('should render increment button and change the quantity by clicking', () => {
+  it('should render increment button and change the quantity when clicked', () => {
     const fn = jest.fn();
 
     render(<AddProdBtn handleAddToCart={fn} />);
 
     const buttonIncrement = screen.getByRole('button', { name: '+' });
-
     const quantity = screen.getByText('1')
-
-    expect(buttonIncrement).toBeInTheDocument();
-    expect(quantity).toBeInTheDocument()
 
     userEvent.click(buttonIncrement);
     expect(quantity).toHaveTextContent('2');
@@ -41,8 +34,6 @@ describe('<AddProdBtn />', () => {
     render(<AddProdBtn handleAddToCart={fn} />);
 
     const addButton = screen.getByRole('button', { name: /adicionar/i });
-
-    expect(addButton).toBeInTheDocument();
 
     userEvent.click(addButton);
 
