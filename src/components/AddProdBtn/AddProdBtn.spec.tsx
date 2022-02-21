@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import React from 'react';
 import { AddProdBtn } from '.';
 
 describe('<AddProdBtn />', () => {
@@ -14,7 +13,7 @@ describe('<AddProdBtn />', () => {
 
     userEvent.click(buttonDecrement);
     expect(quantity).toHaveTextContent('1');
-  })
+  });
 
   it('should render increment button and change the quantity when clicked', () => {
     const fn = jest.fn();
@@ -26,9 +25,9 @@ describe('<AddProdBtn />', () => {
 
     userEvent.click(buttonIncrement);
     expect(quantity).toHaveTextContent('2');
-  })
+  });
 
-  it('should render add button and call function to add product to cart', () => {
+  it('should call function to add product to cart when add button is clicked', () => {
     const fn = jest.fn();
 
     render(<AddProdBtn handleAddToCart={fn} />);
@@ -38,5 +37,5 @@ describe('<AddProdBtn />', () => {
     userEvent.click(addButton);
 
     expect(fn).toHaveBeenCalledTimes(1);
-  })
-})
+  });
+});
