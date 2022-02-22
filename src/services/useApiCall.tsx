@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { State } from '../contexts/CatalogContext/reducer';
-import { Product } from '../types/Product';
+import { State } from 'presentation/contexts/CatalogContext/reducer';
+import { Product } from 'types/Product';
 import { getProducts } from './api';
 
 // type Props = {

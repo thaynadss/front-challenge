@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { CartProvider } from './contexts/CartContext';
-import { CatalogProvider } from './contexts/CatalogContext';
-import { ProductProvider } from './contexts/ProductContext';
-import GlobalStyle from './styles/globalStyles';
-import CatalogPage from './templates/CatalogPage';
-import Page404 from './templates/Page404';
-import ProductPage from './templates/ProductPage';
+import { CartProvider } from 'presentation/contexts/CartContext';
+import { CatalogProvider } from 'presentation/contexts/CatalogContext';
+import { ProductProvider } from 'presentation/contexts/ProductContext';
+import GlobalStyle from 'presentation/styles/globalStyles';
+import CatalogPage from 'presentation/pages/CatalogPage';
+import Page404 from 'presentation/pages/Page404';
+import ProductPage from 'presentation/pages/ProductPage';
 
 ReactDOM.render(
   <React.StrictMode>

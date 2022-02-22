@@ -1,22 +1,19 @@
-export type DisplayCard = {
+export type CartItem = {
   id: number;
   image: string;
   name: string;
-  price: number;
-  discount: number;
-  memberPrice: number;
-  nonMemberPrice: number;
   country: string;
-};
-
-export type Product = {
-  id: number;
-  image: string;
-  name: string;
   price: number;
+  quantity: number;
+}
+
+export type DisplayCard = Omit<CartItem, 'quantity'> & {
   discount: number;
   priceMember: number;
   priceNonMember: number;
+};
+
+export type Product = DisplayCard & {
   type: string;
   classification: string;
   size: string;
@@ -28,12 +25,3 @@ export type Product = {
   flag: string;
   sommelierComment: string;
 };
-
-export type CartItem = {
-  id: number;
-  image: string;
-  name: string;
-  country: string;
-  price: number;
-  quantity: number;
-}

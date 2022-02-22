@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { State } from '../contexts/CatalogContext/reducer';
+import { State } from 'presentation/contexts/CatalogContext/reducer';
 
 export const api = axios.create({
   baseURL: 'https://wine-back-test.herokuapp.com/',
