@@ -30,7 +30,7 @@ export const WineBoxCart = ({ cartClick, handleCartClick }: Props) => {
       <C.ScreenContainer data-testid='screen' onClick={() => handleCartClick(false)} />
       <C.CartContainer>
         <C.CartHeader>
-          <C.ArrowLeft src={process.env.PUBLIC_URL + '/icons/arrowLeft.svg'} alt="fechar WineBox" onClick={() => handleCartClick(false)} />
+          <C.ArrowLeft src={process.env.PUBLIC_URL + '/icons/arrowLeft.svg'} alt="Fechar WineBox" onClick={() => handleCartClick(false)} />
           WineBox ({cart.length})</C.CartHeader>
         <C.ProductsContainer>
           {cart.length === 0 &&

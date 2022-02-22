@@ -1,8 +1,8 @@
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ProductDescription } from '.';
-import { itemMock } from '../ProductCard/productMock';
-import contextRender from '../../helpers/contextRender';
+import { itemMock } from 'mocks/productMock';
+import contextRender from 'mocks/contextRender';
 
 describe('<ProductsDescription />', () => {
   it('should call function when the add button is clicked, to send the product to the cart with the correct quantity', () => {

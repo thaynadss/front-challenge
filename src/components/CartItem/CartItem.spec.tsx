@@ -1,13 +1,13 @@
-import { screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { CartItem } from '.';
-import contextRender from '../../helpers/contextRender';
+import contextRender from 'mocks/contextRender';
 
 describe('<CartItem />', () => {
   it('should call function when decrement quantity button is clicked', () => {
     const { cart, handleDecreaseQuantity } = contextRender({});
-    cart(<CartItem id={0} image='img/img.png' name='title1' country='brasil' price={34.70} quantity={1} />
-    );
+    render(cart(<CartItem id={0} image='img/img.png' name='title1' country='brasil' price={34.70} quantity={1} />
+    ));
 
     const decrementButton = screen.getByText('-');
     userEvent.click(decrementButton);
@@ -17,8 +17,8 @@ describe('<CartItem />', () => {
 
   it('should call function when input value is changed with a number', () => {
     const { cart, handleInputQuantity } = contextRender({});
-    cart(<CartItem id={0} image='img/img.png' name='title1' country='brasil' price={34.70} quantity={1} />
-    );
+    render(cart(<CartItem id={0} image='img/img.png' name='title1' country='brasil' price={34.70} quantity={1} />
+    ));
 
     const input = screen.getByDisplayValue('1');
     userEvent.type(input, '2');
@@ -28,8 +28,8 @@ describe('<CartItem />', () => {
 
   it('should not call function when input value is changed with a NaN', () => {
     const { cart, handleInputQuantity } = contextRender({});
-    cart(<CartItem id={0} image='img/img.png' name='title1' country='brasil' price={34.70} quantity={1} />
-    );
+    render(cart(<CartItem id={0} image='img/img.png' name='title1' country='brasil' price={34.70} quantity={1} />
+    ));
 
     const input = screen.getByDisplayValue('1');
     userEvent.type(input, 'a');
@@ -38,8 +38,8 @@ describe('<CartItem />', () => {
 
   it('should call function when increment quantity button is clicked', () => {
     const { cart, handleIncreaseQuantity } = contextRender({});
-    cart(<CartItem id={0} image='img/img.png' name='title1' country='brasil' price={34.70} quantity={1} />
-    );
+    render(cart(<CartItem id={0} image='img/img.png' name='title1' country='brasil' price={34.70} quantity={1} />
+    ));
 
     const incrementButton = screen.getByText('+');
     userEvent.click(incrementButton);
@@ -49,8 +49,8 @@ describe('<CartItem />', () => {
 
   it('should call function when remove item button is clicked', () => {
     const { cart, handleRemoveFromCart } = contextRender({});
-    cart(<CartItem id={0} image='img/img.png' name='title1' country='brasil' price={34.70} quantity={1} />
-    );
+    render(cart(<CartItem id={0} image='img/img.png' name='title1' country='brasil' price={34.70} quantity={1} />
+    ));
 
     const removeItem = screen.getByTitle(/remover item/i);
     userEvent.click(removeItem);

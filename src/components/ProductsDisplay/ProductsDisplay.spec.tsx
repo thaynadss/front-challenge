@@ -1,10 +1,10 @@
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import axios from 'axios';
-import contextRender from '../../helpers/contextRender';
+import contextRender from 'mocks/contextRender';
 import { ProductsDisplay } from '.';
-import { api } from '../../services/api';
-import { apiMock } from '../../services/mock';
+import { api } from 'services/api';
+import { apiMock } from 'mocks/apiMock';
 
 jest.mock('axios', () => ({
   get: jest.fn(() => Promise.resolve({})),
@@ -24,8 +24,8 @@ describe('<ProductsDisplay />', () => {
 
   describe('Render with empty state', () => {
     it('should render a text and a gif while the products are not loaded', () => {
-      const { catalog } = contextRender({});
-      catalog(<ProductsDisplay />)
+      const { catalog, renderInBrowserRouter } = contextRender({});
+      renderInBrowserRouter(catalog(<ProductsDisplay />));
 
       const gif = screen.getByAltText(/carregando/i);
       const loadingTitle = screen.getByRole('heading', { name: /carregando/i });
@@ -35,8 +35,8 @@ describe('<ProductsDisplay />', () => {
     });
 
     it('should not render a text and a gif if the api request completes', async () => {
-      const { catalog } = contextRender({});
-      catalog(<ProductsDisplay />)
+      const { catalog, renderInBrowserRouter } = contextRender({});
+      renderInBrowserRouter(catalog(<ProductsDisplay />));
 
       await waitFor(() =>
         expect(screen.queryByAltText(/carregando/i)).not.toBeInTheDocument()
@@ -48,8 +48,8 @@ describe('<ProductsDisplay />', () => {
     });
 
     it('should render the quantity of items that were found and the products cards', async () => {
-      const { catalog } = contextRender({});
-      catalog(<ProductsDisplay />)
+      const { catalog, renderInBrowserRouter } = contextRender({});
+      renderInBrowserRouter(catalog(<ProductsDisplay />));
 
       const quantityProducts = await screen.findByRole('heading', { name: /produtos encontrados/i });
 
@@ -61,8 +61,8 @@ describe('<ProductsDisplay />', () => {
     });
 
     it('should not render clear search button if there are no searched products', async () => {
-      const { catalog } = contextRender({});
-      catalog(<ProductsDisplay />)
+      const { catalog, renderInBrowserRouter } = contextRender({});
+      renderInBrowserRouter(catalog(<ProductsDisplay />));
 
       await waitFor(() =>
         expect(screen.queryByRole('button', { name: /limpar pesquisa/i })).not.toBeInTheDocument()
@@ -72,13 +72,13 @@ describe('<ProductsDisplay />', () => {
 
   describe('Render with full state', () => {
     it('should render clear search button if there are searched products and should call function to do that', async () => {
-      const { catalog, catalogDispatch } = contextRender({
+      const { catalog, catalogDispatch, renderInBrowserRouter } = contextRender({
         catalogSt: {
           filter: '',
           search: 'vinho',
         }
       });
-      catalog(<ProductsDisplay />)
+      renderInBrowserRouter(catalog(<ProductsDisplay />));
 
       const searchButton = await screen.findByRole('button', { name: 'Limpar pesquisa' });
 

@@ -37,8 +37,8 @@ export const ProductDescription = () => {
         <img className='flag' src={item.flag} alt={item.country} /> {item.country}
         <span className='sideSpacing'>{item.type}</span> Meio Seco/Demi-Sec
         <span className='sideSpacing'>{item.size}</span>
-        {yellowStars.map((item, index) => <img key={index} src={process.env.PUBLIC_URL + '/icons/yellowStar.svg'} alt='Avaliação do vinho' />)}
-        {grayStars.map((item, index) => <img key={index} src={process.env.PUBLIC_URL + '/icons/grayStar.svg'} alt='Avaliação do vinho' />)}
+        {yellowStars.map((_, index) => <img key={index} src={process.env.PUBLIC_URL + '/icons/yellowStar.svg'} alt='Avaliação do vinho' />)}
+        {grayStars.map((_, index) => <img key={index} src={process.env.PUBLIC_URL + '/icons/grayStar.svg'} alt='Avaliação do vinho' />)}
         <span className='rating'>({item.rating})</span>
       </C.CountryTypeClassSizeRating>
       <C.ProductImage src={item.image} alt={item.name} />

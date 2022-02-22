@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { data } from '../contexts/CatalogContext/data';
 import { api, getProducts } from './api';
-import { apiMock } from './mock';
+import { apiMock } from 'mocks/apiMock';
 
 jest.mock('axios', () => ({
   get: jest.fn(() => Promise.resolve({})),

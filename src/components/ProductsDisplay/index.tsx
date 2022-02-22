@@ -48,10 +48,11 @@ export const ProductsDisplay = () => {
     setLoading(true);
     const getAllProducts = async () => {
       const allProducts = await getProducts(catalogState);
-      if (allProducts)
+      if (allProducts) {
         setProducts(allProducts.items);
-      setTotalItems(allProducts.totalItems);
-      setLoading(false);
+        setTotalItems(allProducts.totalItems);
+        setLoading(false);
+      }
     };
     getAllProducts();
 

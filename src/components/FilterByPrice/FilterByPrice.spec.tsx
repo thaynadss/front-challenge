@@ -1,12 +1,12 @@
-import { screen } from '@testing-library/react';
+import { screen, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { FilterByPrice } from '.';
-import contextRender from '../../helpers/contextRender';
+import contextRender from 'mocks/contextRender';
 
 describe('<FilterByPrice />', () => {
   it('should render the filter and verify if all options are not checked', () => {
     const { catalog } = contextRender({});
-    catalog(<FilterByPrice />);
+    render(catalog(<FilterByPrice />));
 
     expect(screen.getByLabelText('Até R$40')).not.toBeChecked();
     expect(screen.getByLabelText('R$40 a R$60')).not.toBeChecked();
@@ -17,7 +17,7 @@ describe('<FilterByPrice />', () => {
 
   it('should call function and change filter value when option is selected', () => {
     const { catalog } = contextRender({});
-    catalog(<FilterByPrice />);
+    render(catalog(<FilterByPrice />));
 
     const optionUntil40 = screen.getByLabelText('Até R$40');
     const option40To60 = screen.getByLabelText('R$40 a R$60');
@@ -47,7 +47,7 @@ describe('<FilterByPrice />', () => {
 
   it('should call function when the clear filter button is clicked', () => {
     const { catalog, catalogDispatch } = contextRender({});
-    catalog(<FilterByPrice />);
+    render(catalog(<FilterByPrice />));
 
     const button = screen.getByRole('button', { name: /limpar filtro/i });
 

@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Header } from '.';
-import contextRender from '../../helpers/contextRender';
+import contextRender from 'mocks/contextRender';
 
 describe('Header />', () => {
   const handleHamburger = jest.fn();

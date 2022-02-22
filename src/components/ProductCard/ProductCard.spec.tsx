@@ -1,8 +1,8 @@
 import { screen } from '@testing-library/react';
 import { ProductCard } from '.';
-import { productMock, itemMock } from './productMock';
+import { productMock, itemMock } from 'mocks/productMock';
 import userEvent from '@testing-library/user-event';
-import contextRender from '../../helpers/contextRender';
+import contextRender from 'mocks/contextRender';
 
 describe('<ProductCard />', () => {
   it('should call function to send item information to context and redirect to product page when product image is clicked', () => {
