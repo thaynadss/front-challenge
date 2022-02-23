@@ -1,37 +1,37 @@
-import { PrevNextButton, PaginationButton, ButtonsContainer } from './styles';
+import { Buttons } from './styles';
 
-type Props = {
+export type PaginationProps = {
   totalPages: number;
   currentPage: number;
   handleCurrentPage: (value: number) => void;
-}
+};
 
-export const PaginationButtons = ({ totalPages, currentPage, handleCurrentPage }: Props) => {
+export const PaginationButtons = ({ totalPages, currentPage, handleCurrentPage }: PaginationProps) => {
+  const { ButtonsContainer, PreviousButton, NextButton, PageOneButton, LeftSeparator, SecondButton, PreviousPageButton, CurrentPageButton, NextPageButton, PageThreeButton, RightSeparator, LastPageButton } = Buttons({ totalPages: totalPages, currentPage: currentPage })
+
   return (
-    <ButtonsContainer total={totalPages}>
-      {currentPage !== 1 &&
-        <PrevNextButton onClick={() => handleCurrentPage(currentPage - 1)}>&lt;&lt; Anterior</PrevNextButton>}
+    <ButtonsContainer >
+      <PreviousButton onClick={() => handleCurrentPage(currentPage - 1)}>&lt;&lt; Anterior</PreviousButton>
 
-      <PaginationButton currentPage={currentPage === 1 ? true : false} onClick={() => handleCurrentPage(1)}>1</PaginationButton>
+      <PageOneButton onClick={() => handleCurrentPage(1)}>1</PageOneButton>
 
-      {currentPage > 3 && totalPages !== 4 && <span className='separator'>...</span>}
+      <LeftSeparator >...</LeftSeparator>
 
-      {currentPage === totalPages && totalPages > 3 && <PaginationButton onClick={() => handleCurrentPage(currentPage - 2)}>{currentPage - 2}</PaginationButton>}
+      <SecondButton onClick={() => handleCurrentPage(currentPage - 2)}>{currentPage - 2}</SecondButton>
 
-      {currentPage > 2 && <PaginationButton onClick={() => handleCurrentPage(currentPage - 1)}>{currentPage - 1}</PaginationButton>}
+      <PreviousPageButton onClick={() => handleCurrentPage(currentPage - 1)}>{currentPage - 1}</PreviousPageButton>
 
-      {currentPage !== 1 && currentPage !== totalPages && <PaginationButton currentPage={true} onClick={() => handleCurrentPage(currentPage)}>{currentPage}</PaginationButton>}
+      <CurrentPageButton onClick={() => handleCurrentPage(currentPage)}>{currentPage}</CurrentPageButton>
 
-      {currentPage < totalPages - 1 && <PaginationButton nextPage={true} onClick={() => handleCurrentPage(currentPage + 1)}>{currentPage + 1}</PaginationButton>}
+      <NextPageButton onClick={() => handleCurrentPage(currentPage + 1)}>{currentPage + 1}</NextPageButton>
 
-      {currentPage === 1 && totalPages > 3 && <PaginationButton onClick={() => handleCurrentPage(currentPage + 2)}>{currentPage + 2}</PaginationButton>}
+      <PageThreeButton onClick={() => handleCurrentPage(currentPage + 2)}>{currentPage + 2}</PageThreeButton>
 
-      {currentPage < totalPages - 2 && <span className='separator'>...</span>}
+      <RightSeparator>...</RightSeparator>
 
-      <PaginationButton nextPage={currentPage === 1 && totalPages === 2 ? true : false} currentPage={currentPage === totalPages ? true : false} onClick={() => handleCurrentPage(totalPages)}>{totalPages}</PaginationButton>
+      <LastPageButton onClick={() => handleCurrentPage(totalPages)}>{totalPages}</LastPageButton>
 
-      {currentPage !== totalPages && <PrevNextButton onClick={() => handleCurrentPage(currentPage + 1)}>Próxima &gt;&gt;</PrevNextButton>}
-
+      <NextButton onClick={() => handleCurrentPage(currentPage + 1)}>Próxima &gt;&gt;</NextButton>
     </ButtonsContainer >
   )
 };

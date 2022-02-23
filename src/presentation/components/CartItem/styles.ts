@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { themeColors } from 'presentation/styles/themeColors';
 
 export const CartCardContainer = styled.div`
   height: 9.02rem;
@@ -6,8 +7,8 @@ export const CartCardContainer = styled.div`
   grid-template-columns: 4.5rem fit-content 1.125rem;
   grid-template-rows: 4.8rem 2.2rem;
   padding: 1rem;
-  border-bottom: 1px solid #ddd;
-  background-color: #f5f5f5;
+  border-bottom: 1px solid ${themeColors.border.gray1};
+  background-color: ${themeColors.background.lightGray};
   overflow: hidden;
 `;
 
@@ -19,7 +20,7 @@ export const CardImage = styled.img`
 `;
 
 export const CardTitle = styled.h2`
-  color: #333;
+  color: ${themeColors.text.gray6};
   font-size: 14px;
   line-height: 1.2;
   font-weight: normal;
@@ -31,20 +32,20 @@ export const CardTitle = styled.h2`
 
 export const ProductCountry = styled.span`
   font-size: 12px;
-  color: #999;
+  color: ${themeColors.text.gray2};
   font-weight: normal;
   display: block;
 `;
 
-export const IncremDecremButton = styled.div`
+export const QuantitySelectors = styled.div`
   width: 3.75rem;
   height: 2.19rem;
   padding: 0 0.6rem;
-  border: 1px solid #bfbfbf;
+  border: 1px solid ${themeColors.border.gray4};
   border-radius: 4px;
   display: flex;
   justify-content: space-between;
-  color: #808080;
+  color: ${themeColors.text.gray4};
   font-weight: bold;
   font-size: 16px;
   grid-column-start: 2;
@@ -58,7 +59,7 @@ export const QuantityInput = styled.input`
   background-color: transparent;
   border: none;
   box-sizing: border-box;
-  color: #000;
+  color: ${themeColors.text.black};
   font-size: 12px;
   padding: 1em 0;
   text-align: center;
@@ -74,7 +75,7 @@ export const QuantityInput = styled.input`
 
 export const ProductValue = styled.h3`
   font-size: 20px;
-  color: #b6116e;
+  color: ${themeColors.text.pink3};
   grid-column-end: 3;
   grid-row-start: 2;
   justify-self: flex-end;
@@ -91,7 +92,7 @@ export const ProductValue = styled.h3`
 
 export const SmallProductValue = styled.h3`
   font-size: 14px;
-  color: #b6116e;
+  color: ${themeColors.text.pink3};
   grid-column-end: 3;
   grid-row-start: 2;
   justify-self: flex-end;
@@ -103,8 +104,8 @@ export const RemoveItem = styled.div`
   width: 1.12rem;
   height: 1.12rem;
   border-radius: 13px;
-  color: rgb(159, 159, 159);
-  border: 1px solid rgb(159, 159, 159);
+  color: ${themeColors.text.gray2};
+  border: 1px solid ${themeColors.text.gray2};
   text-align: center;
   font-size: 13px;
   justify-self: flex-end;

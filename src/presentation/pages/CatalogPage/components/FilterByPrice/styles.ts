@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { mediaSizes } from 'presentation/styles/mediaSizes';
+import { themeColors } from 'presentation/styles/themeColors';
 
 export const FilterContainer = styled.div`
   @media (max-width: ${mediaSizes.medium}px) {
@@ -42,10 +43,10 @@ export const FilterTitle = styled.h2`
 `;
 
 export const ClearSelection = styled.button`
-  border: 0.5px solid #B6116E;
+  border: 0.5px solid ${themeColors.text.pink3};
   background: transparent;
   font-size: 14px;
-  color: #B6116E;
+  color: ${themeColors.text.pink3};
   cursor: pointer;
   width: 10rem;
   height: 2rem;
@@ -53,8 +54,8 @@ export const ClearSelection = styled.button`
   letter-spacing: 0.4px;
 
   &:hover {
-    background-color: #e43fa0;
-    border-color: #e43fa0;
-    color: #FFF;
+    background-color: ${themeColors.button.lightPink};
+    border-color: ${themeColors.button.lightPink};
+    color: ${themeColors.background.white};
   }
 `;

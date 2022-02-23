@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { mediaSizes } from 'presentation/styles/mediaSizes';
+import { themeColors } from 'presentation/styles/themeColors';
 
 export const DisplayContainer = styled.section`
   display: grid;
@@ -35,7 +36,7 @@ export const QuantityandButton = styled.div`
 
 export const QuantityProducts = styled.h3`
   font-size: 18px;
-  color: #262626;
+  color: ${themeColors.text.gray7};
   font-weight: normal;
   display: block;
 
@@ -45,10 +46,10 @@ export const QuantityProducts = styled.h3`
 `;
 
 export const ClearSearch = styled.button`
-  border: 0.5px solid #B6116E;
+  border: 0.5px solid ${themeColors.text.pink3};
   background: transparent;
   font-size: 14px;
-  color: #B6116E;
+  color: ${themeColors.text.pink3};
   cursor: pointer;
   width: 10rem;
   height: 2rem;
@@ -56,9 +57,9 @@ export const ClearSearch = styled.button`
   letter-spacing: 0.4px;
 
   &:hover {
-    background-color: #e43fa0;
-    border-color: #e43fa0;
-    color: #FFF;
+    background-color: ${themeColors.button.lightPink};
+    border-color: ${themeColors.button.lightPink};
+    color: ${themeColors.background.white};
   }
 `;
 

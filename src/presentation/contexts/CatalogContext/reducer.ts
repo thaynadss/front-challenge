@@ -1,4 +1,5 @@
 import { Reducer } from 'react';
+import * as types from './types';
 
 export type State = {
   filter: string;
@@ -11,10 +12,10 @@ export type Action =
 
 export const reducer: Reducer<State, Action> = (state: State, action: Action) => {
   switch (action.type) {
-    case 'FILTER_SELECTED': {
+    case types.FILTER_SELECTED: {
       return { ...state, filter: action.payload };
     }
-    case 'SEARCHED_TEXT': {
+    case types.SEARCHED_TEXT: {
       return { ...state, search: action.payload, filter: '' };
     }
     default:

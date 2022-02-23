@@ -1,5 +1,5 @@
 import { navigationOptions } from './navigationOptions';
-import { NavigationContainer, HeaderItem, HamburguerMenuItem } from './styles';
+import { NavigationContainer, HeaderItem, HamburgerMenuItem } from './styles';
 
 type NavigationItemsProps = {
   isHeader?: boolean;
@@ -9,22 +9,21 @@ type NavigationItemsProps = {
 export const NavigationItems = ({ isHeader, isHamburgerMenu }: NavigationItemsProps) => {
   return (
     <>
-      {navigationOptions.map((item, index) => (
-        <>
-          {isHeader &&
-            <NavigationContainer>
-              <HeaderItem href={item.path} style={{ textDecoration: 'none' }}>
-                {item.title}
-              </HeaderItem>
-            </NavigationContainer>}
-
-          {isHamburgerMenu &&
-            <HamburguerMenuItem href={item.path} style={{ textDecoration: 'none', textTransform: 'uppercase' }}>
+      {isHeader &&
+        <NavigationContainer>
+          {navigationOptions.map((item, index) => (
+            <HeaderItem key={index} href={item.path} style={{ textDecoration: 'none' }}>
               {item.title}
-            </HamburguerMenuItem>
-          }
-        </>
-      ))}
+            </HeaderItem>
+          ))}
+        </NavigationContainer>
+      }
+      {isHamburgerMenu &&
+        navigationOptions.map((item, index) => (
+          <HamburgerMenuItem key={index} href={item.path} style={{ textDecoration: 'none', textTransform: 'uppercase' }}>
+            {item.title}
+          </HamburgerMenuItem>
+        ))}
     </>
   )
 };

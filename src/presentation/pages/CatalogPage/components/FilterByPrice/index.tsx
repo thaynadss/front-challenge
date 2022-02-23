@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useCatalogContext } from 'presentation/contexts/CatalogContext';
 import { FilterTitle, FilterLegend, FilterLabel, FilterInput, FilterForm, FilterFieldset, FilterContainer, ClearSelection } from './styles';
+import { filterOptions } from './filterOptions';
 
 export const FilterByPrice = () => {
   const [priceSelected, setPriceSelected] = useState('');
@@ -26,30 +27,15 @@ export const FilterByPrice = () => {
       <FilterForm>
         <FilterFieldset>
           <FilterLegend>Por preço</FilterLegend>
-          <FilterLabel>
-            <FilterInput type='radio' name='pricefilter' value='0-40' checked={isPriceSelected('0-40')} onChange={(e) => setPriceSelected(e.currentTarget.value)} /> Até R$40
-          </FilterLabel>
-
-          <FilterLabel>
-            <FilterInput type='radio' name='pricefilter' value='40-60' checked={isPriceSelected('40-60')} onChange={(e) => setPriceSelected(e.currentTarget.value)} /> R$40 a R$60
-          </FilterLabel>
-
-          <FilterLabel>
-            <FilterInput type='radio' name='pricefilter' value='100-200' checked={isPriceSelected('100-200')} onChange={(e) => setPriceSelected(e.currentTarget.value)} /> R$100 a R$200
-          </FilterLabel>
-
-          <FilterLabel>
-            <FilterInput type='radio' name='pricefilter' value='200-500' checked={isPriceSelected('200-500')} onChange={(e) => setPriceSelected(e.currentTarget.value)} /> R$200 a R$500
-          </FilterLabel>
-
-          <FilterLabel>
-            <FilterInput type='radio' name='pricefilter' value='500-1000000' checked={isPriceSelected('500-1000000')} onChange={(e) => setPriceSelected(e.currentTarget.value)} /> Acima de R$500
-          </FilterLabel>
-
+          {filterOptions.map((item, index) => (
+            <FilterLabel key={index}>
+              <FilterInput type='radio' name='pricefilter' value={item.value} checked={isPriceSelected(item.value)} onChange={(e) => setPriceSelected(e.currentTarget.value)} /> {item.title}
+            </FilterLabel>
+          ))}
         </FilterFieldset>
       </FilterForm>
 
       <ClearSelection onClick={() => setPriceSelected('')}>Limpar filtro</ClearSelection>
     </FilterContainer>
-  )
-}
+  );
+};

@@ -2,16 +2,17 @@ import { createContext, useContext, useEffect, useReducer } from 'react';
 import { cartReducer } from './reducer';
 import { CartItem } from 'types/Product';
 import { ChildrenComponent } from 'types/ChildrenComponent';
+import * as types from './types';
 
 export const CartContext = createContext({} as contextType);
 
 type contextType = {
   cartState: { cart: CartItem[] };
   handleCheckItemInCart: (item: CartItem) => void;
-  handleIncreaseQuantity: (id: number, quantity: number) => void;
-  handleInputQuantity: (id: number, quantity: number) => void;
-  handleDecreaseQuantity: (id: number) => void;
-  handleRemoveFromCart: (id: number) => void;
+  handleIncreaseQuantity: (param: types.idAndQuantityParam) => void;
+  handleInputQuantity: (param: types.idAndQuantityParam) => void;
+  handleDecreaseQuantity: (param: types.idParam) => void;
+  handleRemoveFromCart: (param: types.idParam) => void;
 };
 
 export const CartProvider = ({ children }: ChildrenComponent) => {
@@ -28,42 +29,42 @@ export const CartProvider = ({ children }: ChildrenComponent) => {
     if (cartState.cart.every(c => c.id !== item.id)) {
       handleAddToCart(item);
     } else {
-      handleIncreaseQuantity(item.id, item.quantity);
+      handleIncreaseQuantity({ id: item.id, quantity: item.quantity });
     }
   };
 
   const handleAddToCart = (item: CartItem) => {
     cartDispatch({
-      type: 'ADD_TO_CART',
+      type: types.ADD_TO_CART,
       payload: item,
     })
   };
 
-  const handleIncreaseQuantity = (id: number, quantity: number) => {
+  const handleIncreaseQuantity = (param: types.idAndQuantityParam) => {
     cartDispatch({
-      type: 'INCREASE_QUANTITY',
-      payload: { id: id, quantity: quantity },
+      type: types.INCREASE_QUANTITY,
+      payload: { id: param.id, quantity: param.quantity },
     })
   };
 
-  const handleInputQuantity = (id: number, quantity: number) => {
+  const handleInputQuantity = (param: types.idAndQuantityParam) => {
     cartDispatch({
-      type: 'INPUT_QUANTITY',
-      payload: { id: id, quantity: quantity },
+      type: types.INPUT_QUANTITY,
+      payload: { id: param.id, quantity: param.quantity },
     })
   };
 
-  const handleDecreaseQuantity = (id: number) => {
+  const handleDecreaseQuantity = (param: types.idParam) => {
     cartDispatch({
-      type: 'DECREASE_QUANTITY',
-      payload: { id: id },
+      type: types.DECREASE_QUANTITY,
+      payload: { id: param.id },
     })
   };
 
-  const handleRemoveFromCart = (id: number) => {
+  const handleRemoveFromCart = (param: types.idParam) => {
     cartDispatch({
-      type: 'REMOVE_FROM_CART',
-      payload: { id: id },
+      type: types.REMOVE_FROM_CART,
+      payload: { id: param.id },
     })
   };
 

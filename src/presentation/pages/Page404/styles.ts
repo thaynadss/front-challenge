@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { mediaSizes } from 'presentation/styles/mediaSizes';
+import { themeColors } from 'presentation/styles/themeColors';
 
 export const PageContainer = styled.div<{ open: boolean }>`
   overflow: hidden;
@@ -24,7 +25,7 @@ export const MainContainer = styled.main`
 `;
 
 export const BackToHomeText = styled.div`
-  color: #e43fa0;
+  color: ${themeColors.button.lightPink};
   font-size: 10px;
   margin-bottom: 2.5rem;
 
@@ -35,7 +36,7 @@ export const BackToHomeText = styled.div`
 
 export const ErrorName = styled.span`
   font-size: 14px;
-  color: #CCCCCC;
+  color: ${themeColors.text.gray1};
 `;
 
 export const Title = styled.div`

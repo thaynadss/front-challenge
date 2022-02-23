@@ -1,14 +1,15 @@
 import styled from 'styled-components';
+import { themeColors } from 'presentation/styles/themeColors';
 
-export const PageContainer = styled.div<{ cartClick: boolean }>`
-  display: ${props => props.cartClick ? 'initial' : 'none'};
+export const PageContainer = styled.div<{ isCartClick: boolean }>`
+  display: ${props => props.isCartClick ? 'initial' : 'none'};
   overflow: hidden;
 `
 
 export const ScreenContainer = styled.div`
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.24);
+  background-color: ${themeColors.background.modal};
   position: absolute;
   top: 0;
   left: 0;
@@ -25,13 +26,13 @@ export const CartContainer = styled.div`
   display: flex;
   flex-direction: column;
   box-shadow: -2px 0 4px 0 rgb(0 0 0 / 18%);
-  background-color: #f5f5f5;
+  background-color: ${themeColors.background.lightGray};
 `;
 
 export const CartHeader = styled.div`
   font-size: 20px;
-  color: #000;
-  background-color: #FFF;
+  color: ${themeColors.text.black};
+  background-color: ${themeColors.background.white};
   padding: 20px;
   width: 100%;
   height: 3.75rem;
@@ -46,14 +47,14 @@ export const ArrowLeft = styled.img`
 `;
 
 export const ProductsContainer = styled.div`
-  background-color: #f5f5f5;
+  background-color: ${themeColors.background.lightGray};
   margin-top: 3.75rem;
   width: 100%;
   overflow-y: scroll;
 `;
 
 export const FooterContainer = styled.div`
-  background-color: #FFF;
+  background-color: ${themeColors.background.white};
   padding: 20px;
   width: 21.9em;
   height: 8.25rem;
@@ -63,7 +64,7 @@ export const FooterContainer = styled.div`
 `;
 
 export const CartSubtotal = styled.div<{ smallSize: boolean }>`
-  color: #666;
+  color: ${themeColors.text.gray3};
   font-weight: bold;
   font-size: 20px;
   display: flex;
@@ -72,7 +73,7 @@ export const CartSubtotal = styled.div<{ smallSize: boolean }>`
   padding-bottom: 1rem;
 
   & .subtotal {
-    color: #b6116e;
+    color: ${themeColors.text.pink3};
     font-size: ${props => props.smallSize ? '20px' : '28px'};
     font-weight: normal;
   }
@@ -81,8 +82,8 @@ export const CartSubtotal = styled.div<{ smallSize: boolean }>`
 export const FinishButton = styled.button`
   width: 100%;
   height: 3rem;
-  color: #FFF;
-  background-color: #7ebc43;
+  color: ${themeColors.background.white};
+  background-color: ${themeColors.button.green};
   border: none;
   font-size: 16px;
   text-align: center;

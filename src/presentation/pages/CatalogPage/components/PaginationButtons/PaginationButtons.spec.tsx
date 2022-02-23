@@ -40,9 +40,11 @@ describe('<PaginationButtons />', () => {
     const fn = jest.fn();
     render(<PaginationButtons totalPages={5} currentPage={3} handleCurrentPage={fn} />);
 
-    const separators = screen.queryByText('...');
+    const separators = screen.getAllByText('...');
 
-    expect(separators).not.toBeInTheDocument();
+    expect(separators).toHaveLength(2);
+    expect(separators[0]).not.toBeVisible();
+    expect(separators[1]).not.toBeVisible();
   });
 
   it('should render left separator when current page is greater than three and should render right separator when current page is less than the result of total pages - 2', () => {

@@ -3,14 +3,15 @@ import { PaginationButtons } from '../PaginationButtons';
 import { ProductCard } from '../ProductCard';
 import { Product } from 'types/Product';
 import { useCatalogContext } from 'presentation/contexts/CatalogContext';
-import { getProducts } from 'services/api';
 import { QuantityandButton, QuantityProducts, LoadingTitle, LoadingGif, LoadingContainer, DisplayContainer, ClearSearch, CardsContainer } from './styles';
+import apiCallFn from 'services/apiCallFn';
 
 export const ProductsDisplay = () => {
-  const { catalogState, catalogDispatch } = useCatalogContext();
   const [products, setProducts] = useState<Product[]>([]);
   const [totalItems, setTotalItems] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const { catalogState, catalogDispatch } = useCatalogContext();
   const [size, setSize] = useState(window.innerWidth);
 
   const itemsPerPage = size > 540 && size < 1024 ? 10 : 9;
@@ -30,8 +31,9 @@ export const ProductsDisplay = () => {
   };
 
   useEffect(() => {
+    apiCallFn({ catalogState, setError, setLoading, setProducts, setTotalItems });
     setCurrentPage(1);
-  }, [catalogState]);
+  }, [catalogState])
 
   useEffect(() => {
     const updateSize = () => {
@@ -43,35 +45,22 @@ export const ProductsDisplay = () => {
     return () => window.removeEventListener('resize', updateSize);
   }, []);
 
-  useEffect(() => {
-    let abortController = new AbortController();
-    setLoading(true);
-    const getAllProducts = async () => {
-      const allProducts = await getProducts(catalogState);
-      if (allProducts) {
-        setProducts(allProducts.items);
-        setTotalItems(allProducts.totalItems);
-        setLoading(false);
-      }
-    };
-    getAllProducts();
-
-    return () => {
-      abortController.abort();
-      setLoading(false);
-    };
-  }, [catalogState]);
-
   return (
     <>
-      {loading &&
+      {!error && loading &&
         <LoadingContainer>
           <LoadingGif src='https://service.smarthint.co/content/ajax-loader.gif' alt='Carregando' />
           <LoadingTitle>Carregando...</LoadingTitle>
         </LoadingContainer >
       }
 
-      {!loading &&
+      {error && !loading &&
+        <LoadingContainer>
+          <LoadingTitle>Não foi possível carregar os produtos =(</LoadingTitle>
+        </LoadingContainer >
+      }
+
+      {!error && !loading &&
         <DisplayContainer>
           <QuantityandButton>
             <QuantityProducts><span>{totalItems}</span> produtos encontrados</QuantityProducts>

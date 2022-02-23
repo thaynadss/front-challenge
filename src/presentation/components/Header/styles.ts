@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 import { mediaSizes } from 'presentation/styles/mediaSizes';
+import { themeColors } from 'presentation/styles/themeColors';
 
 export const Container = styled.header`
-  background-color: #FFF;
+  background-color: ${themeColors.background.white};
   width: 100vw;
   height: 5.6rem;
   display: inline-flex;
   justify-content: center;
-  border-bottom: 2px solid rgba(204, 204, 204, 1);
+  border-bottom: 2px solid ${themeColors.border.gray3};
 `;
 
 export const HeaderContainer = styled.div`
@@ -91,8 +92,8 @@ export const WineBoxButton = styled.div`
 `;
 
 export const CounterWineBox = styled.span`
-  background-color: #FFF;
-  color: #4FBFA5;
+  background-color: ${themeColors.background.white};
+  color: ${themeColors.text.lightGreen};
   font-size: 16px;
   text-align: center;
   padding: 0.1rem;

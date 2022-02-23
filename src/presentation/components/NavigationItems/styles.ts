@@ -1,9 +1,13 @@
 import styled from 'styled-components';
 import { mediaSizes } from 'presentation/styles/mediaSizes';
+import { themeColors } from 'presentation/styles/themeColors';
 
 export const NavigationContainer = styled.nav`
-  display: flex;
+  display: inline-flex;
+  justify-content: space-between;
   align-items: center;
+  width: 29.9rem;
+  margin: 0 5rem;
   height: 2.07rem;
 
   @media (max-width: ${mediaSizes.xmedium}px) {
@@ -12,21 +16,21 @@ export const NavigationContainer = styled.nav`
 `;
 
 export const HeaderItem = styled.a`
-  color: #555555;
+  color: ${themeColors.text.gray5};
   font-size: 18px;
   font-family: 'Lato', sans-serif;
 
   &:hover {
-    color: #D14B8F;
+    color: ${themeColors.text.pink1};
     cursor: pointer;
     height: 5.6rem;
     line-height: 5.6rem;
-    border-bottom: 2px solid #D14B8F;
+    border-bottom: 2px solid ${themeColors.text.pink1};
   }
 `;
 
-export const HamburguerMenuItem = styled.a`
-  color: #b6116e;
+export const HamburgerMenuItem = styled.a`
+  color: ${themeColors.text.pink3};
   font-size: 14px;
   border-top: 1px solid #e4e4e4;
   cursor: pointer;

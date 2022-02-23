@@ -5,7 +5,7 @@ import { HamburgerMenu } from '.';
 describe('HamburgerMenu />', () => {
   it('should call function when close menu button have been clicked', () => {
     const fn = jest.fn();
-    render(<HamburgerMenu hamburgerClick={true} handleHamburgerClick={fn} />);
+    render(<HamburgerMenu isHamburgerClick={true} handleIsHamburgerClick={fn} />);
 
     const closeMenu = screen.getByTitle('Fechar menu');
 
@@ -17,7 +17,7 @@ describe('HamburgerMenu />', () => {
 
   it('should call function when it is clicked outside the hamburger menu container', () => {
     const fn = jest.fn();
-    render(<HamburgerMenu hamburgerClick={true} handleHamburgerClick={fn} />);
+    render(<HamburgerMenu isHamburgerClick={true} handleIsHamburgerClick={fn} />);
 
     const screenOutside = screen.getByTestId('screen');
 

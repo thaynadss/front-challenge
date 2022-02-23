@@ -1,14 +1,15 @@
 import styled from 'styled-components';
 import { mediaSizes } from 'presentation/styles/mediaSizes';
+import { themeColors } from 'presentation/styles/themeColors';
 
-export const ScreenContainer = styled.div<{ search: boolean }>`
+export const ScreenContainer = styled.div<{ isSearchClick: boolean }>`
   width: 100vw;
   height: 100vh;
   background-color: rgba(254, 254, 254, 0.32);
   position: absolute;
   top: 5.5rem;
   left: 0;
-  display: ${props => props.search ? 'initial' : 'none'};
+  display: ${props => props.isSearchClick ? 'initial' : 'none'};
 `;
 
 export const PageBackground = styled.div`
@@ -20,7 +21,7 @@ export const PageBackground = styled.div`
 export const SearchForm = styled.div`
   width: 100vw;
   height: 4.56rem;
-  background-color: #f5f5f5;
+  background-color: ${themeColors.background.lightGray};
   box-shadow: 0 2px 20px 0 rgb(0 0 0 / 15%);
   position: absolute;
   padding: 0.93rem 4.7rem;
@@ -34,7 +35,7 @@ export const SearchForm = styled.div`
 export const SearchLabel = styled.label`
   display: flex;
   height: 2.75rem;
-  background-color: #FFF;
+  background-color: ${themeColors.background.white};
   border-radius: 4px;
   padding: 0 0.93rem 0.93rem 1rem;
 
@@ -43,7 +44,7 @@ export const SearchLabel = styled.label`
     }
 
   span {
-    color: #666;
+    color: ${themeColors.text.gray3};
     font-size: 11px;
     margin: 0.6rem 1rem 0 0;
     align-self: center;

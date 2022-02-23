@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { mediaSizes } from 'presentation/styles/mediaSizes';
+import { themeColors } from 'presentation/styles/themeColors';
 
 export const PageContainer = styled.div<{ open: boolean }>`
   overflow: hidden;
@@ -7,7 +8,7 @@ export const PageContainer = styled.div<{ open: boolean }>`
 `;
 
 export const MainContainer = styled.main`
-  background-color: #f5f5f5;
+  background-color: ${themeColors.background.lightGray};
   min-height: 100vh;
   min-width: 100vw;
   display: flex;

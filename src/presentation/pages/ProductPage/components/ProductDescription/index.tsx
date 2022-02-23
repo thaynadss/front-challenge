@@ -4,6 +4,7 @@ import { TypeCountryRegion, SommelierTitle, SommelierComment, ProductTitle, Prod
 import { priceFormat, integerFormat, decimalFormat, currencyFormat } from 'presentation/helpers/priceFormat';
 import { useCartContext } from 'presentation/contexts/CartContext';
 import { AddProductButton } from 'presentation/pages/CatalogPage/components/ProductCard/styles';
+import { themeColors } from 'presentation/styles/themeColors';
 
 export const ProductDescription = () => {
   const { item } = useProductContext();
@@ -16,21 +17,21 @@ export const ProductDescription = () => {
 
   for (let i = 0; i < rating; i++) {
     yellowStars.push(i);
-  }
+  };
 
   for (let i = 0; i < nonRating; i++) {
     grayStars.push(i);
-  }
+  };
 
   const handleAddToCart = (qty: number) => {
     handleCheckItemInCart({ id: item.id, image: item.image, name: item.name, country: item.country, price: item.priceMember, quantity: qty })
-  }
+  };
 
   return (
     <ProdDescripContainer>
-      <TypeCountryRegion color='#C81A78' weight='bold' cursor='pointer'>Vinhos<span>&gt;</span></TypeCountryRegion>
-      <TypeCountryRegion color='#C81A78' weight='bold' cursor='pointer'>{item.country}<span>&gt;</span></TypeCountryRegion>
-      <TypeCountryRegion color='#888888'>{item.region}</TypeCountryRegion>
+      <TypeCountryRegion color={themeColors.text.pink2} weight='bold' cursor='pointer'>Vinhos<span>&gt;</span></TypeCountryRegion>
+      <TypeCountryRegion color={themeColors.text.pink2} weight='bold' cursor='pointer'>{item.country}<span>&gt;</span></TypeCountryRegion>
+      <TypeCountryRegion color={themeColors.text.gray4}>{item.region}</TypeCountryRegion>
       <ProductTitle>{item.name}</ProductTitle>
       <CountryTypeClassSizeRating>
         <img className='flag' src={item.flag} alt={item.country} /> {item.country}
@@ -48,7 +49,7 @@ export const ProductDescription = () => {
       <AddProdBtn handleAddToCart={handleAddToCart} />
       <FooterContainer>
         <MemberValue large={false} small={true}><span className='currency'>{currencyFormat}</span><span className='value'>{integerFormat(item.priceMember)}</span>{decimalFormat(item.priceMember)}</MemberValue>
-        <AddProductButton width={14} height={3} size={16} onClick={() => handleCheckItemInCart({ id: item.id, image: item.image, name: item.name, country: item.country, price: item.priceMember, quantity: 1 })}>Adicionar</AddProductButton>
+        <AddProductButton width={14} height={3} size={16} onClick={() => handleAddToCart(1)}>Adicionar</AddProductButton>
       </FooterContainer>
     </ProdDescripContainer >
   )

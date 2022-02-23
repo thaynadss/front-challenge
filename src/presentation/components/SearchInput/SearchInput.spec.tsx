@@ -11,11 +11,11 @@ jest.mock('react-router-dom', () => ({
 }));
 
 describe('<SearchInput />', () => {
-  const handleSearchClick = jest.fn();
+  const handleIsisSearchClick = jest.fn();
   const { catalog, catalogDispatch } = contextRender({});
 
   it('should search the products by the text typed in the input when the keyboard enter key is pressed and should redirect to the home page', () => {
-    catalog(<SearchInput search={true} handleSearchClick={handleSearchClick} />);
+    catalog(<SearchInput isSearchClick={true} handleIsSearchClick={handleIsisSearchClick} />);
 
     const input = screen.getByPlaceholderText(/pesquisar/i);
 
@@ -24,11 +24,11 @@ describe('<SearchInput />', () => {
 
     expect(catalogDispatch).toHaveBeenCalledTimes(1);
     expect(mockedUsedNavigate).toHaveBeenCalledWith('/home');
-    expect(handleSearchClick).toHaveBeenCalledWith(false);
+    expect(handleIsisSearchClick).toHaveBeenCalledWith(false);
   });
 
   it('should not do anything if there is no text in the input when the search button is clicked', () => {
-    catalog(<SearchInput search={true} handleSearchClick={handleSearchClick} />);
+    catalog(<SearchInput isSearchClick={true} handleIsSearchClick={handleIsisSearchClick} />);
 
     const button = screen.getByAltText('Botão de busca');
 
@@ -38,7 +38,7 @@ describe('<SearchInput />', () => {
   });
 
   it('should search the products by the text typed in the input when the search button is clicked and should redirect to the home page', () => {
-    catalog(<SearchInput search={true} handleSearchClick={handleSearchClick} />);
+    catalog(<SearchInput isSearchClick={true} handleIsSearchClick={handleIsisSearchClick} />);
 
     const input = screen.getByPlaceholderText(/pesquisar/i);
     const button = screen.getByAltText('Botão de busca');
@@ -48,16 +48,16 @@ describe('<SearchInput />', () => {
 
     expect(catalogDispatch).toHaveBeenCalledTimes(1);
     expect(mockedUsedNavigate).toHaveBeenCalledWith('/home');
-    expect(handleSearchClick).toHaveBeenCalledWith(false);
+    expect(handleIsisSearchClick).toHaveBeenCalledWith(false);
   });
 
   it('should call function when it is clicked outside the search box container', () => {
-    catalog(<SearchInput search={true} handleSearchClick={handleSearchClick} />);
+    catalog(<SearchInput isSearchClick={true} handleIsSearchClick={handleIsisSearchClick} />);
 
     const screenOutside = screen.getByTestId('screen');
 
     userEvent.click(screenOutside);
 
-    expect(handleSearchClick).toHaveBeenCalledWith(false);
+    expect(handleIsisSearchClick).toHaveBeenCalledWith(false);
   });
 });

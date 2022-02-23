@@ -10,7 +10,7 @@ describe('Header />', () => {
   const { catalogAndCart, catalogDispatch } = contextRender({});
 
   it('should call function when the menu hamburger icon is clicked, to show it and close the cart and search box, if they are open', () => {
-    catalogAndCart(<Header searchClick={false} cartClick={false} hamburgerClick={false} handleHamburgerClick={handleHamburger} handleSearchClick={handleSearch} handleCartClick={handleCart} />);
+    catalogAndCart(<Header isSearchClick={false} isCartClick={false} isHamburgerClick={false} handleIsHamburgerClick={handleHamburger} handleIsSearchClick={handleSearch} handleIsCartClick={handleCart} />);
 
     const menuHamburger = screen.getByAltText('Menu');
 
@@ -25,7 +25,7 @@ describe('Header />', () => {
   });
 
   it('should call function when logo icon is clicked, to redirect to the home page, clear search, clear filter and close the cart, search box and menu hamburger, if they are open', () => {
-    catalogAndCart(<Header searchClick={false} cartClick={false} hamburgerClick={false} handleHamburgerClick={handleHamburger} handleSearchClick={handleSearch} handleCartClick={handleCart} />);
+    catalogAndCart(<Header isSearchClick={false} isCartClick={false} isHamburgerClick={false} handleIsHamburgerClick={handleHamburger} handleIsSearchClick={handleSearch} handleIsCartClick={handleCart} />);
 
     const logo = screen.getByAltText('Logo');
 
@@ -41,7 +41,7 @@ describe('Header />', () => {
   });
 
   it('should call function when search icon is clicked, to open/close search box and close the cart and menu hamburger, if they are open', () => {
-    catalogAndCart(<Header searchClick={false} cartClick={false} hamburgerClick={false} handleHamburgerClick={handleHamburger} handleSearchClick={handleSearch} handleCartClick={handleCart} />);
+    catalogAndCart(<Header isSearchClick={false} isCartClick={false} isHamburgerClick={false} handleIsHamburgerClick={handleHamburger} handleIsSearchClick={handleSearch} handleIsCartClick={handleCart} />);
 
     const search = screen.getAllByAltText('Pesquisar');
 
@@ -57,7 +57,7 @@ describe('Header />', () => {
   });
 
   it('should call function when wine box icon is clicked, to open/close cart and close the search box and menu hamburger, if they are open', () => {
-    catalogAndCart(<Header searchClick={false} cartClick={false} hamburgerClick={false} handleHamburgerClick={handleHamburger} handleSearchClick={handleSearch} handleCartClick={handleCart} />);
+    catalogAndCart(<Header isSearchClick={false} isCartClick={false} isHamburgerClick={false} handleIsHamburgerClick={handleHamburger} handleIsSearchClick={handleSearch} handleIsCartClick={handleCart} />);
 
     const wineBox = screen.getByTestId('wineBoxButton');
     const counter = screen.getByText('0');

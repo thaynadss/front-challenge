@@ -4,11 +4,11 @@ import { SubmitButton, SearchLabel, SearchForm, ScreenContainer, PageBackground,
 import { useNavigate } from 'react-router-dom';
 
 type Props = {
-  search: boolean;
-  handleSearchClick: (close: boolean) => void;
+  isSearchClick: boolean;
+  handleIsSearchClick: (close: boolean) => void;
 };
 
-export const SearchInput = ({ search, handleSearchClick }: Props) => {
+export const SearchInput = ({ isSearchClick, handleIsSearchClick }: Props) => {
   const [searchedText, setSearchedText] = useState('');
   const { catalogDispatch } = useCatalogContext();
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ export const SearchInput = ({ search, handleSearchClick }: Props) => {
         type: 'SEARCHED_TEXT',
         payload: `name=${searchedText.trim()}`
       })
-      handleSearchClick(false);
+      handleIsSearchClick(false);
       setSearchedText('');
       navigate('/home');
     }
@@ -32,7 +32,7 @@ export const SearchInput = ({ search, handleSearchClick }: Props) => {
   };
 
   return (
-    <ScreenContainer search={search} >
+    <ScreenContainer isSearchClick={isSearchClick} >
       <SearchForm>
         <SearchLabel>
           <Input
@@ -47,7 +47,7 @@ export const SearchInput = ({ search, handleSearchClick }: Props) => {
             src={process.env.PUBLIC_URL + '/icons/smallPinkSearch.svg'} alt='Botão de busca' />
         </SearchLabel>
       </SearchForm>
-      <PageBackground data-testid='screen' onClick={() => handleSearchClick(false)} />
+      <PageBackground data-testid='screen' onClick={() => handleIsSearchClick(false)} />
     </ScreenContainer>
   )
 }

@@ -9,7 +9,7 @@ describe('<CartSearchHeader />', () => {
   const { catalogAndCart } = contextRender({});
 
   it('should render header and hide search box, cart and hamburger menu if closed', () => {
-    catalogAndCart(<CartHeaderSearch searchClick={false} cartClick={false} hamburgerClick={false} handleSearchClick={handleSearch} handleCartClick={handleCart} handleHamburgerClick={handleHamburger} />);
+    catalogAndCart(<CartHeaderSearch isSearchClick={false} isCartClick={false} isHamburgerClick={false} handleIsSearchClick={handleSearch} handleIsCartClick={handleCart} handleIsHamburgerClick={handleHamburger} />);
 
     const headerLogo = screen.getByAltText('Logo');
     const wineBoxButton = screen.getByTestId('wineBoxButton');
@@ -29,7 +29,7 @@ describe('<CartSearchHeader />', () => {
   });
 
   it('should hide cart and hamburger menu if search box is open', () => {
-    catalogAndCart(<CartHeaderSearch searchClick={true} cartClick={false} hamburgerClick={false} handleSearchClick={handleSearch} handleCartClick={handleCart} handleHamburgerClick={handleHamburger} />);
+    catalogAndCart(<CartHeaderSearch isSearchClick={true} isCartClick={false} isHamburgerClick={false} handleIsSearchClick={handleSearch} handleIsCartClick={handleCart} handleIsHamburgerClick={handleHamburger} />);
 
     const search = screen.getByPlaceholderText('Pesquisar');
     const cart = screen.getByAltText('Fechar WineBox');
@@ -44,7 +44,7 @@ describe('<CartSearchHeader />', () => {
   });
 
   it('should hide search box and hamburger menu if cart is open', () => {
-    catalogAndCart(<CartHeaderSearch searchClick={false} cartClick={true} hamburgerClick={false} handleSearchClick={handleSearch} handleCartClick={handleCart} handleHamburgerClick={handleHamburger} />);
+    catalogAndCart(<CartHeaderSearch isSearchClick={false} isCartClick={true} isHamburgerClick={false} handleIsSearchClick={handleSearch} handleIsCartClick={handleCart} handleIsHamburgerClick={handleHamburger} />);
 
     const search = screen.getByPlaceholderText('Pesquisar');
     const cart = screen.getByAltText('Fechar WineBox');
@@ -59,7 +59,7 @@ describe('<CartSearchHeader />', () => {
   });
 
   it('should hide search box and cart if hamburger menu is open', () => {
-    catalogAndCart(<CartHeaderSearch searchClick={false} cartClick={false} hamburgerClick={true} handleSearchClick={handleSearch} handleCartClick={handleCart} handleHamburgerClick={handleHamburger} />);
+    catalogAndCart(<CartHeaderSearch isSearchClick={false} isCartClick={false} isHamburgerClick={true} handleIsSearchClick={handleSearch} handleIsCartClick={handleCart} handleIsHamburgerClick={handleHamburger} />);
 
     const search = screen.getByPlaceholderText('Pesquisar');
     const cart = screen.getByAltText('Fechar WineBox');

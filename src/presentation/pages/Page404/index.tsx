@@ -4,25 +4,25 @@ import { CartHeaderSearch } from 'presentation/components/CartHeaderSearch';
 import { Title, PageContainer, MainContainer, Image, ErrorName, BackToHomeText } from './styles';
 
 const Page404 = () => {
-  const [searchClick, setSearchClick] = useState(false);
-  const [cartClick, setCartClick] = useState(false);
-  const [hamburgerClick, setHamburgerClick] = useState(false);
+  const [isSearchClick, setIsSearchClick] = useState(false);
+  const [isCartClick, setIsCartClick] = useState(false);
+  const [isHamburgerClick, setIsHamburgerClick] = useState(false);
 
-  const handleSearchClick = (close: boolean) => {
-    setSearchClick(close);
+  const handleIsSearchClick = (close: boolean) => {
+    setIsSearchClick(close);
   };
 
-  const handleCartClick = (close: boolean) => {
-    setCartClick(close);
+  const handleIsCartClick = (close: boolean) => {
+    setIsCartClick(close);
   };
 
-  const handleHamburgerClick = (close: boolean) => {
-    setHamburgerClick(close);
+  const handleIsHamburgerClick = (close: boolean) => {
+    setIsHamburgerClick(close);
   };
 
   return (
-    <PageContainer open={(searchClick === false && cartClick === false && hamburgerClick === false) ? false : true}>
-      <CartHeaderSearch searchClick={searchClick} cartClick={cartClick} handleSearchClick={handleSearchClick} handleCartClick={handleCartClick} hamburgerClick={hamburgerClick} handleHamburgerClick={handleHamburgerClick} />
+    <PageContainer open={(isSearchClick === false && isCartClick === false && isHamburgerClick === false) ? false : true}>
+      <CartHeaderSearch isSearchClick={isSearchClick} isCartClick={isCartClick} handleIsSearchClick={handleIsSearchClick} handleIsCartClick={handleIsCartClick} isHamburgerClick={isHamburgerClick} handleIsHamburgerClick={handleIsHamburgerClick} />
       <MainContainer>
         <Link to='/home' style={{ textDecoration: 'none' }}><BackToHomeText>&lt;&lt; VOLTAR PARA A HOME</BackToHomeText></Link>
         <ErrorName>erro 404</ErrorName>

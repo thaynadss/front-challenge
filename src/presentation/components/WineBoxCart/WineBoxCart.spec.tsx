@@ -5,13 +5,13 @@ import { cartMock } from 'presentation/tests/cartMock';
 import contextRender from 'presentation/tests/contextRender';
 
 describe('<WineBoxCart />', () => {
-  const handleCartClick = jest.fn();
+  const handleIsCartClick = jest.fn();
 
   describe('Render component with empty cart', () => {
     const { cart } = contextRender({});
 
     it('should render a phrase informing that no products have been added yet if the cart is empty and should not render the footer', () => {
-      cart(<WineBoxCart cartClick={true} handleCartClick={handleCartClick} />);
+      cart(<WineBoxCart isCartClick={true} handleIsCartClick={handleIsCartClick} />);
 
       const emptyCart = screen.getByText(/você ainda não escolheu seus produtos/i);
       const total = screen.queryByText(/total/i);
@@ -27,27 +27,27 @@ describe('<WineBoxCart />', () => {
     const { cart } = contextRender({ cartSt: { cart: cartMock } });
 
     it('should call function to close the cart when it is clicked outside the cart container', () => {
-      cart(<WineBoxCart cartClick={true} handleCartClick={handleCartClick} />);
+      cart(<WineBoxCart isCartClick={true} handleIsCartClick={handleIsCartClick} />);
 
       const screenOutside = screen.getByTestId('screen');
 
       userEvent.click(screenOutside);
 
-      expect(handleCartClick).toHaveBeenCalledWith(false);
+      expect(handleIsCartClick).toHaveBeenCalledWith(false);
     });
 
     it('should call function to close the cart when the arrow left icon is clicked', () => {
-      cart(<WineBoxCart cartClick={true} handleCartClick={handleCartClick} />);
+      cart(<WineBoxCart isCartClick={true} handleIsCartClick={handleIsCartClick} />);
 
       const arrowLeft = screen.getByAltText(/fechar winebox/i);
 
       userEvent.click(arrowLeft);
 
-      expect(handleCartClick).toHaveBeenCalledWith(false);
+      expect(handleIsCartClick).toHaveBeenCalledWith(false);
     });
 
     it('should verify that the counter is showing the correct quantity of the products that are in the cart', () => {
-      cart(<WineBoxCart cartClick={true} handleCartClick={handleCartClick} />);
+      cart(<WineBoxCart isCartClick={true} handleIsCartClick={handleIsCartClick} />);
 
       const counter = screen.getByText(/winebox/i);
 
@@ -55,7 +55,7 @@ describe('<WineBoxCart />', () => {
     });
 
     it('should render the products if any have been added to cart', () => {
-      cart(<WineBoxCart cartClick={true} handleCartClick={handleCartClick} />);
+      cart(<WineBoxCart isCartClick={true} handleIsCartClick={handleIsCartClick} />);
 
       const products = screen.getAllByRole('heading', { name: /vinho/i });
 
@@ -66,7 +66,7 @@ describe('<WineBoxCart />', () => {
     });
 
     it('should not render a phrase informing that no products have been added if there are products in the cart', () => {
-      cart(<WineBoxCart cartClick={true} handleCartClick={handleCartClick} />);
+      cart(<WineBoxCart isCartClick={true} handleIsCartClick={handleIsCartClick} />);
 
       const emptyCart = screen.queryByText(/você ainda não escolheu seus produtos/i);
 
@@ -74,7 +74,7 @@ describe('<WineBoxCart />', () => {
     });
 
     it('should render footer with subtotal value if there are products in cart', () => {
-      cart(<WineBoxCart cartClick={true} handleCartClick={handleCartClick} />);
+      cart(<WineBoxCart isCartClick={true} handleIsCartClick={handleIsCartClick} />);
 
       const finishButton = screen.getByRole('button', { name: /finalizar pedido/i });
       const total = screen.getByText(/total/i);

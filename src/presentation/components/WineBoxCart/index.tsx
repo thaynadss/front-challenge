@@ -3,13 +3,14 @@ import { priceFormat } from 'presentation//helpers/priceFormat';
 import { ScreenContainer, ProductsContainer, PageContainer, FooterContainer, FinishButton, EmptyCartStyle, CartSubtotal, CartHeader, CartContainer, ArrowLeft } from './styles';
 import { useCartContext } from 'presentation/contexts/CartContext'
 import { useEffect, useState } from 'react';
+import { themeColors } from 'presentation/styles/themeColors';
 
 type Props = {
-  cartClick: boolean;
-  handleCartClick: (close: boolean) => void;
+  isCartClick: boolean;
+  handleIsCartClick: (close: boolean) => void;
 }
 
-export const WineBoxCart = ({ cartClick, handleCartClick }: Props) => {
+export const WineBoxCart = ({ isCartClick, handleIsCartClick }: Props) => {
   const [subtotal, setSubtotal] = useState(0);
   const { cartState: { cart } } = useCartContext();
   const lengthSubtotal = String(subtotal).split('.')[0].length;
@@ -26,17 +27,17 @@ export const WineBoxCart = ({ cartClick, handleCartClick }: Props) => {
   }, [cart]);
 
   return (
-    <PageContainer cartClick={cartClick}>
-      <ScreenContainer data-testid='screen' onClick={() => handleCartClick(false)} />
+    <PageContainer isCartClick={isCartClick}>
+      <ScreenContainer data-testid='screen' onClick={() => handleIsCartClick(false)} />
       <CartContainer>
         <CartHeader>
-          <ArrowLeft src={process.env.PUBLIC_URL + '/icons/arrowLeft.svg'} alt="Fechar WineBox" onClick={() => handleCartClick(false)} />
+          <ArrowLeft src={process.env.PUBLIC_URL + '/icons/arrowLeft.svg'} alt="Fechar WineBox" onClick={() => handleIsCartClick(false)} />
           WineBox ({cart.length})</CartHeader>
         <ProductsContainer>
           {cart.length === 0 &&
             <>
-              <EmptyCartStyle size={32} color='#C0C0C0'>=(</EmptyCartStyle>
-              <EmptyCartStyle size={20} color='#1D1D1B'>Você ainda não escolheu seus produtos</EmptyCartStyle>
+              <EmptyCartStyle size={32} color={themeColors.text.gray1}>=(</EmptyCartStyle>
+              <EmptyCartStyle size={20} color={themeColors.text.gray8}>Você ainda não escolheu seus produtos</EmptyCartStyle>
             </>}
           {cart.length > 0 && cart.map(item => (
             <CartItem key={item.id} id={item.id} image={item.image} name={item.name} country={item.country} price={item.price} quantity={item.quantity} />

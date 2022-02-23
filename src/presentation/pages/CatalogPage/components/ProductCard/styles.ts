@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { themeColors } from 'presentation/styles/themeColors';
 
 export const CardContainer = styled.article`
   box-shadow: 0 10px 15px 0 rgb(0 0 0 0.1);
@@ -6,7 +7,7 @@ export const CardContainer = styled.article`
 `;
 
 export const DisplayProduct = styled.div`
-  background-color: #FFF;
+  background-color: ${themeColors.background.white};
   font-family: 'Lato', sans-serif;
   display: grid;
   row-gap: 0.6rem;
@@ -24,7 +25,7 @@ export const ProductImage = styled.img`
 export const Title = styled.h2`
   height: 2.25rem;
   font-size: 16px;
-  color: rgba(29, 29, 27, 1);
+  color: ${themeColors.text.gray8};
   text-align: center;
   cursor: pointer;
 `;
@@ -41,16 +42,16 @@ export const Porcentage = styled.span`
     width: 3rem;
     padding: 0.1rem;
     margin-left: 0.4rem;
-    color: #FFF;
+    color: ${themeColors.background.white};
     font-size: 10px;
     text-align: center;
-    background-color: rgba(247, 149, 82, 1);
+    background-color: ${themeColors.text.orange};
     border-radius: 1.94px;
     display: inline-block;
 `;
 
 export const MemberValue = styled.span`
-  color: #B6116E;
+  color: ${themeColors.text.pink3};
   font-size: 11px;
   display: inline-block;
   font-weight: normal;
@@ -66,8 +67,8 @@ export const AddProductButton = styled.button<{ width: number, height: number, s
   height: ${props => `${props.height}rem`};
   border-radius: 3.89px;
   text-align: center;
-  color: #FFF;
-  background-color: rgba(126, 188, 67, 1);
+  color: ${themeColors.background.white};
+  background-color: ${themeColors.button.green};
   border: none;
   font-family: 'Lato', sans-serif;
   font-size: ${props => `${props.size}px`};

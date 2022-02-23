@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { mediaSizes } from 'presentation/styles/mediaSizes';
+import { themeColors } from 'presentation/styles/themeColors';
 
 export const ProdDescripContainer = styled.section`
   font-family: 'Lato', sans-serif;
@@ -22,7 +23,7 @@ export const TypeCountryRegion = styled.h2<{ color: string, weight?: string, cur
   cursor: ${props => props.cursor ? props.cursor : 'auto'};
 
   span {
-    color: #888888;
+    color: ${themeColors.text.gray4};
     font-weight: normal;
     padding-left: 0.5rem;
     cursor: none;
@@ -31,7 +32,7 @@ export const TypeCountryRegion = styled.h2<{ color: string, weight?: string, cur
 
 export const ProductTitle = styled.h1`
   font-size: 28px;
-  color: #111111;
+  color: ${themeColors.text.black};
   margin: 1.1rem 0 1rem;
 
   @media (max-width: ${mediaSizes.medium}px) {
@@ -47,7 +48,7 @@ export const ProductTitle = styled.h1`
 
 export const CountryTypeClassSizeRating = styled.h2`
   font-size: 16px;
-  color: #555555;
+  color: ${themeColors.text.gray5};
   font-weight: normal;
   margin-bottom: 3.25rem;
 
@@ -84,11 +85,12 @@ export const CountryTypeClassSizeRating = styled.h2`
 
   @media (max-width: ${mediaSizes.mobileS}px) {
     font-size: 13px;
+  }
 `;
 
 export const MemberValue = styled.h2<{ small: boolean, large: boolean }>`
   font-size: 32px;
-  color: #C81A78;
+  color: ${themeColors.text.pink2};
   margin-bottom: 0.3rem;
 
   & .currency {
@@ -119,7 +121,7 @@ export const MemberValue = styled.h2<{ small: boolean, large: boolean }>`
 
 export const NonMemberValue = styled.h3`
   font-size: 16px;
-  color: #888888;
+  color: ${themeColors.text.gray4};
   text-transform: uppercase;
   font-weight: normal;
   margin-bottom: 3.3rem;
@@ -131,7 +133,7 @@ export const NonMemberValue = styled.h3`
 
 export const SommelierTitle = styled.h3`
   font-size: 16px;
-  color: #111111;
+  color: ${themeColors.text.black};
   margin-bottom: 0.5rem;
 
   @media (max-width: ${mediaSizes.large}px) {
@@ -146,7 +148,7 @@ export const SommelierTitle = styled.h3`
 
 export const SommelierComment = styled.p`
   font-size: 14px;
-  color: #666666;
+  color: ${themeColors.text.gray3};
   width: 28rem;
   line-height: 1.3rem;
   margin-bottom: 3rem;
@@ -189,7 +191,7 @@ export const FooterContainer = styled.div`
   height: 5rem;
   bottom: 0;
   left: 0;
-  background-color: #FFF;
+  background-color: ${themeColors.background.white};
   padding: 0 2rem;
 
   @media (max-width: ${mediaSizes.mobileL}px) {

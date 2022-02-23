@@ -14,7 +14,7 @@ describe('<CartItem />', () => {
     userEvent.click(decrementButton);
 
     expect(handleDecreaseQuantity).toHaveBeenCalledTimes(1);
-    expect(handleDecreaseQuantity).toHaveBeenCalledWith(0);
+    expect(handleDecreaseQuantity).toHaveBeenCalledWith({ id: 0 });
   });
 
   it('should call function when input value is changed with a number', () => {
@@ -25,7 +25,7 @@ describe('<CartItem />', () => {
     userEvent.type(input, '2');
 
     expect(handleInputQuantity).toHaveBeenCalledTimes(1);
-    expect(handleInputQuantity).toHaveBeenCalledWith(0, 12);
+    expect(handleInputQuantity).toHaveBeenCalledWith({ id: 0, quantity: 12 });
   });
 
   it('should not call function when input value is changed with a NaN', () => {
@@ -46,7 +46,7 @@ describe('<CartItem />', () => {
     userEvent.click(incrementButton);
 
     expect(handleIncreaseQuantity).toHaveBeenCalledTimes(1);
-    expect(handleIncreaseQuantity).toHaveBeenCalledWith(0, 1);
+    expect(handleIncreaseQuantity).toHaveBeenCalledWith({ id: 0, quantity: 1 });
   });
 
   it('should call function when remove item button is clicked', () => {
@@ -57,6 +57,6 @@ describe('<CartItem />', () => {
     userEvent.click(removeItem);
 
     expect(handleRemoveFromCart).toHaveBeenCalledTimes(1);
-    expect(handleRemoveFromCart).toHaveBeenCalledWith(0);
+    expect(handleRemoveFromCart).toHaveBeenCalledWith({ id: 0 });
   });
 });

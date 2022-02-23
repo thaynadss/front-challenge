@@ -1,5 +1,6 @@
 import { Reducer } from 'react';
 import { CartItem } from 'types/Product';
+import * as types from './types';
 
 export type Action =
   | { type: 'ADD_TO_CART', payload: CartItem }
@@ -10,7 +11,7 @@ export type Action =
 
 export const cartReducer: Reducer<{ cart: CartItem[] }, Action> = (state: { cart: CartItem[] }, action: Action) => {
   switch (action.type) {
-    case 'ADD_TO_CART': {
+    case types.ADD_TO_CART: {
       let auxArray: CartItem = action.payload;
       auxArray.price = auxArray.quantity * auxArray.price;
 
@@ -19,7 +20,7 @@ export const cartReducer: Reducer<{ cart: CartItem[] }, Action> = (state: { cart
         cart: [...state.cart, auxArray]
       };
     }
-    case 'INCREASE_QUANTITY': {
+    case types.INCREASE_QUANTITY: {
       let auxArray: CartItem[] = state.cart.filter(c => c.id === action.payload.id ? (c.price /= c.quantity, c.quantity += action.payload.quantity) : c.quantity);
 
       return {
@@ -27,7 +28,7 @@ export const cartReducer: Reducer<{ cart: CartItem[] }, Action> = (state: { cart
         cart: auxArray.filter(c => c.id === action.payload.id ? (c.price *= c.quantity) : c.price)
       };
     }
-    case 'INPUT_QUANTITY': {
+    case types.INPUT_QUANTITY: {
       let auxArray: CartItem[] = state.cart.filter(c => c.id === action.payload.id ? (c.price /= c.quantity, c.quantity = action.payload.quantity) : c.quantity);
 
       return {
@@ -35,7 +36,7 @@ export const cartReducer: Reducer<{ cart: CartItem[] }, Action> = (state: { cart
         cart: auxArray.filter(c => c.id === action.payload.id ? (c.price *= action.payload.quantity) : c.price)
       };
     }
-    case 'DECREASE_QUANTITY': {
+    case types.DECREASE_QUANTITY: {
       let auxArray: CartItem[] = state.cart.filter(c => c.id === action.payload.id && c.quantity > 1 ? (c.price /= c.quantity, c.quantity -= 1) : c.quantity)
 
       return {
@@ -43,7 +44,7 @@ export const cartReducer: Reducer<{ cart: CartItem[] }, Action> = (state: { cart
         cart: auxArray.filter(c => c.id === action.payload.id ? (c.price *= c.quantity) : c.price)
       };
     }
-    case 'REMOVE_FROM_CART': {
+    case types.REMOVE_FROM_CART: {
       return {
         ...state,
         cart: state.cart.filter(c => c.id !== action.payload.id)
