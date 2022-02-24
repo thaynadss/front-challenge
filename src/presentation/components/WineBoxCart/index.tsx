@@ -1,6 +1,17 @@
+import {
+  ScreenContainer,
+  ProductsContainer,
+  PageContainer,
+  FooterContainer,
+  FinishButton,
+  EmptyCartStyle,
+  CartSubtotal,
+  CartHeader,
+  CartContainer,
+  ArrowLeft
+} from './styles';
 import { CartItem } from 'presentation/components/CartItem';
 import { priceFormat } from 'presentation//helpers/priceFormat';
-import { ScreenContainer, ProductsContainer, PageContainer, FooterContainer, FinishButton, EmptyCartStyle, CartSubtotal, CartHeader, CartContainer, ArrowLeft } from './styles';
 import { useCartContext } from 'presentation/contexts/CartContext'
 import { useEffect, useState } from 'react';
 import { themeColors } from 'presentation/styles/themeColors';
@@ -20,8 +31,8 @@ export const WineBoxCart = ({ isCartClick, handleIsCartClick }: Props) => {
       const prices: number[] = [];
       cart.forEach(item => prices.push(item.price))
 
-      const subtotal = prices.reduce((acum, value) => acum + value, 0);
-      setSubtotal(subtotal);
+      const total = prices.reduce((acum, value) => acum + value, 0);
+      setSubtotal(total);
     };
     handleCartSubtotal();
   }, [cart]);

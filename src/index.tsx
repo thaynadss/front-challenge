@@ -8,24 +8,29 @@ import GlobalStyle from 'presentation/styles/globalStyles';
 import CatalogPage from 'presentation/pages/CatalogPage';
 import Page404 from 'presentation/pages/Page404';
 import ProductPage from 'presentation/pages/ProductPage';
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+const queryClient = new QueryClient();
 
 ReactDOM.render(
   <React.StrictMode>
     <GlobalStyle />
     <BrowserRouter>
-      <CatalogProvider>
-        <CartProvider>
-          <ProductProvider>
-            <Routes>
-              <Route path='/' element={<CatalogPage />} >
-                <Route path='home' element={<CatalogPage />} />
-              </Route>
-              <Route path='/product/:id' element={<ProductPage />} />
-              <Route path='*' element={<Page404 />} />
-            </Routes>
-          </ProductProvider>
-        </CartProvider>
-      </CatalogProvider>
+      <QueryClientProvider client={queryClient}>
+        <CatalogProvider>
+          <CartProvider>
+            <ProductProvider>
+              <Routes>
+                <Route path='/' element={<CatalogPage />} >
+                  <Route path='home' element={<CatalogPage />} />
+                </Route>
+                <Route path='/product/:id' element={<ProductPage />} />
+                <Route path='*' element={<Page404 />} />
+              </Routes>
+            </ProductProvider>
+          </CartProvider>
+        </CatalogProvider>
+      </QueryClientProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')

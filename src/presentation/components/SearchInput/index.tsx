@@ -1,6 +1,13 @@
+import {
+  SubmitButton,
+  SearchLabel,
+  SearchForm,
+  ScreenContainer,
+  PageBackground,
+  Input
+} from './styles';
 import { KeyboardEvent, useState } from 'react';
 import { useCatalogContext } from 'presentation/contexts/CatalogContext';
-import { SubmitButton, SearchLabel, SearchForm, ScreenContainer, PageBackground, Input } from './styles';
 import { useNavigate } from 'react-router-dom';
 
 type Props = {

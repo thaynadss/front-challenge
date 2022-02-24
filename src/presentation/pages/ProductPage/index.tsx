@@ -25,7 +25,7 @@ const ProductPage = () => {
   };
 
   return (
-    <PageContainer open={(isSearchClick === false && isCartClick === false && isHamburgerClick === false) ? false : true}>
+    <PageContainer closed={!isSearchClick && !isCartClick && !isHamburgerClick}>
       <CartHeaderSearch isSearchClick={isSearchClick} isCartClick={isCartClick} handleIsSearchClick={handleIsSearchClick} handleIsCartClick={handleIsCartClick} isHamburgerClick={isHamburgerClick} handleIsHamburgerClick={handleIsHamburgerClick} />
       <MainContainer>
         <BackButton onClick={() => navigate(-1)}>
@@ -36,6 +36,6 @@ const ProductPage = () => {
       </MainContainer>
     </PageContainer>
   )
-}
+};
 
 export default ProductPage;

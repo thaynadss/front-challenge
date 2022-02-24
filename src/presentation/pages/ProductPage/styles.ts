@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import { mediaSizes } from 'presentation/styles/mediaSizes';
 
-export const PageContainer = styled.div<{ open: boolean }>`
+export const PageContainer = styled.div<{ closed: boolean }>`
   overflow: hidden;
-  position: ${props => props.open ? 'fixed' : 'static'};
+  position: ${props => props.closed ? 'static' : 'fixed'};
 `;
 
 export const MainContainer = styled.main`

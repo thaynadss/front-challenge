@@ -1,6 +1,17 @@
-import { NavigationItems } from 'presentation/components/NavigationItems';
-import { WineBoxButton, SmallSearchButton, SearchButton, Logo, IconsContainer, HeaderContainer, HamburguerMenu, CounterWineBox, AccountButton, Container } from './styles';
+import {
+  WineBoxButton,
+  SmallSearchButton,
+  SearchButton,
+  Logo,
+  IconsContainer,
+  HeaderContainer,
+  HamburguerMenu,
+  CounterWineBox,
+  AccountButton,
+  Container
+} from './styles';
 import { Link } from 'react-router-dom';
+import { NavigationItems } from 'presentation/components/NavigationItems';
 import { useCatalogContext } from 'presentation/contexts/CatalogContext';
 import { useCartContext } from 'presentation/contexts/CartContext';
 import { HeaderProps } from 'presentation/components/CartHeaderSearch';

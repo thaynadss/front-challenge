@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { data } from 'presentation/contexts/CatalogContext/data';
-import { api, getProducts } from './api';
+import { api } from './api';
+import { getProducts } from './useProducts'
 import { apiMock } from 'presentation/tests/apiMock';
 
 jest.mock('axios', () => ({

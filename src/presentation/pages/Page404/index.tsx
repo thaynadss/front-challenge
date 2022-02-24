@@ -21,7 +21,7 @@ const Page404 = () => {
   };
 
   return (
-    <PageContainer open={(isSearchClick === false && isCartClick === false && isHamburgerClick === false) ? false : true}>
+    <PageContainer closed={!isSearchClick && !isCartClick && !isHamburgerClick}>
       <CartHeaderSearch isSearchClick={isSearchClick} isCartClick={isCartClick} handleIsSearchClick={handleIsSearchClick} handleIsCartClick={handleIsCartClick} isHamburgerClick={isHamburgerClick} handleIsHamburgerClick={handleIsHamburgerClick} />
       <MainContainer>
         <Link to='/home' style={{ textDecoration: 'none' }}><BackToHomeText>&lt;&lt; VOLTAR PARA A HOME</BackToHomeText></Link>

@@ -1,25 +1,31 @@
+import {
+  QuantityandButton,
+  QuantityProducts,
+  LoadingTitle,
+  LoadingGif,
+  LoadingContainer,
+  DisplayContainer,
+  ClearSearch,
+  CardsContainer
+} from './styles';
 import { useEffect, useState } from 'react';
 import { PaginationButtons } from '../PaginationButtons';
 import { ProductCard } from '../ProductCard';
-import { Product } from 'types/Product';
 import { useCatalogContext } from 'presentation/contexts/CatalogContext';
-import { QuantityandButton, QuantityProducts, LoadingTitle, LoadingGif, LoadingContainer, DisplayContainer, ClearSearch, CardsContainer } from './styles';
-import apiCallFn from 'services/apiCallFn';
+import { useProducts } from 'services/useProducts';
 
 export const ProductsDisplay = () => {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [totalItems, setTotalItems] = useState(0);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
   const { catalogState, catalogDispatch } = useCatalogContext();
-  const [size, setSize] = useState(window.innerWidth);
+  const { data, isLoading, error } = useProducts(catalogState);
 
+  const [size, setSize] = useState(window.innerWidth);
   const itemsPerPage = size > 540 && size < 1024 ? 10 : 9;
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
+  const totalPages = data?.totalItems ? Math.ceil(data?.totalItems / itemsPerPage) : 0;
   const [currentPage, setCurrentPage] = useState(1);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const currentProducts: Product[] = products.slice(startIndex, endIndex);
+  const currentProducts = data?.items.slice(startIndex, endIndex);
+
 
   const handleCurrentPage = (page: number) => setCurrentPage(page);
 
@@ -31,9 +37,8 @@ export const ProductsDisplay = () => {
   };
 
   useEffect(() => {
-    apiCallFn({ catalogState, setError, setLoading, setProducts, setTotalItems });
     setCurrentPage(1);
-  }, [catalogState])
+  }, [catalogState]);
 
   useEffect(() => {
     const updateSize = () => {
@@ -47,29 +52,29 @@ export const ProductsDisplay = () => {
 
   return (
     <>
-      {!error && loading &&
+      {isLoading &&
         <LoadingContainer>
           <LoadingGif src='https://service.smarthint.co/content/ajax-loader.gif' alt='Carregando' />
           <LoadingTitle>Carregando...</LoadingTitle>
         </LoadingContainer >
       }
 
-      {error && !loading &&
+      {error &&
         <LoadingContainer>
           <LoadingTitle>Não foi possível carregar os produtos =(</LoadingTitle>
         </LoadingContainer >
       }
 
-      {!error && !loading &&
+      {!error && !isLoading &&
         <DisplayContainer>
           <QuantityandButton>
-            <QuantityProducts><span>{totalItems}</span> produtos encontrados</QuantityProducts>
+            <QuantityProducts><span>{data?.totalItems}</span> produtos encontrados</QuantityProducts>
             {catalogState.search !== '' &&
               <ClearSearch onClick={handleClearSearch}>Limpar pesquisa</ClearSearch>
             }
           </QuantityandButton>
           <CardsContainer>
-            {currentProducts.map((item) =>
+            {currentProducts?.map((item) =>
               <ProductCard key={item.id} item={item} />)}
           </CardsContainer>
           <PaginationButtons totalPages={totalPages} currentPage={currentPage} handleCurrentPage={handleCurrentPage} />

@@ -1,5 +1,13 @@
 import { NavigationItems } from '../NavigationItems';
-import { ScreenContainer, PageContainer, HeaderContainer, HamburgerContainer, CloseButton, AccountTitle, AccountButton } from './styles';
+import {
+  ScreenContainer,
+  PageContainer,
+  HeaderContainer,
+  HamburgerContainer,
+  CloseButton,
+  AccountTitle,
+  AccountButton
+} from './styles';
 
 type Props = {
   isHamburgerClick: boolean;

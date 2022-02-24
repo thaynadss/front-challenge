@@ -1,4 +1,14 @@
-import { CardImage, CartCardContainer, CardTitle, QuantitySelectors, ProductCountry, ProductValue, SmallProductValue, RemoveItem, QuantityInput } from './styles';
+import {
+  CardImage,
+  CartCardContainer,
+  CardTitle,
+  QuantitySelectors,
+  ProductCountry,
+  ProductValue,
+  SmallProductValue,
+  RemoveItem,
+  QuantityInput
+} from './styles';
 import { priceFormat, integerFormat, decimalFormat, currencyFormat } from 'presentation/helpers/priceFormat';
 import { useCartContext } from 'presentation/contexts/CartContext';
 import { CartItem as CartType } from 'types/Product';
@@ -9,7 +19,7 @@ export const CartItem = ({ id, image, name, country, price, quantity }: CartType
 
   const handleIncreaseByInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (isNaN(parseInt('3')) === isNaN(parseInt(e.target.value))) {
-      handleInputQuantity({ id: id, quantity: parseInt(e.target.value) })
+      handleInputQuantity({ id, quantity: parseInt(e.target.value) })
     } else {
       e.preventDefault();
     }
@@ -22,9 +32,9 @@ export const CartItem = ({ id, image, name, country, price, quantity }: CartType
         <ProductCountry>{country}</ProductCountry>
       </CardTitle>
       <QuantitySelectors>
-        <span className='decrement' onClick={() => handleDecreaseQuantity({ id: id })}>-</span>
+        <span className='decrement' onClick={() => handleDecreaseQuantity({ id })}>-</span>
         <QuantityInput type='number' min={1} value={quantity} onChange={e => handleIncreaseByInput(e)} />
-        <span className='increment' onClick={() => handleIncreaseQuantity({ id: id, quantity: 1 })}>+</span>
+        <span className='increment' onClick={() => handleIncreaseQuantity({ id, quantity: 1 })}>+</span>
       </QuantitySelectors>
       {lengthPrice <= 10 &&
         <ProductValue>
@@ -35,7 +45,7 @@ export const CartItem = ({ id, image, name, country, price, quantity }: CartType
       {lengthPrice > 10 &&
         <SmallProductValue>{priceFormat(price)}</SmallProductValue>
       }
-      <RemoveItem title='Remover item' onClick={() => handleRemoveFromCart({ id: id })}>x</RemoveItem>
+      <RemoveItem title='Remover item' onClick={() => handleRemoveFromCart({ id })}>x</RemoveItem>
     </CartCardContainer>
   )
 };

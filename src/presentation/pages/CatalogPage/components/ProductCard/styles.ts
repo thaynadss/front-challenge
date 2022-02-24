@@ -1,5 +1,13 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { themeColors } from 'presentation/styles/themeColors';
+
+export const CardLink = styled(Link)`
+  display: grid;
+  justify-items: center;
+  row-gap: 0.6rem;
+  text-decoration: none;
+`;
 
 export const CardContainer = styled.article`
   box-shadow: 0 10px 15px 0 rgb(0 0 0 0.1);

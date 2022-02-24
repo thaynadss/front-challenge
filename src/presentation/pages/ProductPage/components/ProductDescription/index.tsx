@@ -1,27 +1,27 @@
-import { useProductContext } from 'presentation/contexts/ProductContext';
-import { AddProdBtn } from '../AddProdBtn';
-import { TypeCountryRegion, SommelierTitle, SommelierComment, ProductTitle, ProductImage, ProdDescripContainer, NonMemberValue, MemberValue, FooterContainer, CountryTypeClassSizeRating } from './styles';
+import {
+  TypeCountryRegion,
+  SommelierTitle,
+  SommelierComment,
+  ProductTitle,
+  ProductImage,
+  ProdDescripContainer,
+  NonMemberValue,
+  MemberValue,
+  FooterContainer,
+  CountryTypeClassSizeRating
+} from './styles';
 import { priceFormat, integerFormat, decimalFormat, currencyFormat } from 'presentation/helpers/priceFormat';
-import { useCartContext } from 'presentation/contexts/CartContext';
 import { AddProductButton } from 'presentation/pages/CatalogPage/components/ProductCard/styles';
+import { useProductContext } from 'presentation/contexts/ProductContext';
+import { useCartContext } from 'presentation/contexts/CartContext';
 import { themeColors } from 'presentation/styles/themeColors';
+import { starsLength } from './starsLength';
+import { AddProdBtn } from '../AddProdBtn';
 
 export const ProductDescription = () => {
   const { item } = useProductContext();
   const { handleCheckItemInCart } = useCartContext();
-
-  let yellowStars: number[] = [];
-  let grayStars: number[] = [];
-  let rating = item.rating;
-  let nonRating = (5 - rating);
-
-  for (let i = 0; i < rating; i++) {
-    yellowStars.push(i);
-  };
-
-  for (let i = 0; i < nonRating; i++) {
-    grayStars.push(i);
-  };
+  const { yellowStars, grayStars } = starsLength(item.rating);
 
   const handleAddToCart = (qty: number) => {
     handleCheckItemInCart({ id: item.id, image: item.image, name: item.name, country: item.country, price: item.priceMember, quantity: qty })

@@ -1,6 +1,15 @@
-import { Title, SmallerCardText, ProductImage, Porcentage, MemberValue, DisplayProduct, CardContainer, AddProductButton } from './styles';
+import {
+  Title,
+  SmallerCardText,
+  ProductImage,
+  Porcentage,
+  MemberValue,
+  DisplayProduct,
+  CardContainer,
+  AddProductButton,
+  CardLink
+} from './styles';
 import { priceFormat, integerFormat, decimalFormat, currencyFormat } from 'presentation/helpers/priceFormat';
-import { Link } from 'react-router-dom';
 import { Product } from 'types/Product';
 import { useCartContext } from 'presentation/contexts/CartContext';
 import { useProductContext } from 'presentation/contexts/ProductContext';
@@ -17,16 +26,10 @@ export const ProductCard = ({ item }: Props) => {
   return (
     <CardContainer>
       <DisplayProduct>
-        <Link to={`/product/${item.id}`}
-          style={{
-            textDecoration: 'none',
-            display: 'grid',
-            justifyItems: 'center',
-            rowGap: '0.6rem'
-          }}>
+        <CardLink to={`/product/${item.id}`}>
           <ProductImage src={item.image} alt={item.name} onClick={() => handleProductPage(item)} />
           <Title onClick={() => handleProductPage(item)}>{item.name}</Title>
-        </Link>
+        </CardLink>
         <SmallerCardText size={11} color={themeColors.text.gray4} decoration='line-through'>{priceFormat(item.price)}
           <Porcentage>{item.discount}% OFF</Porcentage>
         </SmallerCardText>

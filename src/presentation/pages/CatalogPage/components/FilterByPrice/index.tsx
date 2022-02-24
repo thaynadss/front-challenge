@@ -1,6 +1,15 @@
+import {
+  FilterTitle,
+  FilterLegend,
+  FilterLabel,
+  FilterInput,
+  FilterForm,
+  FilterFieldset,
+  FilterContainer,
+  ClearSelection
+} from './styles';
 import { useEffect, useState } from 'react';
 import { useCatalogContext } from 'presentation/contexts/CatalogContext';
-import { FilterTitle, FilterLegend, FilterLabel, FilterInput, FilterForm, FilterFieldset, FilterContainer, ClearSelection } from './styles';
 import { filterOptions } from './filterOptions';
 
 export const FilterByPrice = () => {

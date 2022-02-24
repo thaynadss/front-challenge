@@ -7,7 +7,20 @@ export type PaginationProps = {
 };
 
 export const PaginationButtons = ({ totalPages, currentPage, handleCurrentPage }: PaginationProps) => {
-  const { ButtonsContainer, PreviousButton, NextButton, PageOneButton, LeftSeparator, SecondButton, PreviousPageButton, CurrentPageButton, NextPageButton, PageThreeButton, RightSeparator, LastPageButton } = Buttons({ totalPages: totalPages, currentPage: currentPage })
+  const {
+    ButtonsContainer,
+    PreviousButton,
+    NextButton,
+    PageOneButton,
+    LeftSeparator,
+    SecondButton,
+    PreviousPageButton,
+    CurrentPageButton,
+    NextPageButton,
+    PageThreeButton,
+    RightSeparator,
+    LastPageButton
+  } = Buttons({ totalPages: totalPages, currentPage: currentPage })
 
   return (
     <ButtonsContainer >
