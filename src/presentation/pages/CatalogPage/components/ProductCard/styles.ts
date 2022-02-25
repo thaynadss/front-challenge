@@ -6,7 +6,6 @@ export const CardLink = styled(Link)`
   display: grid;
   justify-items: center;
   row-gap: 0.6rem;
-  text-decoration: none;
 `;
 
 export const CardContainer = styled.article`

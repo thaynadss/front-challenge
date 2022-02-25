@@ -12,7 +12,7 @@ export const NavigationItems = ({ isHeader, isHamburgerMenu }: NavigationItemsPr
       {isHeader &&
         <NavigationContainer>
           {navigationOptions.map((item, index) => (
-            <HeaderItem key={index} href={item.path} style={{ textDecoration: 'none' }}>
+            <HeaderItem key={index} href={item.path}>
               {item.title}
             </HeaderItem>
           ))}
@@ -20,7 +20,7 @@ export const NavigationItems = ({ isHeader, isHamburgerMenu }: NavigationItemsPr
       }
       {isHamburgerMenu &&
         navigationOptions.map((item, index) => (
-          <HamburgerMenuItem key={index} href={item.path} style={{ textDecoration: 'none', textTransform: 'uppercase' }}>
+          <HamburgerMenuItem key={index} href={item.path} style={{ textTransform: 'uppercase' }}>
             {item.title}
           </HamburgerMenuItem>
         ))}

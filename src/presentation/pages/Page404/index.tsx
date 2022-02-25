@@ -24,7 +24,7 @@ const Page404 = () => {
     <PageContainer closed={!isSearchClick && !isCartClick && !isHamburgerClick}>
       <CartHeaderSearch isSearchClick={isSearchClick} isCartClick={isCartClick} handleIsSearchClick={handleIsSearchClick} handleIsCartClick={handleIsCartClick} isHamburgerClick={isHamburgerClick} handleIsHamburgerClick={handleIsHamburgerClick} />
       <MainContainer>
-        <Link to='/home' style={{ textDecoration: 'none' }}><BackToHomeText>&lt;&lt; VOLTAR PARA A HOME</BackToHomeText></Link>
+        <Link to='/home'><BackToHomeText>&lt;&lt; VOLTAR PARA A HOME</BackToHomeText></Link>
         <ErrorName>erro 404</ErrorName>
         <Title>Opa! A página que você está tentando
           acessar não existe ou não está disponível.
